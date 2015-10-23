@@ -11,8 +11,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Health App"
         android:id="@+id/textView"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="201dp" />
 
     <Button
         android:layout_width="wrap_content"
