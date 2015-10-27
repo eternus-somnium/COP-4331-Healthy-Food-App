@@ -1,6 +1,8 @@
 package com.healthapp.healthapp;
 
+
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+
 
 public class Search extends AppCompatActivity {
 
@@ -63,6 +67,7 @@ public class Search extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     private View.OnClickListener clearListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -109,5 +114,11 @@ public class Search extends AppCompatActivity {
             }
         }
     };
+
+
+    public void launchSimpleActivity(View v) {
+        Intent intent = new Intent(this, SimpleScannerActivity.class);
+        startActivity(intent);
+    }
 
 }

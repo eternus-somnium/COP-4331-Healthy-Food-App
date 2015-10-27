@@ -21,6 +21,7 @@
                 android:focusable="true"
                 android:singleLine="true"/>
 
+
             <ImageButton
                 android:id="@+id/clear_button"
                 android:layout_width="22dp"
