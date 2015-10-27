@@ -5,25 +5,44 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal">
-
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/search_field"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="62dp"
-            android:hint="Search" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
+        android:layout_height="match_parent">
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enter"
-            android:id="@+id/searchButton"
-            android:layout_alignTop="@+id/search_field"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:id="@+id/frameLayout">
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/search_field"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="62dp"
+                android:hint="Search"
+                android:focusable="true"
+                android:singleLine="true"/>
+
+            <ImageButton
+                android:id="@+id/clear_button"
+                android:layout_width="22dp"
+                android:layout_height="19dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="right|bottom"
+                android:src="@drawable/clear"
+                android:visibility="invisible"/>
+        </FrameLayout>
+
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:id="@+id/imageButton"
+            android:background="#ffffff"
+            android:src="@drawable/scanner"
+            android:layout_alignBottom="@+id/frameLayout"
+            android:layout_toRightOf="@+id/frameLayout"
+            android:layout_toEndOf="@+id/frameLayout" />
+
     </RelativeLayout>
 </LinearLayout>

@@ -53,6 +53,14 @@
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up" >
         </activity>
+        <activity
+            android:name=".BarcodeScan"
+            android:label="@string/title_activity_barcode_scan" >
+        </activity>
+        <activity
+            android:name=".Results"
+            android:label="@string/title_activity_results" >
+        </activity>
     </application>
 
 </manifest>
