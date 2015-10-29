@@ -8,5 +8,6 @@
     <string name="title_activity_sign_up">SignUp</string>
     <string name="title_activity_barcode_scan">BarcodeScan</string>
     <string name="title_activity_results">Results</string>
+    <string name="product_name">[PRODUCT NAME]</string>
 
 </resources>
