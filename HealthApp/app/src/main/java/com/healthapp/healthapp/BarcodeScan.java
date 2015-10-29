@@ -2,6 +2,7 @@ package com.healthapp.healthapp;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -11,12 +12,12 @@ import me.dm7.barcodescanner.zbar.ZBarScannerView;
 /**
  * Created by Clive on 10/29/2015.
  */
-public class BarcodeScan extends Activity implements ZBarScannerView.ResultHandler {
+public class BarcodeScan extends AppCompatActivity implements ZBarScannerView.ResultHandler {
 private ZBarScannerView mScannerView;
 
 @Override
-public void onCreate(Bundle state) {
-        super.onCreate(state);
+public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         mScannerView = new ZBarScannerView(this);    // Programmatically initialize the scanner view
         setContentView(mScannerView);                // Set the scanner view as the content view
         }
