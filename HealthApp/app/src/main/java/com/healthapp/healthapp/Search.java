@@ -35,7 +35,7 @@ public class Search extends AppCompatActivity {
 
         // Initialize image button
         sButton = (ImageButton) findViewById(R.id.imageButton);
-
+        sButton.setOnClickListener(barcodeListener);
         cButton = (ImageButton) findViewById(R.id.clear_button);
 
 
@@ -67,7 +67,7 @@ public class Search extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    /*Clear Button Listener*/
     private View.OnClickListener clearListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -77,6 +77,22 @@ public class Search extends AppCompatActivity {
             searchField.setText("");
         }
     };
+    /*Barcode Scanner Button Listener*/
+    private View.OnClickListener barcodeListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            launchSimpleActivity(v);
+        }
+    };
+    /*Search Button Listener*/
+    private View.OnClickListener searchListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            launchSearchActivity(v);
+        }
+    };
+
+    /*Text Watcher*/
     private final TextWatcher myWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -97,6 +113,7 @@ public class Search extends AppCompatActivity {
             sButton = (ImageButton) findViewById(R.id.imageButton);
             if(sField.matches("")){
                 sButton.setImageResource(R.drawable.scanner);
+                sButton.setOnClickListener(barcodeListener);
                 cButton = (ImageButton) findViewById(R.id.clear_button);
                 cButton.setVisibility(View.INVISIBLE);
             }
@@ -107,6 +124,7 @@ public class Search extends AppCompatActivity {
 
                 // Initialize image button
                 sButton = (ImageButton) findViewById(R.id.imageButton);
+                sButton.setOnClickListener(searchListener);
 
                 cButton = (ImageButton) findViewById(R.id.clear_button);
                 cButton.setVisibility(View.VISIBLE);
@@ -115,9 +133,14 @@ public class Search extends AppCompatActivity {
         }
     };
 
-
+    /*Intent to go to Barcode Scanner activity*/
     public void launchSimpleActivity(View v) {
-        Intent intent = new Intent(this, SimpleScannerActivity.class);
+        Intent intent = new Intent(this, BC_Test.class);
+        startActivity(intent);
+    }
+    /*Intent to go to Search activity*/
+    public void launchSearchActivity(View v) {
+        Intent intent = new Intent(this, Results.class);
         startActivity(intent);
     }
 
