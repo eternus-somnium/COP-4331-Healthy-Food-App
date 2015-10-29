@@ -1,37 +1,47 @@
 package com.healthapp.healthapp;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
+import android.widget.Toast;
 
-public class BarcodeScan extends AppCompatActivity {
+import me.dm7.barcodescanner.zbar.Result;
+import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_barcode_scan);
-    }
+/**
+ * Created by Clive on 10/29/2015.
+ */
+public class BarcodeScan extends Activity implements ZBarScannerView.ResultHandler {
+private ZBarScannerView mScannerView;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_barcode_scan, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+@Override
+public void onCreate(Bundle state) {
+        super.onCreate(state);
+        mScannerView = new ZBarScannerView(this);    // Programmatically initialize the scanner view
+        setContentView(mScannerView);                // Set the scanner view as the content view
         }
 
-        return super.onOptionsItemSelected(item);
-    }
-}
+@Override
+public void onResume() {
+        super.onResume();
+        mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
+        mScannerView.startCamera();          // Start camera on resume
+        }
+
+@Override
+public void onPause() {
+        super.onPause();
+        mScannerView.stopCamera();           // Stop camera on pause
+        }
+
+@Override
+public void handleResult(Result rawResult) {
+        // Do something with the result here
+        Log.v("TAG", rawResult.getContents()); // Prints scan results
+        Log.v("TAG", rawResult.getBarcodeFormat().getName()); // Prints the scan format (qrcode, pdf417 etc.)
+
+        Toast.makeText(this, "Contents = " + rawResult.getContents() +
+        ", Format = " + rawResult.getBarcodeFormat().getName(), Toast.LENGTH_SHORT).show();
+        mScannerView.startCamera();
+        }
+        }

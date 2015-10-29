@@ -1,17 +1,14 @@
 package com.healthapp.healthapp;
 
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -77,6 +74,21 @@ public class Search extends AppCompatActivity {
             searchField.setText("");
         }
     };
+
+    private View.OnClickListener searchDatabase = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    };
+
+    private View.OnClickListener parseBarcode = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            BarcodeScanner(v);
+        }
+    };
+
     private final TextWatcher myWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -99,6 +111,7 @@ public class Search extends AppCompatActivity {
                 sButton.setImageResource(R.drawable.scanner);
                 cButton = (ImageButton) findViewById(R.id.clear_button);
                 cButton.setVisibility(View.INVISIBLE);
+                sButton.setOnClickListener(parseBarcode);
             }
             else {
                 sButton.setImageResource(R.drawable.search);
@@ -110,14 +123,14 @@ public class Search extends AppCompatActivity {
 
                 cButton = (ImageButton) findViewById(R.id.clear_button);
                 cButton.setVisibility(View.VISIBLE);
-
+                sButton.setOnClickListener(searchDatabase);
             }
         }
     };
 
 
-    public void launchSimpleActivity(View v) {
-        Intent intent = new Intent(this, SimpleScannerActivity.class);
+    public void BarcodeScanner(View v) {
+        Intent intent = new Intent(this, BarcodeScan.class);
         startActivity(intent);
     }
 

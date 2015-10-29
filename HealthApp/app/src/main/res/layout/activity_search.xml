@@ -43,7 +43,8 @@
             android:src="@drawable/scanner"
             android:layout_alignBottom="@+id/frameLayout"
             android:layout_toRightOf="@+id/frameLayout"
-            android:layout_toEndOf="@+id/frameLayout" />
+            android:layout_toEndOf="@+id/frameLayout"
+            android:nestedScrollingEnabled="false" />
 
     </RelativeLayout>
 </LinearLayout>
