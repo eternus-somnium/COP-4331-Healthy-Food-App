@@ -78,7 +78,7 @@ public class Search extends AppCompatActivity {
     private View.OnClickListener searchDatabase = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+            gotoResults(v);
         }
     };
 
@@ -134,6 +134,11 @@ public class Search extends AppCompatActivity {
 
     public void BarcodeScanner(View v) {
         Intent intent = new Intent(this, BarcodeScan.class);
+        startActivity(intent);
+    }
+
+    public void gotoResults(View v) {
+        Intent intent = new Intent(this, Results.class);
         startActivity(intent);
     }
 
