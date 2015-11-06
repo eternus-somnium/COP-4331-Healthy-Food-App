@@ -44,7 +44,8 @@
             android:layout_alignBottom="@+id/frameLayout"
             android:layout_toRightOf="@+id/frameLayout"
             android:layout_toEndOf="@+id/frameLayout"
-            android:nestedScrollingEnabled="false" />
+            android:nestedScrollingEnabled="false"
+            android:onClick="BarcodeScanner" />
 
     </RelativeLayout>
 </LinearLayout>

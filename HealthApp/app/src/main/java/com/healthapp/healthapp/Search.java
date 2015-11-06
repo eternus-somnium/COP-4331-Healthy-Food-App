@@ -17,7 +17,7 @@ import android.widget.ImageButton;
 public class Search extends AppCompatActivity {
 
     private EditText searchField;
-    private String sField;
+    public String sField;
     ImageButton sButton;
     ImageButton cButton;
 

@@ -11,7 +11,8 @@ import me.dm7.barcodescanner.zbar.ZBarScannerView;
 /**
  * Created by Clive on 10/29/2015.
  */
-public class BarcodeScan extends AppCompatActivity implements ZBarScannerView.ResultHandler
+
+public class BarcodeScan extends Activity implements ZBarScannerView.ResultHandler
 {
         private ZBarScannerView mScannerView;
 
@@ -40,5 +41,6 @@ public class BarcodeScan extends AppCompatActivity implements ZBarScannerView.Re
                 Toast.makeText(this, "Contents = " + rawResult.getContents() +
                 ", Format = " + rawResult.getBarcodeFormat().getName(), Toast.LENGTH_SHORT).show();
                 mScannerView.startCamera();
+
         }
 }
