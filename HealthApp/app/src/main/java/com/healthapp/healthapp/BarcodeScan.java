@@ -42,5 +42,12 @@ public class BarcodeScan extends Activity implements ZBarScannerView.ResultHandl
                 ", Format = " + rawResult.getBarcodeFormat().getName(), Toast.LENGTH_SHORT).show();
                 mScannerView.startCamera();
 
+                //Test
+                /*
+                Intent result = new Intent("com.example.RESULT_ACTION", Uri.parse("content://result_uri");
+                setResult(Activity.RESULT_OK, result);
+                finish();
+                 */
+
         }
 }
