@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import me.dm7.barcodescanner.zbar.BarcodeFormat;
@@ -21,31 +22,31 @@ public class BarcodeScan extends AppCompatActivity implements ZBarScannerView.Re
 {
         private ZBarScannerView mScannerView;
         String barcode, productName;
-        List<BarcodeFormat> formats;
+        List<BarcodeFormat> formats = new ArrayList<BarcodeFormat>();
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
-/*Causing a break
+
                 //formats.add(BarcodeFormat.PARTIAL);
-                formats.add( BarcodeFormat.EAN8);
-                formats.add( BarcodeFormat.UPCE);
-                formats.add( BarcodeFormat.ISBN10);
-                formats.add( BarcodeFormat.UPCA);
-                formats.add( BarcodeFormat.EAN13);
-                formats.add( BarcodeFormat.ISBN13);
-                formats.add( BarcodeFormat.I25);
-                //formats.add( BarcodeFormat.DATABAR);
-                //formats.add( BarcodeFormat.DATABAR_EXP);
-                //formats.add( BarcodeFormat.CODABAR);
-                formats.add( BarcodeFormat.CODE39);
-                //formats.add( BarcodeFormat.PDF417);
-                formats.add( BarcodeFormat.CODE93);
-                formats.add( BarcodeFormat.CODE128);
-*/
+                formats.add(BarcodeFormat.EAN8);
+                formats.add(BarcodeFormat.UPCE);
+                formats.add(BarcodeFormat.ISBN10);
+                formats.add(BarcodeFormat.UPCA);
+                formats.add(BarcodeFormat.EAN13);
+                formats.add(BarcodeFormat.ISBN13);
+                formats.add(BarcodeFormat.I25);
+                //formats.add(BarcodeFormat.DATABAR);
+                //formats.add(BarcodeFormat.DATABAR_EXP);
+                //formats.add(BarcodeFormat.CODABAR);
+                formats.add(BarcodeFormat.CODE39);
+                //formats.add(BarcodeFormat.PDF417);
+                formats.add(BarcodeFormat.CODE93);
+                formats.add(BarcodeFormat.CODE128);
+
                 mScannerView = new ZBarScannerView(this);    // Programmatically initialize the scanner view
 
-                //mScannerView.setFormats(formats);
+                mScannerView.setFormats(formats);
 
                 setContentView(mScannerView);                // Set the scanner view as the content view
                 }
