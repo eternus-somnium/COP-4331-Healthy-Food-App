@@ -20,6 +20,7 @@ public class Search extends AppCompatActivity {
     public String sField;
     ImageButton sButton;
     ImageButton cButton;
+    static final int BARCODE_SCAN_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,12 +135,27 @@ public class Search extends AppCompatActivity {
 
     public void BarcodeScanner(View v) {
         Intent intent = new Intent(this, BarcodeScan.class);
-        startActivity(intent);
+        startActivityForResult(intent, BARCODE_SCAN_REQUEST);
     }
 
     public void gotoResults(View v) {
         Intent intent = new Intent(this, Results.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        // Check which request we're responding to
+        if (requestCode == BARCODE_SCAN_REQUEST)
+        {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK)
+            {
+                searchField.setText(data.getAction());
+
+            }
+        }
     }
 
 }
