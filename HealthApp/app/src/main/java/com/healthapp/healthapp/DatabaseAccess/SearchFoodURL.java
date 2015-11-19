@@ -56,6 +56,6 @@ public class SearchFoodURL extends AsyncTask<String,Void,String[][]>
 
     protected void onPostExecute(String[][] results)
     {
-        Results.populateList(results); //Do something
+        Search.populateList(results); //Do something
     }
 }

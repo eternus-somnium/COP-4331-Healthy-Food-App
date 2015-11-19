@@ -81,7 +81,7 @@ public class Search extends AppCompatActivity
     private View.OnClickListener searchDatabase = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            gotoResults(v);
+            new SearchFoodURL().execute(sField);
         }
     };
 
@@ -143,7 +143,6 @@ public class Search extends AppCompatActivity
     public void gotoResults(View v) {
 
         Intent intent = new Intent(this, Results.class);
-        intent.putExtra("searchTerm", sField);
         startActivity(intent);
     }
 
@@ -162,4 +161,8 @@ public class Search extends AppCompatActivity
         }
     }
 
+    public static void populateList(String[][] items)
+    {
+
+    }
 }

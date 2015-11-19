@@ -17,7 +17,7 @@ import java.sql.SQLException;
 
 public class Login extends AppCompatActivity {
 
-    Connection connect = DatabaseAccess.Connect();
+    //Connection connect = DatabaseAccess.Connect();
     Button loginButton;
 
     @Override
@@ -63,7 +63,7 @@ public class Login extends AppCompatActivity {
             EditText password = (EditText) findViewById(R.id.password);
             int valid = 0;
             try {
-                valid = DatabaseAccess.CheckUsernamePassword(username.toString(), password.toString(), connect);
+                ;//valid = DatabaseAccess.CheckUsernamePassword(username.toString(), password.toString(), connect);
             } catch (SQLException e) {
                 AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
                 alertDialog.setTitle("Alert");
