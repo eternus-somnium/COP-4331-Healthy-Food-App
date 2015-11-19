@@ -40,6 +40,9 @@ public class Results extends AppCompatActivity
 
     public void fillFoodReport(){
 
+        //TextView productName = (TextView) findViewById(R.id.textView2);
+//        productName.setText();
+
 //        TextView calories = (TextView) findViewById(R.id.cal_amt);
 //        calories.setText();
 //
