@@ -85,7 +85,43 @@ public class Results extends AppCompatActivity
 //        TextView iron = (TextView) findViewById(R.id.iron_percent);
 //        iron.setText();
 //
-//        TextView calories = (TextView) findViewById(R.id.cal_amt);
-//        calories.setText();
+
+
+        // Calculating Percentages
+//        TextView fatPercent = (TextView) findViewById(R.id.fat_percent);
+//        int fatDV = Integer.parseInt(fatPercent.toString());
+//        fatDV = (/*result*/ / 65) * 100;
+//        fatPercent.setText(fatDV);
+//
+//        TextView satPercent = (TextView) findViewById(R.id.sat_percent);
+//        int satDV = Integer.parseInt(fatPercent.toString());
+//        satDV = (/*result*/ / 20) * 100;
+//        satPercent.setText(satDV);
+//
+//        TextView transPercent = (TextView) findViewById(R.id.trans_percent);
+//        int transDV = Integer.parseInt(fatPercent.toString());
+//        transDV = (/*result*/ / 20) * 100;
+//        transPercent.setText(transDV);
+//
+//        TextView cholPercent = (TextView) findViewById(R.id.chol_percent);
+//        int cholDV = Integer.parseInt(fatPercent.toString());
+//        cholDV = (/*result*/ / 300) * 100;
+//        cholPercent.setText(cholDV);
+//
+//        TextView sodiumPercent = (TextView) findViewById(R.id.sodium_percent);
+//        int sodDV = Integer.parseInt(fatPercent.toString());
+//        sodDV = (/*result*/ / 2400) * 100;
+//        sodiumPercent.setText(sodDV);
+//
+//        TextView carbPercent = (TextView) findViewById(R.id.carb_percent);
+//        int carbDV = Integer.parseInt(fatPercent.toString());
+//        carbDV = (/*result*/ / 300) * 100;
+//        carbPercent.setText(carbDV);
+//
+//        TextView fiberPercent = (TextView) findViewById(R.id.fiber_percent);
+//        int fibDV = Integer.parseInt(fatPercent.toString());
+//        fatDV = (/*result*/ / 25) * 100;
+//        fiberPercent.setText();
+
     }
 }
