@@ -1,7 +1,12 @@
 package com.healthapp.healthapp;
 
 
+import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -9,8 +14,13 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ActionMenuView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.healthapp.healthapp.DatabaseAccess.SearchFoodURL;
 
@@ -23,11 +33,18 @@ public class Search extends AppCompatActivity
     ImageButton sButton;
     ImageButton cButton;
     static final int BARCODE_SCAN_REQUEST = 1;
+    public static String dbKey;
+    private static Search instance = null;
+    private static LinearLayout itemsLayout;
+    public static Context ctx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        instance = this;
+
+        itemsLayout = (LinearLayout) findViewById(R.id.items_layout);
 
         // Initializing text field
         searchField = (EditText) findViewById(R.id.search_field);
@@ -140,10 +157,12 @@ public class Search extends AppCompatActivity
         startActivityForResult(intent, BARCODE_SCAN_REQUEST);
     }
 
-    public void gotoResults(View v) {
+    public static void gotoResults(View v) {
 
-        Intent intent = new Intent(this, Results.class);
-        startActivity(intent);
+        Intent intent = new Intent(ctx, Results.class);
+        String str = null;
+        intent.putExtra(dbKey, str);
+        ctx.startActivity(intent);
     }
 
     @Override
@@ -163,6 +182,51 @@ public class Search extends AppCompatActivity
 
     public static void populateList(String[][] items)
     {
+        if(items[0][1].equals("false")){
+            // print error message
+            AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("An error occurred");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+        }
 
+
+        else {
+
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            for(int i=0; i < items.length; i++) {
+                Button foodItem = new Button(instance);
+                foodItem.setText(items[i][0]);
+                foodItem.setId(Integer.parseInt(items[i][1]));
+                foodItem.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Button clickedFood = (Button) v;
+                        int dbNumber = clickedFood.getId();
+                        dbKey = String.valueOf(dbNumber);
+                        gotoResults(v);
+                    }
+                });
+
+                itemsLayout.addView(foodItem, lp);
+
+            }
+        }
     }
+
+    public static View.OnClickListener itemsListener = new View.OnClickListener(){
+        public void onClick(View v){
+            Button clickedFood = (Button) v;
+            int dbNumber = clickedFood.getId();
+            dbKey = String.valueOf(dbNumber);
+            gotoResults(v);
+        }
+    };
 }
