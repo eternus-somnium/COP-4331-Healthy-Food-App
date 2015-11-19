@@ -18,7 +18,7 @@ public abstract class FoodReportURL extends AsyncTask<User,Void,Void>{
     //        THIS IS FOR A FOOD REPORT
     public InputStream doInBackground(User obj) throws MalformedURLException, IOException{
 
-        InputStream input = new URL("http://api.nal.usda.gov/ndb/reports/?ndbno="+obj.foodID+"&format=xml&food_api_key="+obj.food_api_key).openStream();
+        InputStream input = new URL("http://api.nal.usda.gov/ndb/reports/?ndbno="+obj.foodID+"&format=xml&api_key="+obj.food_api_key).openStream();
 
         return input;
 

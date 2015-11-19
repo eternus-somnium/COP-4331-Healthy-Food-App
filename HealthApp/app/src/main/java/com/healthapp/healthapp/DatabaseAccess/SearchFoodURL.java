@@ -1,6 +1,9 @@
 package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
+import com.healthapp.healthapp.Results;
+import com.healthapp.healthapp.Search;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -53,6 +56,6 @@ public class SearchFoodURL extends AsyncTask<String,Void,String[][]>
 
     protected void onPostExecute(String[][] results)
     {
-        //Do something
+        Results.populateList(results); //Do something
     }
 }

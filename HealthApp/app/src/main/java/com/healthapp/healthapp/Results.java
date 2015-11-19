@@ -4,19 +4,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
-public class Results extends AppCompatActivity {
+import com.healthapp.healthapp.DatabaseAccess.SearchFoodURL;
+
+public class Results extends AppCompatActivity
+{
+    private static Results instance = null;
+    String sField = getIntent().getExtras().getString("searchTerm");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+        this.instance = this;
+        new SearchFoodURL().execute(sField);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_results, menu);
+
         return true;
     }
 
@@ -33,5 +42,10 @@ public class Results extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void populateList(String[][] items)
+    {
+
     }
 }

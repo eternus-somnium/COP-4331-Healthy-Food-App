@@ -8,7 +8,7 @@ import java.sql.Statement;
 /**
  * Created by Chris on 11/17/2015.
  */
-public abstract class GetIDKeys extends AsyncTask<User,Void,ResultSet>{
+public class GetIDKeys extends AsyncTask<User,Void,User>{
 
     //User is logging in, get the User's ID, food database key, and barcode key
     //
@@ -20,8 +20,8 @@ public abstract class GetIDKeys extends AsyncTask<User,Void,ResultSet>{
     //		  userID (String), food database key (String), barcode database key (String)
     //
     //        These variables will now be available to be used in the parent function
-    public ResultSet doInBackground(User obj) throws SQLException {
-
+    public User doInBackground(User... params)
+    {
         //Instantiation
         Statement stmt = null;
         ResultSet rs = null;
@@ -30,28 +30,40 @@ public abstract class GetIDKeys extends AsyncTask<User,Void,ResultSet>{
         String query = "SELECT idUsers, food_api_key, barcode_key "
                 + "FROM Users "
                 + "WHERE "
-                + 		"username = " + obj.username
+                + 		"username = " + params[0].username
                 + 		"AND "
-                + 		"password = " + obj.password;
+                + 		"password = " + params[0].password;
 
         //Execute Query
         try {
-            stmt = obj.con.createStatement();
+            stmt = params[0].con.createStatement();
             rs = stmt.executeQuery(query);
+
+            params[0].userID = Integer.valueOf(rs.getString(1));
+            params[0].food_api_key = rs.getString(2);
+            params[0].barcode_api_key = rs.getString(3);
         }
 
-        catch (SQLException e ) {
+        catch(SQLException e)
+        {
+
         }
 
         finally {
-            if (stmt != null) { stmt.close(); }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
-        return rs;
+        return params[0];
     }
 
-    public ResultSet onPostExecution(ResultSet result){
+    public User onPostExecution(User u){
 
-        return result;
+        return u;
     }
 }

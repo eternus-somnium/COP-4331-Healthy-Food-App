@@ -141,9 +141,9 @@ public class Search extends AppCompatActivity
     }
 
     public void gotoResults(View v) {
-        new SearchFoodURL().execute(sField);
 
         Intent intent = new Intent(this, Results.class);
+        intent.putExtra("searchTerm", sField);
         startActivity(intent);
     }
 
