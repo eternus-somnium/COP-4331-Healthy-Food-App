@@ -26,11 +26,11 @@ public abstract class ValidateUsername extends AsyncTask<User,Void,Integer>{
         //Query
         String query = "SELECT COUNT(*) as A"
                 + "FROM Users"
-                + "WHERE username = " + obj.username;
+                + "WHERE username = " + obj.getUsername();
 
         //Execute query
         try {
-            stmt = obj.con.createStatement();
+            stmt = obj.getCon().createStatement();
 
             //Get result
             ResultSet rs = stmt.executeQuery(query);

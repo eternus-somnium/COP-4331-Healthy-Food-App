@@ -30,13 +30,13 @@ public abstract class CheckCommentPrivilege extends AsyncTask<User,Void,Integer>
         String query = "SELECT COUNT(*) as flag"
                 + "FROM Rating"
                 + "WHERE "
-                + 		"foodID = " + obj.foodID
+                + 		"foodID = " + User.getFoodID()
                 + 		"AND "
-                + 		"Users_idUsers = " + obj.userID;
+                + 		"Users_idUsers = " + obj.getUserID();
 
         //Execute
         try {
-            stmt = obj.con.createStatement();
+            stmt = obj.getCon().createStatement();
 
             //Answer
             ResultSet rs = stmt.executeQuery(query);

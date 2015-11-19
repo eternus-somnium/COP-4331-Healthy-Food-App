@@ -27,13 +27,13 @@ public abstract class CheckUsernamePassword extends AsyncTask<User,Void,Integer>
         String query = "SELECT COUNT(*) as A"
                 + "FROM Users"
                 + "WHERE "
-                + 		"username = " + obj.username
+                + 		"username = " + obj.getUsername()
                 + 		"AND "
-                + 		"password = " + obj.password;
+                + 		"password = " + obj.getPassword();
 
         //Execute
         try {
-            stmt = obj.con.createStatement();
+            stmt = obj.getCon().createStatement();
 
             //Results
             ResultSet rs = stmt.executeQuery(query);

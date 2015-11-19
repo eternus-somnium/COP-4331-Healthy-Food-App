@@ -1,6 +1,7 @@
 package com.healthapp.healthapp;
 
 import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,20 +11,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import java.sql.Connection;
+import com.healthapp.healthapp.DatabaseAccess.AttemptLogin;
+import com.healthapp.healthapp.DatabaseAccess.Connect;
+import com.healthapp.healthapp.DatabaseAccess.Disconnect;
+import com.healthapp.healthapp.DatabaseAccess.User;
+
 import java.sql.SQLException;
 
-public class Login extends AppCompatActivity {
-
-    //Connection connect = DatabaseAccess.Connect();
+public class Login extends AppCompatActivity
+{
     Button loginButton;
+    private static Login instance = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        this.instance = this;
         // Initialize done button
         loginButton = (Button) findViewById(R.id.login_button);
 
@@ -61,40 +66,25 @@ public class Login extends AppCompatActivity {
             //Do Login
             EditText username = (EditText) findViewById(R.id.username);
             EditText password = (EditText) findViewById(R.id.password);
-            int valid = 0;
             try {
-                ;//valid = DatabaseAccess.CheckUsernamePassword(username.toString(), password.toString(), connect);
-            } catch (SQLException e) {
-                AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
-                alertDialog.setTitle("Alert");
-                alertDialog.setMessage("Alert message to be shown");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
-            }
 
-            if(valid == 0)
-            {
-                gotoSearch(v);
-            }
+                if(User.getCon() == null || User.getCon().isClosed())
+                    new Connect().execute();
+                }
+                catch (Exception e)
+                {
+                    AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
+                    alertDialog.setTitle("Alert");
+                    alertDialog.setMessage("Alert message to be shown");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
 
-            else
-            {
-                AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
-                alertDialog.setTitle("Alert");
-                alertDialog.setMessage("Alert message to be shown");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
-            }
         }
     };
 
@@ -106,5 +96,26 @@ public class Login extends AppCompatActivity {
     public void gotoSignUp(View v) {
         Intent intent = new Intent(this,SignUpActivity.class);
         startActivity(intent);
+    }
+
+    void showErrorDialog()
+    {
+        AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
+
+        alertDialog.setTitle("Alert");
+        alertDialog.setMessage("Alert message to be shown");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
+
+    }
+
+    public static void ErrorController()
+    {
+        instance.showErrorDialog();
     }
 }

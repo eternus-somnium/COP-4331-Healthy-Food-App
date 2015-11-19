@@ -19,7 +19,7 @@ import java.sql.SQLException;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    Connection connect = DatabaseAccess.Connect();
+    //Connection connect = DatabaseAccess.Connect();
     Button doneButton;
 
     @Override
@@ -67,8 +67,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         // Validate username
         try {
-            valid = DatabaseAccess.ValidateUsername(username.toString(), connect);
-        } catch (SQLException e) {
+            //valid = DatabaseAccess.ValidateUsername(username.toString(), connect);
+        } catch (Exception e) {
             AlertDialog alertDialog = new AlertDialog.Builder(SignUpActivity.this).create();
             alertDialog.setTitle("Alert");
             alertDialog.setMessage("Alert message to be shown");
@@ -82,34 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         // Insert user in database
-        if(valid == 0)
-        {
-            try {
-                DatabaseAccess.InsertUsername(username.toString(), password.toString(), connect);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
 
-        // Insert Food Key
-        if(valid == 0)
-        {
-            try {
-                DatabaseAccess.InsertFoodKey(username.toString(), password.toString(), foodkey.toString(), connect);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        // Insert Barcode Key
-        if(valid == 0)
-        {
-            try {
-                DatabaseAccess.InsertBarcodeKey(username.toString(), password.toString(), barcodekey.toString(), connect);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
 
     }
 

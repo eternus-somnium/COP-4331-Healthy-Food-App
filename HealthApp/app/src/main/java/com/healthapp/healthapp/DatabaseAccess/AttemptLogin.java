@@ -8,7 +8,7 @@ import java.sql.Statement;
 /**
  * Created by Chris on 11/17/2015.
  */
-public class GetIDKeys extends AsyncTask<User,Void,User>{
+public class AttemptLogin extends AsyncTask<Void,Void,Integer>{
 
     //User is logging in, get the User's ID, food database key, and barcode key
     //
@@ -20,33 +20,44 @@ public class GetIDKeys extends AsyncTask<User,Void,User>{
     //		  userID (String), food database key (String), barcode database key (String)
     //
     //        These variables will now be available to be used in the parent function
-    public User doInBackground(User... params)
+    public Integer doInBackground(Void... params)
     {
         //Instantiation
+        Integer requestStatus;
         Statement stmt = null;
-        ResultSet rs = null;
+        ResultSet rs;
 
         //Query
         String query = "SELECT idUsers, food_api_key, barcode_key "
                 + "FROM Users "
                 + "WHERE "
-                + 		"username = " + params[0].username
+                + 		"username = " + User.getUsername()
                 + 		"AND "
-                + 		"password = " + params[0].password;
+                + 		"password = " + User.getPassword();
 
         //Execute Query
-        try {
-            stmt = params[0].con.createStatement();
+        try
+        {
+            stmt = User.getCon().createStatement();
             rs = stmt.executeQuery(query);
-
-            params[0].userID = Integer.valueOf(rs.getString(1));
-            params[0].food_api_key = rs.getString(2);
-            params[0].barcode_api_key = rs.getString(3);
+            if(rs.isBeforeFirst())
+            {
+                requestStatus = 1; //Success
+                User.setValidUser(true);
+                User.setUserID(Integer.valueOf(rs.getString(1)));
+                User.setFood_api_key(rs.getString(2));
+                User.setBarcode_api_key(rs.getString(3));
+            }
+            else
+            {
+                requestStatus = -1; //Failure
+                User.setValidUser(false);
+            }
         }
 
         catch(SQLException e)
         {
-
+            requestStatus = -2; //Database access problem
         }
 
         finally {
@@ -59,11 +70,12 @@ public class GetIDKeys extends AsyncTask<User,Void,User>{
             }
         }
 
-        return params[0];
+        return requestStatus;
     }
 
-    public User onPostExecution(User u){
+    public void onPostExecution(Integer requestStatus)
+    {
 
-        return u;
+
     }
 }

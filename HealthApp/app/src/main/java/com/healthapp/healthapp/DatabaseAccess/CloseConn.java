@@ -5,17 +5,29 @@ import java.sql.Connection;
 /**
  * Created by Chris on 11/17/2015.
  */
-public abstract class CloseConn extends AsyncTask<Connection,Void,Void>{
-
+public class CloseConn extends AsyncTask<Connection,Void,Integer>
+{
     //Close connection to database
     //
     //INPUT: connection to database
-    public void doInBackground(Connection con){
-
+    protected Integer doInBackground(Connection... params)
+    {
+        Integer requestStatus;
         try
         {
-            con.close ();
+            params[0].close ();
+            requestStatus=1; //Success
         }
-        catch (Exception e) { /* ignore close errors */ }
+        catch (Exception e)
+        {
+         /* ignore close errors */
+            requestStatus = -2; //error
+        }
+        return requestStatus;
     }
+    protected void onPostExecution(Integer requestStatus)
+    {
+         //requestStatus;
+    }
+
 }

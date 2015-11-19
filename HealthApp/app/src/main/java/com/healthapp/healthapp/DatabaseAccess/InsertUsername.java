@@ -14,11 +14,11 @@ public abstract class InsertUsername extends AsyncTask<User,Void,Void>{
     //INPUT: username and password that the User wants, as well as the connection
     public void doInBackground(User obj) throws SQLException{
 
-        Statement stmt = obj.con.createStatement();
+        Statement stmt = obj.getCon().createStatement();
 
         //Query
         String update = "INSERT INTO Users (username,password)"
-                +"VALUES (" + obj.username + ", " + obj.password + ")";
+                +"VALUES (" + obj.getUsername() + ", " + obj.getPassword() + ")";
 
         //Execute query
         try {

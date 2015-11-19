@@ -34,11 +34,11 @@ public abstract class Ratings extends AsyncTask<User,Void,ResultSet>{
                 + 		"Users as U "
                 + 		"on "
                 + 		"R.Users_idUsers = U.idUsers "
-                + "WHERE R.foodID = " + obj.foodID;
+                + "WHERE R.foodID = " + User.getFoodID();
 
         //Execute
         try {
-            stmt = obj.con.createStatement();
+            stmt = obj.getCon().createStatement();
             rs = stmt.executeQuery(query);
         }
 

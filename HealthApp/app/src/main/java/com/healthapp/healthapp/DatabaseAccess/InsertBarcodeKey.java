@@ -14,15 +14,15 @@ public abstract class InsertBarcodeKey extends AsyncTask<User,Void,Void>{
     //INPUT: User's username and password, the barcode scanner key they obtained, and the connection to the database
     public void doInBackground(User obj) throws SQLException{
 
-        Statement stmt = obj.con.createStatement();
+        Statement stmt = obj.getCon().createStatement();
 
         //Query
         String update = "INSERT INTO Users (barcode_key) "
-                + "VALUES (" + obj.food_api_key + ") "
+                + "VALUES (" + obj.getFood_api_key() + ") "
                 + "WHERE "
-                + 	"username = " + obj.username
+                + 	"username = " + obj.getUsername()
                 + 	"AND "
-                + 	"password = " + obj.password;
+                + 	"password = " + obj.getPassword();
 
         //Execute
         try {

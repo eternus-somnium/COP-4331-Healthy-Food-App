@@ -113,11 +113,7 @@ public class BarcodeScan extends AppCompatActivity implements ZBarScannerView.Re
         public static void launchDialog(String i)
         {
                 productName = i;
-                getInstance().showDialog();
+                instance.showDialog();
 
-        }
-
-        public static BarcodeScan getInstance() {
-                return instance;
         }
 }

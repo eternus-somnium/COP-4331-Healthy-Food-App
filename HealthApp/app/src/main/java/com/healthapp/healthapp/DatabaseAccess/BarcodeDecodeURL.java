@@ -21,12 +21,12 @@ public class BarcodeDecodeURL extends AsyncTask<String,Void,String>
         Document doc;
 
         //HERE FOR TESTING
-        User.barcode_api_key = "a8129a36ed4a346183589f028a91f6e6";
+        User.setBarcode_api_key("a8129a36ed4a346183589f028a91f6e6");
 
 
         try
         {
-            url = new URL("http://api.upcdatabase.org/xml/" + User.barcode_api_key + "/" + params[0]);
+            url = new URL("http://api.upcdatabase.org/xml/" + User.getBarcode_api_key() + "/" + params[0]);
             doc = new XMLParsing().parseXMLfromURL(url);
 
             if(doc.getElementsByTagName("valid").item(0).getTextContent().equals("true"))

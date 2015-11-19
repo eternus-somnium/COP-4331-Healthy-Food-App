@@ -1,15 +1,11 @@
 package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
-import com.healthapp.healthapp.Results;
 import com.healthapp.healthapp.Search;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -26,12 +22,12 @@ public class SearchFoodURL extends AsyncTask<String,Void,String[][]>
         NodeList entries;
 
         //HERE FOR TESTING
-        User.food_api_key = "H2iC01vvlHsRKfiHSkZD49jCfs5jRILlTn13A5TC";
+        User.setFood_api_key("H2iC01vvlHsRKfiHSkZD49jCfs5jRILlTn13A5TC");
 
 
         try
         {
-            url = new URL("http://api.nal.usda.gov/ndb/search/?format=xml&q="+params[0]+"&api_key="+User.food_api_key);
+            url = new URL("http://api.nal.usda.gov/ndb/search/?format=xml&q="+params[0]+"&api_key="+ User.getFood_api_key());
             doc = new XMLParsing().parseXMLfromURL(url);
             entries = doc.getElementsByTagName("item");
             results = new String[entries.getLength()][2];
@@ -40,8 +36,8 @@ public class SearchFoodURL extends AsyncTask<String,Void,String[][]>
             //Parse the document
             for(int i=0; i< entries.getLength();i++)
             {
-                results[i][0] = doc.getElementsByTagName("name").item(0).getTextContent();
-                results[i][1] = doc.getElementsByTagName("ndbno").item(0).getTextContent();
+                results[i][0] = entries.item(i).getChildNodes().item(1).getTextContent();
+                results[i][1] = entries.item(i).getChildNodes().item(2).getTextContent();
             }
         }
         catch (Exception e)

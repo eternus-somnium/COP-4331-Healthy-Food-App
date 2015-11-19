@@ -13,15 +13,15 @@ public abstract class InsertFoodKey extends AsyncTask<User,Void,Void>{
     //
     //INPUT: User's username and password, as well as the API key the User obtains, and the connection to the database
     public void doInBackground(User obj) throws SQLException{
-        Statement stmt = obj.con.createStatement();
+        Statement stmt = obj.getCon().createStatement();
 
         //Query
         String update = "INSERT INTO Users (food_api_key) "
-                + "VALUES (" + obj.food_api_key + ") "
+                + "VALUES (" + obj.getFood_api_key() + ") "
                 + "WHERE "
-                + 	"username = " + obj.username
+                + 	"username = " + obj.getUsername()
                 + 	"AND "
-                + 	"password = " + obj.password;
+                + 	"password = " + obj.getPassword();
 
         //Execute
         try {

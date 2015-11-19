@@ -1,49 +1,47 @@
 package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
+
+import com.healthapp.healthapp.Login;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 
 /**
  * Created by Chris on 11/17/2015.
  */
-public class Connect extends AsyncTask<Void,Void,Connection>{
+public class Connect extends AsyncTask<Void,Void,Integer>{
 
     //Connects to database, returns connection
-    protected Connection doInBackground(Void... params){
+    protected Integer doInBackground(Void... params)
+    {
 
-        //Initialize connection
-        Connection conn = null;
+        Integer requestStatus;
 
         //Connect to database
         try
         {
             String url = "jdbc:mysql://db4free.net:3307/cop4331_33";
             Class.forName ("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection (url,"chrisguido4","password12345");
+            User.setCon(DriverManager.getConnection(url, "chrisguido4", "password12345"));
             System.out.println ("Database connection established");
+            requestStatus = 1; // Success
         }
 
         //Exception
         catch (Exception e)
         {
             e.printStackTrace();
-
+            requestStatus = -2; //Database access problem
         }
-
-        //Return connection
-        return conn;
+        return requestStatus;
     }
 
-    public Connection onPostExectuion(Connection result){
-
-        return result;
+    public void onPostExectuion(Integer requestStatus)
+    {
+        if(requestStatus == 1)
+            new AttemptLogin().execute();
+        else
+            Login.ErrorController();
     }
 }
