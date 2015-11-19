@@ -9,12 +9,12 @@ import android.os.Bundle;
 /**
  * Created by Clive on 11/12/2015.
  */
-public class BarcodeDecodingConfirmationDialog extends DialogFragment
+public class BarcodeConfirmationDialog extends DialogFragment
 {
 
-    public static BarcodeDecodingConfirmationDialog newInstance(int title, String message)
+    public static BarcodeConfirmationDialog newInstance(int title, String message)
     {
-        BarcodeDecodingConfirmationDialog frag = new BarcodeDecodingConfirmationDialog();
+        BarcodeConfirmationDialog frag = new BarcodeConfirmationDialog();
         Bundle args = new Bundle();
         args.putInt("title", title);
         args.putString("message", message);

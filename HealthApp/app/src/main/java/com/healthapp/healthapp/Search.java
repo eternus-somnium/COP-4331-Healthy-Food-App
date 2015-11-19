@@ -12,9 +12,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.healthapp.healthapp.DatabaseAccess.SearchFoodURL;
 
 
-public class Search extends AppCompatActivity {
+public class Search extends AppCompatActivity
+{
 
     private EditText searchField;
     public String sField;
@@ -139,6 +141,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void gotoResults(View v) {
+        new SearchFoodURL().execute(sField);
+
         Intent intent = new Intent(this, Results.class);
         startActivity(intent);
     }

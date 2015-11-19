@@ -4,9 +4,8 @@ import android.os.AsyncTask;
 
 import com.healthapp.healthapp.BarcodeScan;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
+import org.w3c.dom.Document;
+
 import java.net.URL;
 
 /**
@@ -14,51 +13,37 @@ import java.net.URL;
  */
 public class BarcodeDecodeURL extends AsyncTask<String,Void,String>
 {
-    //Get InputStream of from URL search
-    //
-    //INPUT: search term input by User, API key that belongs to User
-    //
-    //OUTPUT: the InputStream of the URL (XML format)
-    //        THIS IS FOR A SEARCH
-
     protected String doInBackground(String... params)
     {
-        InputStream input = null;
+        String result;
+
+        URL url;
+        Document doc;
+
+        //HERE FOR TESTING
+        User.barcode_api_key = "a8129a36ed4a346183589f028a91f6e6";
+
+
         try
         {
-            input = new URL("http://api.upcdatabase.org/xml/" + User.barcode_api_key  + "/" + params[0]).openStream();
+            url = new URL("http://api.upcdatabase.org/xml/" + User.barcode_api_key + "/" + params[0]);
+            doc = new XMLParsing().parseXMLfromURL(url);
+
+            if(doc.getElementsByTagName("valid").item(0).getTextContent().equals("true"))
+                result = doc.getElementsByTagName("itemname").item(0).getTextContent();
+            else
+                result = doc.getElementsByTagName("reason").item(0).getTextContent();
         }
-        catch (MalformedURLException e)
+        catch (Exception e)
         {
-
-        }
-        catch (IOException f) {
-
+            result = "ERROR In Parsing";
         }
 
-        return parseXML(input);
+        return result;
     }
 
     protected void onPostExecute(String result)
     {
         BarcodeScan.launchDialog(result);
-
-        //AsyncTask cannot return an InputStream
-        //XML Parsing goes here?
-
-    }
-
-    String parseXML(InputStream in)
-    {
-        String itemName = null;
-        String valid = null;
-
-
-
-
-        if(valid.equals("true"))
-            return itemName;
-        else
-            return "Error";
     }
 }

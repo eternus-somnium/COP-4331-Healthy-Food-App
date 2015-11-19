@@ -25,11 +25,15 @@ public class BarcodeScan extends AppCompatActivity implements ZBarScannerView.Re
 {
         private ZBarScannerView mScannerView;
         static String barcode, productName;
+        private static BarcodeScan instance = null;
         List<BarcodeFormat> formats = new ArrayList<BarcodeFormat>();
 
         @Override
-        public void onCreate(Bundle savedInstanceState) {
+        public void onCreate(Bundle savedInstanceState)
+        {
                 super.onCreate(savedInstanceState);
+
+                this.instance = this;
 
                 //formats.add(BarcodeFormat.PARTIAL);
                 formats.add(BarcodeFormat.EAN8);
@@ -75,14 +79,18 @@ public class BarcodeScan extends AppCompatActivity implements ZBarScannerView.Re
                 ", Format = " + rawResult.getBarcodeFormat().getName(), Toast.LENGTH_SHORT).show();
                 barcode = rawResult.getContents();
 
+
+                //Test barcode
+                //new BarcodeDecodeURL().execute("0029784234562");
+
                 new BarcodeDecodeURL().execute(barcode);
 
-                showDialog();
+
         }
 
         void showDialog()
         {
-                DialogFragment newFragment = BarcodeDecodingConfirmationDialog.newInstance(
+                DialogFragment newFragment = BarcodeConfirmationDialog.newInstance(
                         R.string.alert_dialog_two_buttons_title, productName);
                 newFragment.show(getFragmentManager(), "dialog");
         }
@@ -105,6 +113,11 @@ public class BarcodeScan extends AppCompatActivity implements ZBarScannerView.Re
         public static void launchDialog(String i)
         {
                 productName = i;
+                getInstance().showDialog();
 
+        }
+
+        public static BarcodeScan getInstance() {
+                return instance;
         }
 }
