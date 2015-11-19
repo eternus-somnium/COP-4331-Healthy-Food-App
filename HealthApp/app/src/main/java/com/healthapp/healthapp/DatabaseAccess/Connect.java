@@ -11,10 +11,10 @@ import java.sql.DriverManager;
 /**
  * Created by Chris on 11/17/2015.
  */
-public class Connect extends AsyncTask<View,Void,Integer>{
+public class Connect extends AsyncTask<Void,Void,Integer>{
 
     //Connects to database, returns connection
-    protected Integer doInBackground(View... params)
+    protected Integer doInBackground(Void... params)
     {
 
         Integer requestStatus;

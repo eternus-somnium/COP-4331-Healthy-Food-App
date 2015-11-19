@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class Results extends AppCompatActivity
@@ -35,5 +36,56 @@ public class Results extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void fillFoodReport(){
+
+        //TextView productName = (TextView) findViewById(R.id.textView2);
+//        productName.setText();
+
+//        TextView calories = (TextView) findViewById(R.id.cal_amt);
+//        calories.setText();
+//
+//        TextView totalFat = (TextView) findViewById(R.id.fat_amt);
+//        totalFat.setText();
+//
+//        TextView satFat = (TextView) findViewById(R.id.sat_amt);
+//        satFat.setText();
+//
+//        TextView transFat = (TextView) findViewById(R.id.trans_amt);
+//        transFat.setText();
+//
+//        TextView cholesterol = (TextView) findViewById(R.id.chol_amt);
+//        cholesterol.setText();
+//
+//        TextView sodium = (TextView) findViewById(R.id.sodium_amt);
+//        sodium.setText();
+//
+//        TextView carbs = (TextView) findViewById(R.id.carb_amt);
+//        carbs.setText();
+//
+//        TextView fiber = (TextView) findViewById(R.id.fiber_amt);
+//        fiber.setText();
+//
+//        TextView sugar = (TextView) findViewById(R.id.sugar_amt);
+//        sugar.setText();
+//
+//        TextView protein = (TextView) findViewById(R.id.protein_amt);
+//        protein.setText();
+//
+//        TextView vitA = (TextView) findViewById(R.id.vitA_percent);
+//        vitA.setText();
+//
+//        TextView vitC = (TextView) findViewById(R.id.vitC_percent);
+//        vitC.setText();
+//
+//        TextView calcium = (TextView) findViewById(R.id.calcium_percent);
+//        calcium.setText();
+//
+//        TextView iron = (TextView) findViewById(R.id.iron_percent);
+//        iron.setText();
+//
+//        TextView calories = (TextView) findViewById(R.id.cal_amt);
+//        calories.setText();
     }
 }

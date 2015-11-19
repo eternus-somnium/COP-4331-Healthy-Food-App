@@ -2,6 +2,7 @@ package com.healthapp.healthapp;
 
 import android.app.AlertDialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -68,32 +69,27 @@ public class Login extends AppCompatActivity
             EditText username = (EditText) findViewById(R.id.username);
             EditText password = (EditText) findViewById(R.id.password);
 
-            try
-            {
+            try {
 
-                if(User.getCon() == null || User.getCon().isClosed())
+                if (User.getCon() == null || User.getCon().isClosed())
                     new Connect().execute();
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
                 alertDialog.setTitle("Alert");
                 alertDialog.setMessage("Alert message to be shown");
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener()
-                        {
+                        new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
                             }
                         });
                 alertDialog.show();
             }
-
         }
     };
 
     public void gotoSearch(View v) {
-        Intent intent = new Intent(this,Search.class);
+        Intent intent = new Intent(instance,Search.class);
         startActivity(intent);
     }
 
