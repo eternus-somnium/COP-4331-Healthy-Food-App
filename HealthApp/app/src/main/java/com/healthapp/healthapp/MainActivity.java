@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
        // requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-        LinearLayout ll = (LinearLayout) findViewById(R.id.home_layout);
+        RelativeLayout rl = (RelativeLayout) findViewById(R.id.home_layout);
 
-        ll.setOnTouchListener(new View.OnTouchListener() {
+        rl.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 gotoLogin(v);
