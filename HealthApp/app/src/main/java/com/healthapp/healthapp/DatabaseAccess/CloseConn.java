@@ -1,5 +1,7 @@
 package com.healthapp.healthapp.DatabaseAccess;
+
 import android.os.AsyncTask;
+
 import java.sql.Connection;
 
 /**

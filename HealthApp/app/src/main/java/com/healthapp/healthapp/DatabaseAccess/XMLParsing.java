@@ -1,8 +1,8 @@
 package com.healthapp.healthapp.DatabaseAccess;
 
 import org.w3c.dom.Document;
-import java.io.InputStream;
 
+import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
