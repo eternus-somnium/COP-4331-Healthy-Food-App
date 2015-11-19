@@ -36,8 +36,8 @@ public class SearchFoodURL extends AsyncTask<String,Void,String[][]>
             //Parse the document
             for(int i=0; i< entries.getLength();i++)
             {
-                results[i][0] = entries.item(i).getChildNodes().item(1).getTextContent();
-                results[i][1] = entries.item(i).getChildNodes().item(2).getTextContent();
+                results[i][0] = entries.item(i).getChildNodes().item(3).getTextContent();
+                results[i][1] = entries.item(i).getChildNodes().item(5).getTextContent();
             }
         }
         catch (Exception e)

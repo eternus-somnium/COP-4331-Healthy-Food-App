@@ -1,6 +1,8 @@
 package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
+import com.healthapp.healthapp.Login;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -75,7 +77,10 @@ public class AttemptLogin extends AsyncTask<Void,Void,Integer>{
 
     public void onPostExecution(Integer requestStatus)
     {
-
+        if(requestStatus == 1)
+            ;//Login.;
+        else
+            Login.ErrorController(2);
 
     }
 }

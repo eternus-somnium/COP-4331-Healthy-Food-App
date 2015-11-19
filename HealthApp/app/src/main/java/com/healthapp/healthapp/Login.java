@@ -59,31 +59,35 @@ public class Login extends AppCompatActivity
     }
 
 
-    private View.OnClickListener loginListener = new View.OnClickListener() {
+    private View.OnClickListener loginListener = new View.OnClickListener()
+    {
         @Override
         public void onClick(View v) {
 
             //Do Login
             EditText username = (EditText) findViewById(R.id.username);
             EditText password = (EditText) findViewById(R.id.password);
-            try {
+
+            try
+            {
 
                 if(User.getCon() == null || User.getCon().isClosed())
                     new Connect().execute();
-                }
-                catch (Exception e)
-                {
-                    AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
-                    alertDialog.setTitle("Alert");
-                    alertDialog.setMessage("Alert message to be shown");
-                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog.show();
-                }
+            }
+            catch (Exception e)
+            {
+                AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
+                alertDialog.setTitle("Alert");
+                alertDialog.setMessage("Alert message to be shown");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
 
         }
     };
@@ -98,12 +102,22 @@ public class Login extends AppCompatActivity
         startActivity(intent);
     }
 
-    void showErrorDialog()
+    public static void launchSearch()
+    {
+        //instance.gotoSearch(v);
+    }
+
+    void showErrorDialog(Integer i)
     {
         AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
 
         alertDialog.setTitle("Alert");
-        alertDialog.setMessage("Alert message to be shown");
+        if(i == 1)
+            alertDialog.setMessage("Could not contact the application server");
+        else if(i == 2)
+            alertDialog.setMessage("Login failed");
+        else
+            alertDialog.setMessage("Alert message to be shown");
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -114,8 +128,8 @@ public class Login extends AppCompatActivity
 
     }
 
-    public static void ErrorController()
+    public static void ErrorController(Integer i)
     {
-        instance.showErrorDialog();
+        instance.showErrorDialog(i);
     }
 }
