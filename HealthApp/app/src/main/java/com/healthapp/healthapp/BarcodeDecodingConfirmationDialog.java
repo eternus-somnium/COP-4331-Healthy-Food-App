@@ -9,11 +9,12 @@ import android.os.Bundle;
 /**
  * Created by Clive on 11/12/2015.
  */
-public class MyAlertDialogFragment extends DialogFragment
+public class BarcodeDecodingConfirmationDialog extends DialogFragment
 {
 
-    public static MyAlertDialogFragment newInstance(int title, String message) {
-        MyAlertDialogFragment frag = new MyAlertDialogFragment();
+    public static BarcodeDecodingConfirmationDialog newInstance(int title, String message)
+    {
+        BarcodeDecodingConfirmationDialog frag = new BarcodeDecodingConfirmationDialog();
         Bundle args = new Bundle();
         args.putInt("title", title);
         args.putString("message", message);
@@ -22,7 +23,8 @@ public class MyAlertDialogFragment extends DialogFragment
     }
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    public Dialog onCreateDialog(Bundle savedInstanceState)
+    {
         int title = getArguments().getInt("title");
         String message = getArguments().getString("message");
 

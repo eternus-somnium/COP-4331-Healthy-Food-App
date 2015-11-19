@@ -14,6 +14,9 @@ import me.dm7.barcodescanner.zbar.BarcodeFormat;
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
+import com.healthapp.healthapp.DatabaseAccess.BarcodeDecodeURL;
+
+
 /**
  * Created by Clive on 10/29/2015.
  */
@@ -21,7 +24,7 @@ import me.dm7.barcodescanner.zbar.ZBarScannerView;
 public class BarcodeScan extends AppCompatActivity implements ZBarScannerView.ResultHandler
 {
         private ZBarScannerView mScannerView;
-        String barcode, productName;
+        static String barcode, productName;
         List<BarcodeFormat> formats = new ArrayList<BarcodeFormat>();
 
         @Override
@@ -59,32 +62,35 @@ public class BarcodeScan extends AppCompatActivity implements ZBarScannerView.Re
                 }
 
         @Override
-        public void onPause() {
+        public void onPause()
+        {
                 super.onPause();
                 mScannerView.stopCamera();           // Stop camera on pause
-                }
+        }
 
         @Override
-        public void handleResult(Result rawResult) {
+        public void handleResult(Result rawResult)
+        {
                 Toast.makeText(this, "Contents = " + rawResult.getContents() +
                 ", Format = " + rawResult.getBarcodeFormat().getName(), Toast.LENGTH_SHORT).show();
                 barcode = rawResult.getContents();
+
+                new BarcodeDecodeURL().execute(barcode);
 
                 showDialog();
         }
 
         void showDialog()
         {
-                DialogFragment newFragment = MyAlertDialogFragment.newInstance(
-                        R.string.alert_dialog_two_buttons_title, barcode);
+                DialogFragment newFragment = BarcodeDecodingConfirmationDialog.newInstance(
+                        R.string.alert_dialog_two_buttons_title, productName);
                 newFragment.show(getFragmentManager(), "dialog");
         }
 
         public void doPositiveClick()
         {
                 // Do stuff here.
-                //Test Results
-                Intent result = new Intent(barcode);
+                Intent result = new Intent(productName);
                 setResult(Activity.RESULT_OK, result);
                 finish();
                 //Log.i("FragmentAlertDialog", "Positive click!");
@@ -94,5 +100,11 @@ public class BarcodeScan extends AppCompatActivity implements ZBarScannerView.Re
                 // Do stuff here.
                 mScannerView.startCamera();
                 //Log.i("FragmentAlertDialog", "Negative click!");
+        }
+
+        public static void launchDialog(String i)
+        {
+                productName = i;
+
         }
 }
