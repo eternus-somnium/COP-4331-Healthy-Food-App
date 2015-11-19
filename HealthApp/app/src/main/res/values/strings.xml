@@ -12,5 +12,10 @@
     <string name="alert_dialog_ok">Yes</string>
     <string name="alert_dialog_cancel">No</string>
     <string name="alert_dialog_two_buttons_title">Does this appear to be the product you were searching for?</string>
+    <string name="foodkey_help">You will need two API keys to sign up. The first is for the food database.
+        Click the link below. Under "Gaining Access", click "Sign up now".
+        Fill out the form and your login key (API key) will be emailed to you. Copy and paste your key below</string>
 
+    <string name="barcodekey_help">The second key is for barcode searches. Click the link below.
+        Fill out the form. Under "Your Menu", click "API Key". Copy and paste your key below</string>
 </resources>
