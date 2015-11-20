@@ -26,10 +26,9 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.0.1'
-<<<<<<< HEAD
-=======
+
     //compile 'mysql:mysql-connector-java:5.1.37'
->>>>>>> origin/master
+
     compile 'me.dm7.barcodescanner:zbar:1.8.2'
     compile files('libs/mysql-connector-java-5.1.21.jar')
 }

@@ -1,4 +1,6 @@
 package com.healthapp.healthapp.DatabaseAccess;
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import com.healthapp.healthapp.Login;
@@ -14,6 +16,18 @@ public class AttemptLogin extends AsyncTask<Void,Void,Integer>
 {
     //User is logging in, get the User's ID, food database key, and barcode key
     //
+
+    ProgressDialog progDailog;
+
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progDailog = new ProgressDialog(Login.ctx);
+        progDailog.setMessage("Loading...");
+        progDailog.setIndeterminate(false);
+        progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progDailog.setCancelable(true);
+        progDailog.show();
+    }
 
     protected Integer doInBackground(Void... params)
     {
@@ -75,6 +89,7 @@ public class AttemptLogin extends AsyncTask<Void,Void,Integer>
     protected void onPostExecute(Integer requestStatus)
     {
         System.out.println(requestStatus);
+        progDailog.dismiss();
         if(requestStatus == 1)
             Login.launchSearch();
         else
