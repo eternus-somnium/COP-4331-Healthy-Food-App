@@ -9,7 +9,7 @@ import java.sql.Statement;
 /**
  * Created by Chris on 11/17/2015.
  */
-public abstract class CheckCommentPrivilege extends AsyncTask<User,Void,Integer>{
+public class CheckCommentPrivilege extends AsyncTask<Void,Void,Integer>{
 
     //Checks if User is able to leave a comment on a particular item
     //
@@ -20,7 +20,7 @@ public abstract class CheckCommentPrivilege extends AsyncTask<User,Void,Integer>
     //
     //		  if the count is 0, the User can comment on the item
     //		  if the count is not 0, the User can not comment on the item
-    public int doInBackground(User obj) throws SQLException {
+    protected Integer doInBackground(Void... params){
 
         //Variables
         Statement stmt = null;
@@ -30,13 +30,13 @@ public abstract class CheckCommentPrivilege extends AsyncTask<User,Void,Integer>
         String query = "SELECT COUNT(*) as flag"
                 + "FROM Rating"
                 + "WHERE "
-                + 		"foodID = " + User.getFoodID()
-                + 		"AND "
-                + 		"Users_idUsers = " + obj.getUserID();
+                + 		"foodID = '" + User.getFoodID()
+                + 		"' AND "
+                + 		"Users_idUsers = '" + User.getUserID() + "'";
 
         //Execute
         try {
-            stmt = obj.getCon().createStatement();
+            stmt = User.getCon().createStatement();
 
             //Answer
             ResultSet rs = stmt.executeQuery(query);
@@ -51,15 +51,21 @@ public abstract class CheckCommentPrivilege extends AsyncTask<User,Void,Integer>
 
         //Close
         finally {
-            if (stmt != null) { stmt.close(); }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         //Return count
         return count;
     }
 
-    public int onPostExecution(int result){
+    public int onPostExecution(Integer count){
 
-        return result;
+        return count;
     }
 }

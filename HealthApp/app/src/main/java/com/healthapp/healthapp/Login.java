@@ -13,10 +13,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+<<<<<<< HEAD
+=======
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+>>>>>>> origin/master
 
 import com.healthapp.healthapp.DatabaseAccess.AttemptLogin;
 import com.healthapp.healthapp.DatabaseAccess.Connect;
@@ -50,6 +53,8 @@ public class Login extends AppCompatActivity
 
         ImageView scales = (ImageView) findViewById(R.id.scales);
         scales.setImageAlpha(18);
+
+        ctx = getApplicationContext();
     }
 
 
@@ -82,6 +87,12 @@ public class Login extends AppCompatActivity
         public void onClick(View v) {
 
             //Do Login
+<<<<<<< HEAD
+            EditText uname  = (EditText)findViewById(R.id.username);
+            User.setUsername(uname.getText().toString());
+            EditText pword = (EditText)findViewById(R.id.password);
+            User.setPassword(pword.getText().toString());
+=======
 
             EditText username = (EditText) findViewById(R.id.username);
             EditText password = (EditText) findViewById(R.id.password);
@@ -109,6 +120,7 @@ public class Login extends AppCompatActivity
 
             User.setUsername(findViewById(R.id.username).toString());
             User.setPassword(findViewById(R.id.password).toString());
+>>>>>>> origin/master
 
             new Connect().execute();
         }
@@ -139,12 +151,12 @@ public class Login extends AppCompatActivity
         AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
 
         alertDialog.setTitle("Alert");
-        if(i == -1)
-            alertDialog.setMessage("Could not contact the application server");
-        else if(i == -2)
-            alertDialog.setMessage("Login failed");
-        else
-            alertDialog.setMessage("Alert message to be shown");
+        if(i == -1){
+            alertDialog.setMessage("Could not contact the application server");}
+        else if(i == -2){
+            alertDialog.setMessage("Login failed");}
+        else{
+            alertDialog.setMessage("Alert message to be shown");}
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

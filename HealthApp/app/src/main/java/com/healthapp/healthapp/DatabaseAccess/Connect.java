@@ -40,6 +40,7 @@ public class Connect extends AsyncTask<Void,Void,Integer>{
 
     @Override
     protected void onPostExecute(Integer requestStatus) {
+        System.out.println(requestStatus);
         if (requestStatus == 1) {
             Login.attemptLogin();
         } else

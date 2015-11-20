@@ -8,7 +8,7 @@ import java.sql.Statement;
 /**
  * Created by Chris on 11/17/2015.
  */
-public abstract class Ratings extends AsyncTask<User,Void,ResultSet>{
+public class Ratings extends AsyncTask<Void,Void,ResultSet>{
 
     //User has selected a specific item, collect all reviews on the item
     //
@@ -20,7 +20,7 @@ public abstract class Ratings extends AsyncTask<User,Void,ResultSet>{
     //		  the Rating (int), the Comment (String) associated with the rating, and the Username (String) of the User who left the rating
     //
     //        These variables will now be available to be used in the parent function
-    public ResultSet doInBackground(User obj) throws SQLException {
+    protected ResultSet doInBackground(Void... params) {
 
         //Variables
         Statement stmt = null;
@@ -34,11 +34,11 @@ public abstract class Ratings extends AsyncTask<User,Void,ResultSet>{
                 + 		"Users as U "
                 + 		"on "
                 + 		"R.Users_idUsers = U.idUsers "
-                + "WHERE R.foodID = " + User.getFoodID();
+                + "WHERE R.foodID = '" + User.getFoodID() + "'";
 
         //Execute
         try {
-            stmt = obj.getCon().createStatement();
+            stmt = User.getCon().createStatement();
             rs = stmt.executeQuery(query);
         }
 
@@ -48,7 +48,13 @@ public abstract class Ratings extends AsyncTask<User,Void,ResultSet>{
 
         //Close
         finally {
-            if (stmt != null) { stmt.close(); }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         //Return ResultSet

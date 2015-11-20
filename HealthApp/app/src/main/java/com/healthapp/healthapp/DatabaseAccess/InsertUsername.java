@@ -7,28 +7,34 @@ import java.sql.Statement;
 /**
  * Created by Chris on 11/17/2015.
  */
-public abstract class InsertUsername extends AsyncTask<User,Void,Void>{
+public class InsertUsername extends AsyncTask<Void,Void,Integer>{
 
     //User creates new account, inserting username and password
     //
     //INPUT: username and password that the User wants, as well as the connection
-    public void doInBackground(User obj) throws SQLException{
-
-        Statement stmt = obj.getCon().createStatement();
+    public Integer doInBackground(Void... params){
+        Integer insertStatus;
+        Statement stmt = null;
+        try {
+            stmt = User.getCon().createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         //Query
         String update = "INSERT INTO Users (username,password)"
-                +"VALUES (" + obj.getUsername() + ", " + obj.getPassword() + ")";
+                +"VALUES ('" + User.getUsername() + "', '" + User.getPassword() + "')";
 
         //Execute query
         try {
             stmt.execute(update);
+            insertStatus = 1;
         }
 
         //Exception
         catch (Exception e) {
-            System.err.println("Got an exception! ");
-            System.err.println(e.getMessage());
+            e.printStackTrace();
+            insertStatus = -1;
         }
 
         //Close statement
@@ -43,5 +49,7 @@ public abstract class InsertUsername extends AsyncTask<User,Void,Void>{
                 }
             }
         }
+
+        return insertStatus;
     }
 }
