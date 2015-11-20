@@ -96,9 +96,9 @@ public class Login extends AppCompatActivity
             EditText username = (EditText) findViewById(R.id.username);
             EditText password = (EditText) findViewById(R.id.password);
 
-            bar.setVisibility(View.VISIBLE);
-            rl.setVisibility(View.VISIBLE);
-            loginButton.setVisibility(View.GONE);
+//            bar.setVisibility(View.VISIBLE);
+//            rl.setVisibility(View.VISIBLE);
+//            loginButton.setVisibility(View.GONE);
             try {
 
                 if (User.getCon() == null || User.getCon().isClosed()) {
