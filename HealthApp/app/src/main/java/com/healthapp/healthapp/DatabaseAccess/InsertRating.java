@@ -18,11 +18,11 @@ public class InsertRating extends AsyncTask<Rating,Void,Integer>{
         Integer status = 0;
         //Query
         String update = "INSERT INTO Rating (foodID, Users_idUsers, rating, comment) "
-                    + "VALUES (" + params[0].foodID
-                    + "," + params[0].userID
-                    + "," + params[0].rating
-                    + "," + params[0].comment
-                    + ")";
+                    + "VALUES ('" + params[0].foodID
+                    + "','" + params[0].userID
+                    + "','" + params[0].rating
+                    + "','" + params[0].comment
+                    + "')";
 
         //Execute
         try {

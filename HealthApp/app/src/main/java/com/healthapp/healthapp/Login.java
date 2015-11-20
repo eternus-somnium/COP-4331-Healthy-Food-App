@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.healthapp.healthapp.DatabaseAccess.AttemptLogin;
 import com.healthapp.healthapp.DatabaseAccess.Connect;
@@ -64,8 +65,10 @@ public class Login extends AppCompatActivity
         public void onClick(View v) {
 
             //Do Login
-            User.setUsername(findViewById(R.id.username).toString());
-            User.setPassword(findViewById(R.id.password).toString());
+            EditText uname  = (EditText)findViewById(R.id.username);
+            User.setUsername(uname.getText().toString());
+            EditText pword = (EditText)findViewById(R.id.password);
+            User.setPassword(pword.getText().toString());
 
             new Connect().execute();
         }
@@ -96,12 +99,12 @@ public class Login extends AppCompatActivity
         AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
 
         alertDialog.setTitle("Alert");
-        if(i == -1)
-            alertDialog.setMessage("Could not contact the application server");
-        else if(i == -2)
-            alertDialog.setMessage("Login failed");
-        else
-            alertDialog.setMessage("Alert message to be shown");
+        if(i == -1){
+            alertDialog.setMessage("Could not contact the application server");}
+        else if(i == -2){
+            alertDialog.setMessage("Login failed");}
+        else{
+            alertDialog.setMessage("Alert message to be shown");}
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
