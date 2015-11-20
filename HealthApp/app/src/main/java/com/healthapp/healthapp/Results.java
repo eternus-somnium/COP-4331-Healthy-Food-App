@@ -74,15 +74,23 @@ public class Results extends AppCompatActivity
 //        protein.setText();
 //
 //        TextView vitA = (TextView) findViewById(R.id.vitA_percent);
+//        int vitADV = Integer.parseInt(vitA.toString());
+//        vitADV = (/*result*/ / 5000) * 100;
 //        vitA.setText();
 //
 //        TextView vitC = (TextView) findViewById(R.id.vitC_percent);
+//        int vitCDV = Integer.parseInt(vitC.toString());
+//        vitCDV = (/*result*/ / 60) * 100;
 //        vitC.setText();
 //
 //        TextView calcium = (TextView) findViewById(R.id.calcium_percent);
+//        int calDV = Integer.parseInt(calcium.toString());
+//        calDV = (/*result*/ / 1100) * 100;
 //        calcium.setText();
 //
 //        TextView iron = (TextView) findViewById(R.id.iron_percent);
+//        int ironDV = Integer.parseInt(iron.toString());
+//        ironDV = (/*result*/ / 14) * 100;
 //        iron.setText();
 //
 

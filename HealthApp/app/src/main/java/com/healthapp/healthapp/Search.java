@@ -20,8 +20,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.healthapp.healthapp.DatabaseAccess.FoodReportURL;
 import com.healthapp.healthapp.DatabaseAccess.SearchFoodURL;
 
 
@@ -37,6 +40,8 @@ public class Search extends AppCompatActivity
     private static Search instance = null;
     private static LinearLayout itemsLayout;
     public static Context ctx;
+    private static ProgressBar bar;
+    private static RelativeLayout rl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +65,13 @@ public class Search extends AppCompatActivity
         searchField.addTextChangedListener(myWatcher);
         // Set Click Listener
         cButton.setOnClickListener(clearListener);
+
+        rl = (RelativeLayout) findViewById(R.id.loadingPanel);
+        rl.setVisibility(View.GONE);
+        bar = (ProgressBar) this.findViewById(R.id.progressBar);
+        bar.setVisibility(View.GONE);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -159,7 +170,7 @@ public class Search extends AppCompatActivity
 
     public static void gotoResults(View v) {
 
-        Intent intent = new Intent(ctx, Results.class);
+        Intent intent = new Intent(ctx, FoodReportURL.class);
         String str = null;
         intent.putExtra(dbKey, str);
         ctx.startActivity(intent);
@@ -226,6 +237,10 @@ public class Search extends AppCompatActivity
             Button clickedFood = (Button) v;
             int dbNumber = clickedFood.getId();
             dbKey = String.valueOf(dbNumber);
+
+            bar.setVisibility(View.VISIBLE);
+            rl.setVisibility(View.VISIBLE);
+
             gotoResults(v);
         }
     };

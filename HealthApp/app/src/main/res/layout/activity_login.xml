@@ -8,7 +8,20 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/app_logo"
+            android:id="@+id/scales"
+            android:contentDescription="@drawable/app_logo"
+            android:scaleType="centerCrop"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#00ffffff"
         android:layout_gravity="center_horizontal">
 
         <TextView
@@ -17,6 +30,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Sign In"
             android:id="@+id/signin"
+            android:background="#00ffffff"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="115dp"
@@ -58,11 +72,28 @@
             android:layout_height="wrap_content"
             android:text="Sign Up"
             android:id="@+id/sign_up"
+            android:background="#00ffffff"
             android:layout_below="@+id/login_button"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="48dp"
             android:textSize="20dp"
             android:clickable="true"
             android:onClick="gotoSignUp"/>
+
+        <RelativeLayout
+            android:id="@+id/loadingPanel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="#33ffffff">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:background="#00ffffff"
+                android:id="@+id/progressBar"/>
+        </RelativeLayout>
+    </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>
