@@ -36,7 +36,7 @@ public class Search extends AppCompatActivity
     public static String dbKey;
     private static Search instance = null;
     private static LinearLayout itemsLayout;
-    public static Context ctx;
+    public static Context ctx = Login.ctx;
     private static ProgressBar bar;
     private static RelativeLayout rl;
 

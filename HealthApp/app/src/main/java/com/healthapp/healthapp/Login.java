@@ -50,6 +50,8 @@ public class Login extends AppCompatActivity
 
         ImageView scales = (ImageView) findViewById(R.id.scales);
         scales.setImageAlpha(18);
+
+        ctx = getApplicationContext();
     }
 
 
