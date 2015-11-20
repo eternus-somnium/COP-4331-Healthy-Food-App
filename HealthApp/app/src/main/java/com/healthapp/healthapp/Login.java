@@ -4,8 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -13,13 +11,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/master
 import com.healthapp.healthapp.DatabaseAccess.AttemptLogin;
 import com.healthapp.healthapp.DatabaseAccess.Connect;
 import com.healthapp.healthapp.DatabaseAccess.User;
@@ -86,25 +90,36 @@ public class Login extends AppCompatActivity
         public void onClick(View v) {
 
             //Do Login
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
             EditText uname  = (EditText)findViewById(R.id.username);
-            User.setUsername(uname.getText().toString());
             EditText pword = (EditText)findViewById(R.id.password);
+<<<<<<< HEAD
             User.setPassword(pword.getText().toString());
 
 
           //  EditText username = (EditText) findViewById(R.id.username);
           //  EditText password = (EditText) findViewById(R.id.password);
+=======
+
+            User.setUsername(uname.getText().toString());
+            User.setPassword(pword.getText().toString());
+>>>>>>> origin/master
 
             bar.setVisibility(View.VISIBLE);
             rl.setVisibility(View.VISIBLE);
             loginButton.setVisibility(View.GONE);
-            try {
-
-                if (User.getCon() == null || User.getCon().isClosed()) {
+            try
+            {
+                if (User.getCon() == null || User.getCon().isClosed())
+                {
                     new Connect().execute();
                 }
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
                 alertDialog.setTitle("Alert");
                 alertDialog.setMessage("Alert message to be shown");
@@ -116,12 +131,15 @@ public class Login extends AppCompatActivity
                         });
                 alertDialog.show();
             }
+<<<<<<< HEAD
 
            // User.setUsername(findViewById(R.id.username).toString());
             //User.setPassword(findViewById(R.id.password).toString());
 
 
             new Connect().execute();
+=======
+>>>>>>> origin/master
         }
     };
 
