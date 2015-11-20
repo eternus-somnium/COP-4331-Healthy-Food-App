@@ -26,7 +26,7 @@ public class BarcodeDecodeURL extends AsyncTask<String,Void,String>
 
         try
         {
-            url = new URL("http://api.upcdatabase.org/xml/" + User.getBarcode_api_key() + "/" + params[0]);
+            url = new URL("http://api.upcdatabase.org/xml/" + User.getBarcode_api_key() + "/0" + params[0]);
             doc = new XMLParsing().parseXMLfromURL(url);
 
             if(doc.getElementsByTagName("valid").item(0).getTextContent().equals("true"))

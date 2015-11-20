@@ -18,6 +18,7 @@ public class Results extends AppCompatActivity
 {
     private static Results instance = null;
     private static View vi;
+    private static LinearLayout reviewsLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,7 +176,9 @@ public class Results extends AppCompatActivity
                 TextView comment = new TextView(instance);
                 comment.setText(reviews[i].getRating());
 
-                reviewsLayout.addView(foodItem, lp);
+                reviewsLayout.addView(review, lp);
+                reviewsLayout.addView(user, lp);
+                reviewsLayout.addView(comment, lp);
 
             }
         }
