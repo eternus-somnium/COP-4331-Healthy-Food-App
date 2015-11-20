@@ -1,16 +1,29 @@
 package com.healthapp.healthapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.healthapp.healthapp.DatabaseAccess.Rating;
 
 
 public class Results extends AppCompatActivity
 {
+    private static Results instance = null;
+    private static View vi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.instance = this;
+        reviewsLayout = (LinearLayout) findViewById(R.id.items_layout);
         setContentView(R.layout.activity_results);
     }
 
@@ -130,5 +143,41 @@ public class Results extends AppCompatActivity
 //        fatDV = (/*result*/ / 25) * 100;
 //        fiberPercent.setText();
 
+    }
+
+    public static void populateList(Rating[] reviews)
+    {
+        if(reviews[0].getFoodID() == "false"){
+            // print error message
+            AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("There are currently no reviews for this object");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+        }
+
+
+        else {
+
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            for(int i=0; i < reviews.length; i++) {
+                TextView review = new TextView(instance);
+                review.setText(reviews[i].getRating());
+                TextView user = new TextView(instance);
+                user.setText(reviews[i].getRating());
+                TextView comment = new TextView(instance);
+                comment.setText(reviews[i].getRating());
+
+                reviewsLayout.addView(foodItem, lp);
+
+            }
+        }
     }
 }
