@@ -34,9 +34,11 @@ public class Search extends AppCompatActivity
     ImageButton cButton;
     static final int BARCODE_SCAN_REQUEST = 1;
     public static String dbKey;
+
     private static Search instance = null;
+    private static View vi;
+
     private static LinearLayout itemsLayout;
-    public static Context ctx = Login.ctx;
     private static ProgressBar bar;
     private static RelativeLayout rl;
 
@@ -106,6 +108,7 @@ public class Search extends AppCompatActivity
     private View.OnClickListener searchDatabase = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            vi = v;
             new SearchFoodURL().execute(sField);
         }
     };
@@ -165,11 +168,11 @@ public class Search extends AppCompatActivity
         startActivityForResult(intent, BARCODE_SCAN_REQUEST);
     }
 
-    public static void gotoResults(View v) {
+    public void gotoResults(View v) {
 
-        Intent intent = new Intent(ctx, FoodReportURL.class);
+        Intent intent = new Intent(this, FoodReportURL.class);
         intent.putExtra("Nutrient ID", dbKey);
-        ctx.startActivity(intent);
+        startActivity(intent);
     }
 
     @Override
@@ -218,7 +221,7 @@ public class Search extends AppCompatActivity
                         Button clickedFood = (Button) v;
                         int dbNumber = clickedFood.getId();
                         dbKey = String.valueOf(dbNumber);
-                        gotoResults(v);
+                        instance.gotoResults(vi);
                     }
                 });
 

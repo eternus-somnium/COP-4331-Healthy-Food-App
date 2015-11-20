@@ -25,15 +25,18 @@ public class Login extends AppCompatActivity
 {
     Button loginButton;
     private static Login instance = null;
+    private static View vi;
+
     private ProgressBar bar;
     private RelativeLayout rl;
-    public static Context ctx;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         this.instance = this;
         // Initialize done button
         loginButton = (Button) findViewById(R.id.login_button);
@@ -49,7 +52,7 @@ public class Login extends AppCompatActivity
         ImageView scales = (ImageView) findViewById(R.id.scales);
         scales.setImageAlpha(18);
 
-        ctx = getApplicationContext();
+
     }
 
 
@@ -80,9 +83,8 @@ public class Login extends AppCompatActivity
     {
         @Override
         public void onClick(View v) {
-
+            vi = v;
             //Do Login
-
             EditText uname  = (EditText)findViewById(R.id.username);
             EditText pword = (EditText)findViewById(R.id.password);
             User.setPassword(pword.getText().toString());
@@ -117,9 +119,9 @@ public class Login extends AppCompatActivity
         }
     };
 
-    public void gotoSearch() {
-        Intent intent = new Intent(ctx,Search.class);
-        ctx.startActivity(intent);
+    public void gotoSearch(View v) {
+        Intent intent = new Intent(this,Search.class);
+        this.startActivity(intent);
     }
 
     public void gotoSignUp(View v) {
@@ -134,7 +136,7 @@ public class Login extends AppCompatActivity
 
     public static void launchSearch()
     {
-        instance.gotoSearch();
+        instance.gotoSearch(vi);
     }
 
     void showErrorDialog(Integer i)
