@@ -96,6 +96,7 @@
     <orderEntry type="library" exported="" name="mysql-connector-java-5.1.21" level="project" />
     <orderEntry type="library" exported="" name="core-1.8.2" level="project" />
     <orderEntry type="library" exported="" name="zbar-1.8.2" level="project" />
+    <orderEntry type="library" exported="" name="zbar" level="project" />
     <orderEntry type="library" exported="" name="support-v4-23.0.1" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.0.1" level="project" />
   </component>
