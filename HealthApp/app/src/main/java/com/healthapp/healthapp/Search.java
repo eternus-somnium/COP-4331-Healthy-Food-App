@@ -168,8 +168,7 @@ public class Search extends AppCompatActivity
     public static void gotoResults(View v) {
 
         Intent intent = new Intent(ctx, FoodReportURL.class);
-        String str = null;
-        intent.putExtra(dbKey, str);
+        intent.putExtra("Nutrient ID", dbKey);
         ctx.startActivity(intent);
     }
 
