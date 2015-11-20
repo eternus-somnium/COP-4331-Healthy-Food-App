@@ -10,19 +10,12 @@ import java.sql.Statement;
 /**
  * Created by Chris on 11/17/2015.
  */
-public class AttemptLogin extends AsyncTask<Void,Void,Integer>{
-
+public class AttemptLogin extends AsyncTask<Void,Void,Integer>
+{
     //User is logging in, get the User's ID, food database key, and barcode key
     //
-    //INPUT: User's username and password, and connection to database
-    //
-    //OUTPUT: this function outputs a ResultSet, which is the results to the query being executed
-    //		  The ResultSet will consist of the following variables:
-    //
-    //		  userID (String), food database key (String), barcode database key (String)
-    //
-    //        These variables will now be available to be used in the parent function
-    public Integer doInBackground(Void... params)
+
+    protected Integer doInBackground(Void... params)
     {
         //Instantiation
         Integer requestStatus;
@@ -75,12 +68,12 @@ public class AttemptLogin extends AsyncTask<Void,Void,Integer>{
         return requestStatus;
     }
 
-    public void onPostExecution(Integer requestStatus)
+    protected void onPostExecute(Integer requestStatus)
     {
         if(requestStatus == 1)
-            ;//Login.;
+            Login.launchSearch();
         else
-            Login.ErrorController(2);
+            Login.errorController(requestStatus);
 
     }
 }

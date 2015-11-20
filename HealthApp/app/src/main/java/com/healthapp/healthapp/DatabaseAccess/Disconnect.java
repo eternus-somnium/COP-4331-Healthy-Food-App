@@ -1,7 +1,5 @@
 package com.healthapp.healthapp.DatabaseAccess;
 
-import java.sql.Connection;
-
 /**
  * Created by Clive on 11/19/2015.
  */

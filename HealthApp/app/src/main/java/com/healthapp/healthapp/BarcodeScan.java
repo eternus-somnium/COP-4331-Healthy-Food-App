@@ -7,14 +7,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.healthapp.healthapp.DatabaseAccess.BarcodeDecodeURL;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import me.dm7.barcodescanner.zbar.BarcodeFormat;
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
-
-import com.healthapp.healthapp.DatabaseAccess.BarcodeDecodeURL;
 
 
 /**

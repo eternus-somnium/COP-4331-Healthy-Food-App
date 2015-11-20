@@ -1,12 +1,10 @@
 package com.healthapp.healthapp.DatabaseAccess;
+
 import android.os.AsyncTask;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -31,7 +29,6 @@ public class FoodReportURL extends AsyncTask<String,Void,String[]>
 
             //Parse the document
             results[0] = doc.getElementsByTagName("food").item(0).getNodeName();
-
             results[1] = entries.item(1).getNodeValue();
 
 
@@ -46,7 +43,7 @@ public class FoodReportURL extends AsyncTask<String,Void,String[]>
 
     }
 
-    public void onPostExectuion(String[][] results)
+    public void onPostExectuion(String[] results)
     {
         //AsyncTask cannot return InputStream
         //XML parsing goes here?

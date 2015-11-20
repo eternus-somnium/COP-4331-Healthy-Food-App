@@ -1,13 +1,13 @@
 package com.healthapp.healthapp;
 
 import android.app.AlertDialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,12 +17,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+
 import com.healthapp.healthapp.DatabaseAccess.AttemptLogin;
 import com.healthapp.healthapp.DatabaseAccess.Connect;
-import com.healthapp.healthapp.DatabaseAccess.Disconnect;
 import com.healthapp.healthapp.DatabaseAccess.User;
 
-import java.sql.SQLException;
 
 public class Login extends AppCompatActivity
 {
@@ -30,6 +29,8 @@ public class Login extends AppCompatActivity
     private static Login instance = null;
     private ProgressBar bar;
     private RelativeLayout rl;
+    public static Context ctx;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +82,7 @@ public class Login extends AppCompatActivity
         public void onClick(View v) {
 
             //Do Login
+
             EditText username = (EditText) findViewById(R.id.username);
             EditText password = (EditText) findViewById(R.id.password);
 
@@ -104,12 +106,17 @@ public class Login extends AppCompatActivity
                         });
                 alertDialog.show();
             }
+
+            User.setUsername(findViewById(R.id.username).toString());
+            User.setPassword(findViewById(R.id.password).toString());
+
+            new Connect().execute();
         }
     };
 
-    public void gotoSearch(View v) {
-        Intent intent = new Intent(instance,Search.class);
-        startActivity(intent);
+    public void gotoSearch() {
+        Intent intent = new Intent(ctx,Search.class);
+        ctx.startActivity(intent);
     }
 
     public void gotoSignUp(View v) {
@@ -117,9 +124,14 @@ public class Login extends AppCompatActivity
         startActivity(intent);
     }
 
+    public static void attemptLogin()
+    {
+        new AttemptLogin().execute();
+    }
+
     public static void launchSearch()
     {
-        //instance.gotoSearch(v);
+        instance.gotoSearch();
     }
 
     void showErrorDialog(Integer i)
@@ -127,9 +139,9 @@ public class Login extends AppCompatActivity
         AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
 
         alertDialog.setTitle("Alert");
-        if(i == 1)
+        if(i == -1)
             alertDialog.setMessage("Could not contact the application server");
-        else if(i == 2)
+        else if(i == -2)
             alertDialog.setMessage("Login failed");
         else
             alertDialog.setMessage("Alert message to be shown");
@@ -143,7 +155,7 @@ public class Login extends AppCompatActivity
 
     }
 
-    public static void ErrorController(Integer i)
+    public static void errorController(Integer i)
     {
         instance.showErrorDialog(i);
     }
