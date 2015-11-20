@@ -21,8 +21,9 @@ public class FoodReportURL extends AsyncTask<String,Void,String[]>
     //        THIS IS FOR A FOOD REPORT
     public String[] doInBackground(String... params)
     {
+
         try {
-            url = new URL("http://api.nal.usda.gov/ndb/reports/?ndbno=" + params[0] + "&format=xml&api_key=" + User.getFood_api_key());
+            url = new URL("http://api.nal.usda.gov/ndb/reports/?ndbno=01009&format=xml&api_key=" + User.getFood_api_key());
             doc = new XMLParsing().parseXMLfromURL(url);
             entries = doc.getElementsByTagName("nutrient");
             results = new String[15];
