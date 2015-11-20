@@ -228,16 +228,4 @@ public class Search extends AppCompatActivity
         }
     }
 
-    public static View.OnClickListener itemsListener = new View.OnClickListener(){
-        public void onClick(View v){
-            Button clickedFood = (Button) v;
-            int dbNumber = clickedFood.getId();
-            dbKey = String.valueOf(dbNumber);
-
-            bar.setVisibility(View.VISIBLE);
-            rl.setVisibility(View.VISIBLE);
-
-            gotoResults(v);
-        }
-    };
 }
