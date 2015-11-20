@@ -3,8 +3,6 @@ package com.healthapp.healthapp;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -17,8 +15,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-
-
 import com.healthapp.healthapp.DatabaseAccess.AttemptLogin;
 import com.healthapp.healthapp.DatabaseAccess.Connect;
 import com.healthapp.healthapp.DatabaseAccess.User;
@@ -28,15 +24,18 @@ public class Login extends AppCompatActivity
 {
     Button loginButton;
     private static Login instance = null;
+    private static View vi;
+
     private ProgressBar bar;
     private RelativeLayout rl;
-    public static Context ctx;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         this.instance = this;
         // Initialize done button
         loginButton = (Button) findViewById(R.id.login_button);
@@ -52,7 +51,7 @@ public class Login extends AppCompatActivity
         ImageView scales = (ImageView) findViewById(R.id.scales);
         scales.setImageAlpha(18);
 
-        ctx = getApplicationContext();
+
     }
 
 
@@ -83,27 +82,28 @@ public class Login extends AppCompatActivity
     {
         @Override
         public void onClick(View v) {
-
+            vi = v;
             //Do Login
-
             EditText uname  = (EditText)findViewById(R.id.username);
-            User.setUsername(uname.getText().toString());
             EditText pword = (EditText)findViewById(R.id.password);
             User.setPassword(pword.getText().toString());
 
+            User.setUsername(uname.getText().toString());
+            User.setPassword(pword.getText().toString());
 
-            EditText username = (EditText) findViewById(R.id.username);
-            EditText password = (EditText) findViewById(R.id.password);
 
-//            bar.setVisibility(View.VISIBLE);
-//            rl.setVisibility(View.VISIBLE);
-//            loginButton.setVisibility(View.GONE);
-            try {
-
-                if (User.getCon() == null || User.getCon().isClosed()) {
+            bar.setVisibility(View.VISIBLE);
+            rl.setVisibility(View.VISIBLE);
+            loginButton.setVisibility(View.GONE);
+            try
+            {
+                if (User.getCon() == null || User.getCon().isClosed())
+                {
                     new Connect().execute();
                 }
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
                 alertDialog.setTitle("Alert");
                 alertDialog.setMessage("Alert message to be shown");
@@ -115,18 +115,12 @@ public class Login extends AppCompatActivity
                         });
                 alertDialog.show();
             }
-
-            User.setUsername(findViewById(R.id.username).toString());
-            User.setPassword(findViewById(R.id.password).toString());
-
-            new Connect().execute();
-            launchSearch();
         }
     };
 
-    public void gotoSearch() {
-        Intent intent = new Intent(ctx,Search.class);
-        ctx.startActivity(intent);
+    public void gotoSearch(View v) {
+        Intent intent = new Intent(this,Search.class);
+        this.startActivity(intent);
     }
 
     public void gotoSignUp(View v) {
@@ -141,7 +135,7 @@ public class Login extends AppCompatActivity
 
     public static void launchSearch()
     {
-        instance.gotoSearch();
+        instance.gotoSearch(vi);
     }
 
     void showErrorDialog(Integer i)
