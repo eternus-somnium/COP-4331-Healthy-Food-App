@@ -3,6 +3,7 @@ package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.net.URL;
@@ -21,18 +22,20 @@ public class FoodReportURL extends AsyncTask<String,Void,String[]>
     //        THIS IS FOR A FOOD REPORT
     public String[] doInBackground(String... params)
     {
-
         try {
-            url = new URL("http://api.nal.usda.gov/ndb/reports/?ndbno=01009&format=xml&api_key=" + User.getFood_api_key());
+            url = new URL("http://api.nal.usda.gov/ndb/reports/?ndbno=" + params[0] + "&format=xml&api_key=" + User.getFood_api_key());
             doc = new XMLParsing().parseXMLfromURL(url);
             entries = doc.getElementsByTagName("nutrient");
             results = new String[15];
 
             //Parse the document
             results[0] = doc.getElementsByTagName("food").item(0).getNodeName();
-            String id = null;
+            results[16] = doc.getElementsByTagName("measure").item(0).getAttributes().getNamedItem("label").getNodeValue();
+            //String id = null;
             for(int i=0;i<entries.getLength();i++){
-               // String id =
+                Node n = entries.item(i);
+
+                String id = n.getAttributes().getNamedItem("nutrient_id").getNodeValue();
                 switch (id){
                     //energy
                     case "208":
