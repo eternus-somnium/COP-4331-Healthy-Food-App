@@ -121,6 +121,7 @@ public class Login extends AppCompatActivity
             User.setPassword(findViewById(R.id.password).toString());
 
             new Connect().execute();
+            launchSearch();
         }
     };
 
