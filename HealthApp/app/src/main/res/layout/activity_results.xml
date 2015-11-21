@@ -18,10 +18,11 @@
         android:weightSum="1">
 
         <TextView
-            android:text="@string/product_name"
+            android:text="NICE SPRING WATER"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2" />
+            android:id="@+id/textView2"
+            android:textSize="30dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -147,7 +148,7 @@
                     android:id="@+id/fat_percent"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:layout_marginLeft="240dp" />
+                    android:layout_marginLeft="232dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -195,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:id="@+id/sat_percent"
-                    android:layout_marginLeft="198dp" />
+                    android:layout_marginLeft="189dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -239,7 +240,7 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:id="@+id/trans_percent"
-                    android:layout_marginLeft="223dp" />
+                    android:layout_marginLeft="214dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -283,7 +284,7 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:id="@+id/chol_percent"
-                    android:layout_marginLeft="212dp" />
+                    android:layout_marginLeft="203dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -328,7 +329,7 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:id="@+id/sodium_percent"
-                    android:layout_marginLeft="236dp" />
+                    android:layout_marginLeft="227dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -373,7 +374,7 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:id="@+id/carb_percent"
-                    android:layout_marginLeft="175dp" />
+                    android:layout_marginLeft="167dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -417,7 +418,7 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:id="@+id/fiber_percent"
-                    android:layout_marginLeft="203dp" />
+                    android:layout_marginLeft="195dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -461,7 +462,7 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:id="@+id/sugar_percent"
-                    android:layout_marginLeft="245dp" />
+                    android:layout_marginLeft="236dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -504,7 +505,7 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:id="@+id/protein_percent"
-                    android:layout_marginLeft="250dp" />
+                    android:layout_marginLeft="241dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -534,7 +535,7 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:id="@+id/vitA_percent"
-                    android:layout_marginLeft="265dp" />
+                    android:layout_marginLeft="247dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -565,7 +566,7 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:id="@+id/vitC_percent"
-                    android:layout_marginLeft="265dp" />
+                    android:layout_marginLeft="247dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -596,7 +597,7 @@
                     android:layout_height="wrap_content"
                     android:text="2"
                     android:id="@+id/calcium_percent"
-                    android:layout_marginLeft="275dp" />
+                    android:layout_marginLeft="257dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -626,7 +627,7 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:id="@+id/iron_percent"
-                    android:layout_marginLeft="302dp" />
+                    android:layout_marginLeft="284dp" />
 
                 <TextView
                     android:layout_width="match_parent"
