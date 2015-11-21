@@ -196,7 +196,7 @@ public class Search extends AppCompatActivity
             // print error message
             AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
             alertDialog.setTitle("Alert");
-            alertDialog.setMessage("An error occurred");
+            alertDialog.setMessage(items[0][0]);
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {

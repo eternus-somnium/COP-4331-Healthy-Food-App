@@ -33,6 +33,13 @@ public class SearchFoodURL extends AsyncTask<String,Void,String[][]>
             entries = doc.getElementsByTagName("item");
             results = new String[entries.getLength()][2];
 
+            if(entries.getLength() == 0)
+            {
+                results = new String[1][2];
+                results[0][0] = "No results were found for the search";
+                results[0][1] = "false";
+                return results;
+            }
 
             //Parse the document
             for(int i=0; i< entries.getLength();i++)
@@ -43,7 +50,7 @@ public class SearchFoodURL extends AsyncTask<String,Void,String[][]>
         }
         catch (Exception e)
         {
-            results = new String[1][1];
+            results = new String[1][2];
             results[0][0] = "An error occurred while performing the search";
             results[0][1] = "false";
         }
