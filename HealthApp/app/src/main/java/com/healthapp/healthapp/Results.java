@@ -22,7 +22,7 @@ public class Results extends AppCompatActivity
     private static View vi;
     private static LinearLayout reviewsLayout;
 
-    Button createReviewButton;
+    Button showReviewButton;
 
 
     @Override
@@ -33,10 +33,10 @@ public class Results extends AppCompatActivity
         setContentView(R.layout.activity_results);
 
         // Initialize done button
-        createReviewButton = (Button) findViewById(R.id.login_button);
+        showReviewButton = (Button) findViewById(R.id.review_button);
 
         // Set Click Listener
-        createReviewButton.setOnClickListener(createReviewListener);
+        showReviewButton.setOnClickListener(createReviewListener);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class Results extends AppCompatActivity
     };
 
     public void goToCreateReview(View v) {
-        Intent intent = new Intent(this,CreateReview.class);
+        Intent intent = new Intent(this,Demo_Reviews.class);
         this.startActivity(intent);
     }
 
