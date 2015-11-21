@@ -27,7 +27,8 @@ public class SearchFoodURL extends AsyncTask<String,Void,String[][]>
 
         try
         {
-            url = new URL("http://api.nal.usda.gov/ndb/search/?format=xml&q="+params[0]+"&api_key="+ User.getFood_api_key());
+            String formattedSearchTerm = params[0].replaceAll(" ", "%20");
+            url = new URL("http://api.nal.usda.gov/ndb/search/?format=xml&q="+formattedSearchTerm+"&api_key="+ User.getFood_api_key());
             doc = new XMLParsing().parseXMLfromURL(url);
             entries = doc.getElementsByTagName("item");
             results = new String[entries.getLength()][2];
