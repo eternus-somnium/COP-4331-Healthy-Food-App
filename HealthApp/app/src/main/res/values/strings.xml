@@ -18,4 +18,5 @@
 
     <string name="barcodekey_help">The second key is for barcode searches. Click the link below.
         Fill out the form. Under "Your Menu", click "API Key". Copy and paste your key below</string>
+    <string name="title_activity_demo__reviews">Demo_Reviews</string>
 </resources>

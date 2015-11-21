@@ -3,8 +3,8 @@
     package="com.healthapp.healthapp" >
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET" />4
-
+    <uses-permission android:name="android.permission.INTERNET" />
+4
     <application
         android:allowBackup="true"
         android:icon="@drawable/app_logo"
@@ -24,8 +24,8 @@
         <activity
             android:name=".Login"
             android:label="@string/title_activity_login"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.healthapp.healthapp.MainActivity" />
@@ -33,28 +33,32 @@
         <activity
             android:name=".Search"
             android:label="@string/title_activity_search"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.healthapp.healthapp.MainActivity" />
         </activity>
         <activity
             android:name=".SignUpActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_sign_up" >
+            android:label="@string/title_activity_sign_up"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Results"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_results" >
+            android:label="@string/title_activity_results"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".BarcodeScan"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_barcode_scan" >
+            android:label="@string/title_activity_barcode_scan"
+            android:screenOrientation="portrait" >
         </activity>
         android:debuggable="true"
+        <activity
+            android:name=".Demo_Reviews"
+            android:label="@string/title_activity_demo__reviews" >
+        </activity>
     </application>
 
 </manifest>

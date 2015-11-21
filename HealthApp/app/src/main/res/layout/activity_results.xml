@@ -3,9 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
@@ -81,8 +85,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="000"
-                    android:id="@+id/cal_amt" />
+                    android:text="0"
+                    android:id="@+id/cal_amt"
+                    android:layout_marginLeft="5dp" />
             </LinearLayout>
 
             <View
@@ -124,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/fat_amt"
-                    android:text="00"
+                    android:text="0"
                     android:singleLine="true"
                     android:layout_marginLeft="5dp" />
 
@@ -138,7 +143,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/fat_percent"
                     android:gravity="right"
                     android:singleLine="true"
@@ -175,7 +180,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/sat_amt"
                     android:layout_marginLeft="5dp" />
 
@@ -188,7 +193,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/sat_percent"
                     android:layout_marginLeft="198dp" />
 
@@ -219,7 +224,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/trans_amt"
                     android:layout_marginLeft="5dp" />
 
@@ -232,7 +237,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/trans_percent"
                     android:layout_marginLeft="223dp" />
 
@@ -263,7 +268,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/chol_amt"
                     android:layout_marginLeft="5dp" />
 
@@ -276,7 +281,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/chol_percent"
                     android:layout_marginLeft="212dp" />
 
@@ -308,7 +313,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/sodium_amt"
                     android:layout_marginLeft="5dp" />
 
@@ -321,7 +326,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/sodium_percent"
                     android:layout_marginLeft="236dp" />
 
@@ -353,7 +358,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/carb_amt"
                     android:layout_marginLeft="5dp" />
 
@@ -366,7 +371,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/carb_percent"
                     android:layout_marginLeft="175dp" />
 
@@ -397,7 +402,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/fiber_amt"
                     android:layout_marginLeft="5dp" />
 
@@ -410,7 +415,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/fiber_percent"
                     android:layout_marginLeft="203dp" />
 
@@ -441,7 +446,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/sugar_amt"
                     android:layout_marginLeft="5dp" />
 
@@ -454,7 +459,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/sugar_percent"
                     android:layout_marginLeft="245dp" />
 
@@ -484,7 +489,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/protein_amt"
                     android:layout_marginLeft="5dp" />
 
@@ -497,7 +502,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/protein_percent"
                     android:layout_marginLeft="250dp" />
 
@@ -527,7 +532,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/vitA_percent"
                     android:layout_marginLeft="265dp" />
 
@@ -558,7 +563,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/vitC_percent"
                     android:layout_marginLeft="265dp" />
 
@@ -589,7 +594,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="2"
                     android:id="@+id/calcium_percent"
                     android:layout_marginLeft="275dp" />
 
@@ -619,7 +624,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:id="@+id/iron_percent"
                     android:layout_marginLeft="302dp" />
 
@@ -636,6 +641,13 @@
                 android:layout_height="1dp"
                 android:background="@android:color/black"/>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="104dp">
+
+
+            </RelativeLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -649,4 +661,6 @@
             android:layout_marginTop="376dp"></LinearLayout>
 
     </RelativeLayout>
+
+    </LinearLayout>
 </ScrollView>
