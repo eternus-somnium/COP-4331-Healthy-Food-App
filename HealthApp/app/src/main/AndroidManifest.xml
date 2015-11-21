@@ -59,6 +59,10 @@
             android:name=".Demo_Reviews"
             android:label="@string/title_activity_demo__reviews" >
         </activity>
+        <activity
+            android:name=".CreateReview"
+            android:label="@string/title_activity_create_review" >
+        </activity>
     </application>
 
 </manifest>
