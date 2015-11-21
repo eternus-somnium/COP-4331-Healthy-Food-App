@@ -111,7 +111,7 @@ public class FoodReportURL extends AsyncTask<String,Void,String[]>
     {
         //AsyncTask cannot return InputStream
         //XML parsing goes here?
-        Results.fillFoodReport(results);
+        //Results.fillFoodReport(results);
 
     }
 }
