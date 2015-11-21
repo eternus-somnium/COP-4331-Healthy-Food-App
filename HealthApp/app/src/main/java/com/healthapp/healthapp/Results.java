@@ -18,12 +18,13 @@ public class Results extends AppCompatActivity
 {
     private static Results instance = null;
     private static View vi;
+    LinearLayout reviewsLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.instance = this;
-        reviewsLayout = (LinearLayout) findViewById(R.id.items_layout);
+        //reviewsLayout = (LinearLayout) findViewById(R.id.items_layout);
         setContentView(R.layout.activity_results);
     }
 
@@ -50,13 +51,13 @@ public class Results extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public void fillFoodReport(){
+    public static  void fillFoodReport(String[] results){
 
-        //TextView productName = (TextView) findViewById(R.id.textView2);
-//        productName.setText();
+        TextView productName = (TextView) instance.findViewById(R.id.textView2);
+        productName.setText(results[0]);
 
-//        TextView calories = (TextView) findViewById(R.id.cal_amt);
-//        calories.setText();
+        TextView calories = (TextView)instance.findViewById(R.id.cal_amt);
+        calories.setText(results[1]);
 //
 //        TextView totalFat = (TextView) findViewById(R.id.fat_amt);
 //        totalFat.setText();
@@ -145,39 +146,39 @@ public class Results extends AppCompatActivity
 
     }
 
-    public static void populateList(Rating[] reviews)
-    {
-        if(reviews[0].getFoodID() == "false"){
-            // print error message
-            AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
-            alertDialog.setTitle("Alert");
-            alertDialog.setMessage("There are currently no reviews for this object");
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
-        }
-
-
-        else {
-
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT);
-
-            for(int i=0; i < reviews.length; i++) {
-                TextView review = new TextView(instance);
-                review.setText(reviews[i].getRating());
-                TextView user = new TextView(instance);
-                user.setText(reviews[i].getRating());
-                TextView comment = new TextView(instance);
-                comment.setText(reviews[i].getRating());
-
-                reviewsLayout.addView(foodItem, lp);
-
-            }
-        }
-    }
+//    public static void populateList(Rating[] reviews)
+//    {
+//        if(reviews[0].getFoodID() == "false"){
+//            // print error message
+//            AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
+//            alertDialog.setTitle("Alert");
+//            alertDialog.setMessage("There are currently no reviews for this object");
+//            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+//                    new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            dialog.dismiss();
+//                        }
+//                    });
+//            alertDialog.show();
+//        }
+//
+//
+//        else {
+//
+//            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+//                    LinearLayout.LayoutParams.WRAP_CONTENT);
+//
+//            for(int i=0; i < reviews.length; i++) {
+//                TextView review = new TextView(instance);
+//                review.setText(reviews[i].getRating());
+//                TextView user = new TextView(instance);
+//                user.setText(reviews[i].getRating());
+//                TextView comment = new TextView(instance);
+//                comment.setText(reviews[i].getRating());
+//
+//                reviewsLayout.addView(foodItem, lp);
+//
+//            }
+//        }
+//    }
 }

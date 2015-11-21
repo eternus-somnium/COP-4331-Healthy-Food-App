@@ -2,6 +2,8 @@ package com.healthapp.healthapp.DatabaseAccess;
 
 import android.os.AsyncTask;
 
+import com.healthapp.healthapp.Results;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -109,6 +111,7 @@ public class FoodReportURL extends AsyncTask<String,Void,String[]>
     {
         //AsyncTask cannot return InputStream
         //XML parsing goes here?
+        Results.fillFoodReport(results);
 
     }
 }
