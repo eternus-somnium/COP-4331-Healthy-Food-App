@@ -129,7 +129,7 @@ public class Login extends ConnectCall
 
     public void onConnection()
     {
-        new AttemptLogin().execute();
+        new AttemptLogin().execute(instance);
     }
 
     public static void launchSearch()
