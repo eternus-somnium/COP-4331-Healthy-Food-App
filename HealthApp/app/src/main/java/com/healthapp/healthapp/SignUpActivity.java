@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +18,7 @@ import com.healthapp.healthapp.DatabaseAccess.ValidateUsername;
 public class SignUpActivity extends ConnectCall {
 
     private static SignUpActivity instance;
+    private static View vi;
     Button doneButton;
 
     @Override
@@ -71,7 +71,7 @@ public class SignUpActivity extends ConnectCall {
         User.setFood_api_key(foodkey.getText().toString());
         User.setBarcode_api_key(barcodekey.getText().toString());
 
-        if(!User.getBarcode_api_key().equals(""))
+        if(!User.getFood_api_key().equals(""))
         {
             // Validate username
             try {
@@ -79,10 +79,10 @@ public class SignUpActivity extends ConnectCall {
                     new Connect().execute(instance);
                 } else new ValidateUsername().execute();
             } catch (Exception e) {
-                errorController(-1);
+                resultMessageHandler(-1);
             }
         }
-        else errorController(-3);
+        else resultMessageHandler(-3);
     }
 
     public void gotoLogin(View v) {
@@ -93,8 +93,8 @@ public class SignUpActivity extends ConnectCall {
     private View.OnClickListener doneListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            vi = v;
             SignUp();
-            gotoLogin(v);
         }
     };
 
@@ -103,12 +103,17 @@ public class SignUpActivity extends ConnectCall {
         new ValidateUsername().execute();
     }
 
-    void showErrorDialog(Integer i)
+    void showResultDialog(Integer i)
     {
         AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
 
         alertDialog.setTitle("Alert");
-        if(i == -1){
+        if(i == 1)
+        {
+            alertDialog.setMessage("User successfully created");
+            gotoLogin(vi);
+        }
+        else if(i == -1){
             alertDialog.setMessage("Could not contact the application server");}
         else if(i == -2){
             alertDialog.setMessage("Username already exists");}
@@ -126,8 +131,8 @@ public class SignUpActivity extends ConnectCall {
 
     }
 
-    public void errorController(Integer i)
+    public void resultMessageHandler(Integer i)
     {
-        instance.showErrorDialog(i);
+        instance.showResultDialog(i);
     }
 }

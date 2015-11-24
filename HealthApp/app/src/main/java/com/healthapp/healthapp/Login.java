@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -137,7 +136,7 @@ public class Login extends ConnectCall
         instance.gotoSearch(vi);
     }
 
-    void showErrorDialog(Integer i)
+    void showResultDialog(Integer i)
     {
         AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
 
@@ -158,8 +157,8 @@ public class Login extends ConnectCall
 
     }
 
-    public void errorController(Integer i)
+    public void resultMessageHandler(Integer i)
     {
-        instance.showErrorDialog(i);
+        instance.showResultDialog(i);
     }
 }

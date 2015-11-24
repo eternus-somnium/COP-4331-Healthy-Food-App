@@ -2,8 +2,6 @@ package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
 import com.healthapp.healthapp.ConnectCall;
-import com.healthapp.healthapp.Login;
-import com.healthapp.healthapp.SignUpActivity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -70,8 +68,8 @@ public class ValidateUsername extends AsyncTask<ConnectCall,Void,Integer>{
     protected void onPostExecute(Integer result)
     {
         if(result == 1)
-            Login.launchSearch();
+            new InsertUsername().execute(caller);
         else
-            caller.errorController(result);
+            caller.resultMessageHandler(result);
     }
 }

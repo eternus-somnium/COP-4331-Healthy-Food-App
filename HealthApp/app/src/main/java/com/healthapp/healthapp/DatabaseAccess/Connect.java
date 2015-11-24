@@ -3,7 +3,6 @@ package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
 import com.healthapp.healthapp.ConnectCall;
-import com.healthapp.healthapp.Login;
 
 import java.sql.DriverManager;
 
@@ -46,6 +45,6 @@ public class Connect extends AsyncTask<ConnectCall,Void,Integer>
         if (requestStatus == 1) {
             caller.onConnection();
         } else
-            caller.errorController(requestStatus);
+            caller.resultMessageHandler(requestStatus);
     }
 }

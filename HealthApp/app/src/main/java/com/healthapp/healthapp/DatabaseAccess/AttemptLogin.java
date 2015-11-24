@@ -1,5 +1,4 @@
 package com.healthapp.healthapp.DatabaseAccess;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import com.healthapp.healthapp.ConnectCall;
@@ -94,7 +93,7 @@ public class AttemptLogin extends AsyncTask<ConnectCall,Void,Integer>
         if(requestStatus == 1)
             Login.launchSearch();
         else
-            caller.errorController(requestStatus);
+            caller.resultMessageHandler(requestStatus);
 
     }
 }

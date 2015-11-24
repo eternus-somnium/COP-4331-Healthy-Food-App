@@ -8,7 +8,7 @@ public class Rating
     private String foodID;
 
     private String username;
-    private int rating;
+    private float rating;
     private String comment;
 
     public String getFoodID() {
@@ -27,7 +27,7 @@ public class Rating
         this.username = username;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 

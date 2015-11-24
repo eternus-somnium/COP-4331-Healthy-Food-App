@@ -1,24 +1,30 @@
 package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
+import com.healthapp.healthapp.ConnectCall;
+
 import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
  * Created by Chris on 11/17/2015.
  */
-public class InsertUsername extends AsyncTask<Void,Void,Integer>{
+public class InsertUsername extends AsyncTask<ConnectCall,Void,Integer>{
 
+    ConnectCall caller;
     //User creates new account, inserting username and password
     //
     //INPUT: username and password that the User wants, as well as the connection
-    public Integer doInBackground(Void... params){
+    public Integer doInBackground(ConnectCall... params)
+    {
+        caller = params[0];
         Integer insertStatus;
         Statement stmt = null;
         try {
             stmt = User.getCon().createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
+            insertStatus = -1;
         }
 
         //Query
@@ -49,7 +55,11 @@ public class InsertUsername extends AsyncTask<Void,Void,Integer>{
                 }
             }
         }
-
         return insertStatus;
+    }
+
+    protected void onPostExecute(Integer result)
+    {
+            caller.resultMessageHandler(result);
     }
 }

@@ -10,6 +10,7 @@ public class ConnectCall extends AppCompatActivity
     public void onConnection()
     {}
 
-    public void errorController(Integer error)
+    public void resultMessageHandler(Integer error)
     {}
+    public void onSuccess(){}
 }

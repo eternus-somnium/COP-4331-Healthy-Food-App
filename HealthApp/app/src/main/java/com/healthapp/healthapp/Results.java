@@ -208,11 +208,11 @@ public class Results extends AppCompatActivity
 
             for(int i=0; i < reviews.length; i++) {
                 TextView review = new TextView(instance);
-                review.setText(reviews[i].getRating());
+                review.setText(String.valueOf(reviews[i].getRating()));
                 TextView user = new TextView(instance);
-                user.setText(reviews[i].getRating());
+                user.setText(String.valueOf(reviews[i].getUsername()));
                 TextView comment = new TextView(instance);
-                comment.setText(reviews[i].getRating());
+                comment.setText(String.valueOf(reviews[i].getComment()));
 
                 reviewsLayout.addView(review, lp);
                 reviewsLayout.addView(user, lp);
