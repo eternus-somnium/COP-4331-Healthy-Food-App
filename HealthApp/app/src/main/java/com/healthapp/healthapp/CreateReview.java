@@ -4,15 +4,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class CreateReview extends AppCompatActivity {
 
-    String review;
+    String comment;
     float rating;
+    Button submitButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_review);
+
+        // Initialize submit button
+        submitButton = (Button) findViewById(R.id.submit_button);
+        submitButton.setOnClickListener(submitListener);
 
     }
 
@@ -37,4 +44,15 @@ public class CreateReview extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private View.OnClickListener submitListener = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v)
+        {
+            
+        }
+    };
+
+
 }
