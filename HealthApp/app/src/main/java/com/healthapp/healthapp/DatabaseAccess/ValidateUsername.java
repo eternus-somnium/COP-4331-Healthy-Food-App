@@ -1,6 +1,10 @@
 package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
+import com.healthapp.healthapp.ConnectCall;
+import com.healthapp.healthapp.Login;
+import com.healthapp.healthapp.SignUpActivity;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -8,8 +12,8 @@ import java.sql.Statement;
 /**
  * Created by Chris on 11/17/2015.
  */
-public class ValidateUsername extends AsyncTask<Void,Void,Integer>{
-
+public class ValidateUsername extends AsyncTask<ConnectCall,Void,Integer>{
+    ConnectCall caller;
     //User attempts to create a new account
     //
     //INPUT: username User wants and the connection established to database
@@ -17,10 +21,12 @@ public class ValidateUsername extends AsyncTask<Void,Void,Integer>{
     //OUTPUT: Counts the number of instances a username occurs in the database
     //		  If the count is 0, the username has not yet been taken
     //		  If the count is 1, the username has been taken
-    protected Integer doInBackground(Void... params) {
-
+    protected Integer doInBackground(ConnectCall... params)
+    {
+        caller = params[0];
         //Initialize variables
         Statement stmt = null;
+        Integer result = 0;
         int count = 0;
 
         //Query
@@ -36,13 +42,16 @@ public class ValidateUsername extends AsyncTask<Void,Void,Integer>{
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 count = rs.getInt("A");
-
             }
+            if(count == 0) result = 1;
+            else result = -2;
         }
 
         //Exception
-        catch (SQLException e ) {
+        catch (Exception e )
+        {
             e.printStackTrace();
+            result = -1;
         }
 
         //Close statement
@@ -55,12 +64,14 @@ public class ValidateUsername extends AsyncTask<Void,Void,Integer>{
                 }
             }
         }
-
-        //Return count
-        return count;
+        return result;
     }
 
-    protected int onPostExecute(int result) {
-        return result;
+    protected void onPostExecute(Integer result)
+    {
+        if(result == 1)
+            Login.launchSearch();
+        else
+            caller.errorController(result);
     }
 }
