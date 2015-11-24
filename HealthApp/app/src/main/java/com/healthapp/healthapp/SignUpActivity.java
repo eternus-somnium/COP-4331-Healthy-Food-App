@@ -77,7 +77,8 @@ public class SignUpActivity extends ConnectCall {
             try {
                 if (User.getCon() == null || User.getCon().isClosed()) {
                     new Connect().execute(instance);
-                } else new ValidateUsername().execute();
+                }
+                else onConnection();
             } catch (Exception e) {
                 resultMessageHandler(-1);
             }
@@ -100,7 +101,7 @@ public class SignUpActivity extends ConnectCall {
 
     public void onConnection()
     {
-        new ValidateUsername().execute();
+        new ValidateUsername().execute(instance);
     }
 
     void showResultDialog(Integer i)
