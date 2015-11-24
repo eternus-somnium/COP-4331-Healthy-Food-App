@@ -37,6 +37,18 @@ public class Results extends AppCompatActivity
 
         // Set Click Listener
         showReviewButton.setOnClickListener(createReviewListener);
+
+        String newString;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                newString= null;
+            } else {
+                newString= extras.getString("Food ID");
+            }
+        } else {
+            newString= (String) savedInstanceState.getSerializable("Food ID");
+        }
     }
 
     @Override
@@ -79,9 +91,9 @@ public class Results extends AppCompatActivity
 
     public void fillFoodReport(){
 
-        //TextView productName = (TextView) findViewById(R.id.textView2);
+//        TextView productName = (TextView) findViewById(R.id.textView2);
 //        productName.setText();
-
+//
 //        TextView calories = (TextView) findViewById(R.id.cal_amt);
 //        calories.setText();
 //

@@ -171,7 +171,7 @@ public class Search extends AppCompatActivity
     public void gotoResults(View v) {
 
         Intent intent = new Intent(this, Results.class);
-        intent.putExtra("Nutrient ID", dbKey);
+        intent.putExtra("Food ID", dbKey);
         startActivity(intent);
     }
 

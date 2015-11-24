@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.EventListenerProxy;
+
 public class SignUpActivity extends AppCompatActivity {
 
     //Connection connect = DatabaseAccess.Connect();

@@ -7,10 +7,13 @@ import android.view.MenuItem;
 
 public class CreateReview extends AppCompatActivity {
 
+    String review;
+    float rating;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_review);
+
     }
 
     @Override

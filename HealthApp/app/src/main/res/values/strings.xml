@@ -9,6 +9,8 @@
     <string name="title_activity_barcode_scan">Barcode Scan</string>
     <string name="title_activity_results">Results</string>
     <string name="product_name">[PRODUCT NAME]</string>
+    <string name="required"><u><b>Required</b></u></string>
+    <string name="optional"><b><i>*Optional</i></b></string>
     <string name="alert_dialog_ok">Yes</string>
     <string name="alert_dialog_cancel">No</string>
     <string name="alert_dialog_two_buttons_title">Does this appear to be the product you were searching for?</string>
