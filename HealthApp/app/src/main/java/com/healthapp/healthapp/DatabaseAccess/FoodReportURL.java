@@ -29,11 +29,11 @@ public class FoodReportURL extends AsyncTask<String,Void,String[][]>
             url = new URL("http://api.nal.usda.gov/ndb/reports/?ndbno=" + params[0] + "&format=xml&api_key=" + User.getFood_api_key());
             doc = new XMLParsing().parseXMLfromURL(url);
             entries = doc.getElementsByTagName("nutrient");
-            count = entries.item(0).getChildNodes().getLength();
+            count = entries.item(0).getChildNodes().item(1).getChildNodes().getLength();
             results = new String[16][count];
 
             //Parse the document
-            results[0][0] = doc.getElementsByTagName("food").item(0).getNodeName();
+            results[0][0] = doc.getElementsByTagName("food").item(0).getAttributes().getNamedItem("name").getNodeValue();
         //    results[16] = doc.getElementsByTagName("measure").item(0).getAttributes().getNamedItem("label").getNodeValue();
 
             //get labels for measurements
@@ -139,6 +139,13 @@ public class FoodReportURL extends AsyncTask<String,Void,String[][]>
                             results[13][j] = children.item(j).getNodeValue();
                         }
                         break;
+                    //vitamin a
+                    case "318":
+                        children = entries.item(i).getChildNodes();
+                        for(int j=0;j<count;j++){
+                            results[14][j] = children.item(j).getNodeValue();
+                        }
+                        break;
                     default: break;
                 }
             }
@@ -155,11 +162,11 @@ public class FoodReportURL extends AsyncTask<String,Void,String[][]>
 
     }
 
-    public void onPostExectuion(String[] results)
+    public void onPostExecute(String[][] results)
     {
         //AsyncTask cannot return InputStream
         //XML parsing goes here?
-        //Results.fillFoodReport(results);
+        Results.fillFoodReport(results);
 
     }
 }

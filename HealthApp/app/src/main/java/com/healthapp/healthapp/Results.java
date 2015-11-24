@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.healthapp.healthapp.DatabaseAccess.FoodReportURL;
 import com.healthapp.healthapp.DatabaseAccess.Rating;
 
 
@@ -38,6 +39,7 @@ public class Results extends AppCompatActivity
         // Set Click Listener
         showReviewButton.setOnClickListener(createReviewListener);
 
+        // getExtras from Search
         String newString;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -45,10 +47,13 @@ public class Results extends AppCompatActivity
                 newString= null;
             } else {
                 newString= extras.getString("Food ID");
+                new FoodReportURL().execute(newString);
             }
         } else {
             newString= (String) savedInstanceState.getSerializable("Food ID");
         }
+
+
     }
 
     @Override
@@ -89,13 +94,13 @@ public class Results extends AppCompatActivity
         this.startActivity(intent);
     }
 
-    public void fillFoodReport(){
+    public static void fillFoodReport(String [][] results){
 
-//        TextView productName = (TextView) findViewById(R.id.textView2);
-//        productName.setText();
-//
-//        TextView calories = (TextView) findViewById(R.id.cal_amt);
-//        calories.setText();
+        TextView productName = (TextView) instance.findViewById(R.id.textView2);
+        productName.setText(results[0][0]);
+
+        TextView calories = (TextView) instance.findViewById(R.id.cal_amt);
+        calories.setText(results[1][0]);
 //
 //        TextView totalFat = (TextView) findViewById(R.id.fat_amt);
 //        totalFat.setText();

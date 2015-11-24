@@ -212,15 +212,18 @@ public class Search extends AppCompatActivity
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
 
+            final String[] databaseKeys = new String[items.length];
+
             for(int i=0; i < items.length; i++) {
                 Button foodItem = new Button(instance);
                 foodItem.setText(items[i][0]);
-                foodItem.setId(Integer.parseInt(items[i][1]));
+                databaseKeys[i] = items[i][1];
+                foodItem.setId(i);
                 foodItem.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         Button clickedFood = (Button) v;
-                        int dbNumber = clickedFood.getId();
-                        dbKey = String.valueOf(dbNumber);
+                        dbKey = databaseKeys[clickedFood.getId()];
+                        //dbKey = String.valueOf(dbNumber);
                         instance.gotoResults(vi);
                     }
                 });

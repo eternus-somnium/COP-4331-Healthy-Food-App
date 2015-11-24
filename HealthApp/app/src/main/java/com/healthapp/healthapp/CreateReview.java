@@ -50,7 +50,7 @@ public class CreateReview extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
-            
+
         }
     };
 
