@@ -20,6 +20,7 @@ public class FoodReportURL extends AsyncTask<String,Void,String[][]>
     URL url;
     Document doc;
     NodeList entries;
+    NodeList measurements;
 
     //        THIS IS FOR A FOOD REPORT
     public String[][] doInBackground(String... params)
@@ -34,6 +35,13 @@ public class FoodReportURL extends AsyncTask<String,Void,String[][]>
             //Parse the document
         //    results[0] = doc.getElementsByTagName("food").item(0).getNodeName();
         //    results[16] = doc.getElementsByTagName("measure").item(0).getAttributes().getNamedItem("label").getNodeValue();
+
+            //get labels for measurements
+            measurements = entries.item(0).getChildNodes();
+            for(int i=0;i<count;i++){
+                results[0][i] = measurements.item(i).getNodeName();
+            }
+
 
             for(int i=0;i<entries.getLength();i++){
                 Node n = entries.item(i);
