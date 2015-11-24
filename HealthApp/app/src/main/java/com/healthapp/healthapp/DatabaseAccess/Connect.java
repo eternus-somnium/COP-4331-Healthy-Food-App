@@ -2,6 +2,7 @@ package com.healthapp.healthapp.DatabaseAccess;
 
 import android.os.AsyncTask;
 
+import com.healthapp.healthapp.ConnectCall;
 import com.healthapp.healthapp.Login;
 
 import java.sql.DriverManager;
@@ -10,13 +11,14 @@ import java.sql.DriverManager;
 /**
  * Created by Chris on 11/17/2015.
  */
-public class Connect extends AsyncTask<Void,Void,Integer>{
-
+public class Connect extends AsyncTask<ConnectCall,Void,Integer>
+{
+    ConnectCall caller;
     //Connects to database, returns connection
-    protected Integer doInBackground(Void... params)
+    protected Integer doInBackground(ConnectCall... params)
     {
         Integer requestStatus;
-
+        caller = params[0];
         //Connect to database
         try
         {
@@ -42,8 +44,8 @@ public class Connect extends AsyncTask<Void,Void,Integer>{
     protected void onPostExecute(Integer requestStatus) {
         System.out.println(requestStatus);
         if (requestStatus == 1) {
-            Login.attemptLogin();
+            caller.onConnection();
         } else
-            Login.errorController(requestStatus);
+            caller.errorController(requestStatus);
     }
 }
