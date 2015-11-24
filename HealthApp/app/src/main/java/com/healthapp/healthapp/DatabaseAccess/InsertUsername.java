@@ -28,7 +28,7 @@ public class InsertUsername extends AsyncTask<ConnectCall,Void,Integer>{
         }
 
         //Query
-        String update = "INSERT INTO Users (username,password)"
+        String update = "INSERT INTO Users (username,password) "
                 +"VALUES ('" + User.getUsername() + "', '" + User.getPassword() + "')";
 
         //Execute query

@@ -28,8 +28,8 @@ public class ValidateUsername extends AsyncTask<ConnectCall,Void,Integer>{
         int count = 0;
 
         //Query
-        String query = "SELECT COUNT(*) as A"
-                + "FROM Users"
+        String query = "SELECT COUNT(*) as A "
+                + "FROM Users "
                 + "WHERE username = '" + User.getUsername() + "'";
 
         //Execute query
