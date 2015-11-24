@@ -18,7 +18,7 @@ public class InsertUsername extends AsyncTask<ConnectCall,Void,Integer>{
     public Integer doInBackground(ConnectCall... params)
     {
         caller = params[0];
-        Integer insertStatus;
+        Integer insertStatus = 0;
         Statement stmt = null;
         try {
             stmt = User.getCon().createStatement();
@@ -60,6 +60,9 @@ public class InsertUsername extends AsyncTask<ConnectCall,Void,Integer>{
 
     protected void onPostExecute(Integer result)
     {
+        if(result == 1)
+            new InsertFoodKey().execute(caller);
+        else
             caller.resultMessageHandler(result);
     }
 }
