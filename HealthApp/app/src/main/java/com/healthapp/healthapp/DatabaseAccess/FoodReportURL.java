@@ -13,83 +13,123 @@ import java.net.URL;
 /**
  * Created by Chris on 11/17/2015.
  */
-public class FoodReportURL extends AsyncTask<String,Void,String[]>
+public class FoodReportURL extends AsyncTask<String,Void,String[][]>
 {
-    String results[] = null;
-
+    String results[][] = null;
+    int count;
     URL url;
     Document doc;
     NodeList entries;
 
     //        THIS IS FOR A FOOD REPORT
-    public String[] doInBackground(String... params)
+    public String[][] doInBackground(String... params)
     {
         try {
             url = new URL("http://api.nal.usda.gov/ndb/reports/?ndbno=" + params[0] + "&format=xml&api_key=" + User.getFood_api_key());
             doc = new XMLParsing().parseXMLfromURL(url);
             entries = doc.getElementsByTagName("nutrient");
-            results = new String[15];
+            count = entries.item(0).getChildNodes().getLength();
+            results = new String[15][count];
 
             //Parse the document
-            results[0] = doc.getElementsByTagName("food").item(0).getNodeName();
-            results[16] = doc.getElementsByTagName("measure").item(0).getAttributes().getNamedItem("label").getNodeValue();
-            //String id = null;
+        //    results[0] = doc.getElementsByTagName("food").item(0).getNodeName();
+        //    results[16] = doc.getElementsByTagName("measure").item(0).getAttributes().getNamedItem("label").getNodeValue();
+
             for(int i=0;i<entries.getLength();i++){
                 Node n = entries.item(i);
-
+                NodeList children = null;
                 String id = n.getAttributes().getNamedItem("nutrient_id").getNodeValue();
                 switch (id){
                     //energy
                     case "208":
-                        results[1] = entries.item(i).getNodeValue();
+                        children = entries.item(i).getChildNodes();
+                        for(int j=0;j<count;j++){
+                            results[1][j] = children.item(j).getNodeValue();
+                        }
                         break;
                     //protein
                     case "203":
-                        results[2] = entries.item(i).getNodeValue();
+                        children = entries.item(i).getChildNodes();
+                        for(int j=0;j<count;j++){
+                            results[2][j] = children.item(j).getNodeValue();
+                        }
                         break;
                     //total fat
                     case "204":
-                        results[3] = entries.item(i).getNodeValue();
+                        children = entries.item(i).getChildNodes();
+                        for(int j=0;j<count;j++){
+                            results[3][j] = children.item(j).getNodeValue();
+                        }
                         break;
                     //carbohydrate
                     case "205":
-                        results[4] = entries.item(i).getNodeValue();
+                        children = entries.item(i).getChildNodes();
+                        for(int j=0;j<count;j++){
+                            results[4][j] = children.item(j).getNodeValue();
+                        }
                         break;
                     //fiber
                     case "291":
-                        results[5] = entries.item(i).getNodeValue();
+                        children = entries.item(i).getChildNodes();
+                        for(int j=0;j<count;j++){
+                            results[5][j] = children.item(j).getNodeValue();
+                        }
                         break;
                     //sugar
                     case "269":
-                        results[6] = entries.item(i).getNodeValue();
+                        children = entries.item(i).getChildNodes();
+                        for(int j=0;j<count;j++){
+                            results[6][j] = children.item(j).getNodeValue();
+                        }
                         break;
                     //cholesterol
                     case "601":
-                        results[7] = entries.item(i).getNodeValue();
+                        children = entries.item(i).getChildNodes();
+                        for(int j=0;j<count;j++){
+                            results[7][j] = children.item(j).getNodeValue();
+                        }
                         break;
                     //calcium
                     case "301":
-                        results[8] = entries.item(i).getNodeValue();
+                        children = entries.item(i).getChildNodes();
+                        for(int j=0;j<count;j++){
+                            results[8][j] = children.item(j).getNodeValue();
+                        }
                         break;
                     //sodium
                     case "307":
-                        results[9] = entries.item(i).getNodeValue();
+                        children = entries.item(i).getChildNodes();
+                        for(int j=0;j<count;j++){
+                            results[9][j] = children.item(j).getNodeValue();
+                        }
                         break;
                     //iron
                     case "303":
-                        results[10] = entries.item(i).getNodeValue();
+                        children = entries.item(i).getChildNodes();
+                        for(int j=0;j<count;j++){
+                            results[10][j] = children.item(j).getNodeValue();
+                        }
                         break;
                     //saturated fat
                     case "606":
-                        results[11] = entries.item(i).getNodeValue();
+                        children = entries.item(i).getChildNodes();
+                        for(int j=0;j<count;j++){
+                            results[11][j] = children.item(j).getNodeValue();
+                        }
                         break;
                     //trans fat
                     case "605":
-                        results[12] = entries.item(i).getNodeValue();
+                        children = entries.item(i).getChildNodes();
+                        for(int j=0;j<count;j++){
+                            results[12][j] = children.item(j).getNodeValue();
+                        }
                         break;
                     //vitamin c
                     case "401":
-                        results[13] = entries.item(i).getNodeValue();
+                        children = entries.item(i).getChildNodes();
+                        for(int j=0;j<count;j++){
+                            results[13][j] = children.item(j).getNodeValue();
+                        }
                         break;
                     default: break;
                 }
