@@ -30,16 +30,16 @@ public class FoodReportURL extends AsyncTask<String,Void,String[][]>
             doc = new XMLParsing().parseXMLfromURL(url);
             entries = doc.getElementsByTagName("nutrient");
             count = entries.item(0).getChildNodes().getLength();
-            results = new String[15][count];
+            results = new String[16][count];
 
             //Parse the document
-        //    results[0] = doc.getElementsByTagName("food").item(0).getNodeName();
+            results[0][0] = doc.getElementsByTagName("food").item(0).getNodeName();
         //    results[16] = doc.getElementsByTagName("measure").item(0).getAttributes().getNamedItem("label").getNodeValue();
 
             //get labels for measurements
             measurements = entries.item(0).getChildNodes();
             for(int i=0;i<count;i++){
-                results[0][i] = measurements.item(i).getNodeName();
+                results[15][i] = measurements.item(i).getNodeName();
             }
 
 
