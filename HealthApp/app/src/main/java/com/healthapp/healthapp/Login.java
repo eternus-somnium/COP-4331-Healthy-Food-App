@@ -20,7 +20,7 @@ import com.healthapp.healthapp.DatabaseAccess.Connect;
 import com.healthapp.healthapp.DatabaseAccess.User;
 
 
-public class Login extends AppCompatActivity
+public class Login extends ConnectCall
 {
     Button loginButton;
     private static Login instance = null;
@@ -86,7 +86,6 @@ public class Login extends AppCompatActivity
             //Do Login
             EditText uname  = (EditText)findViewById(R.id.username);
             EditText pword = (EditText)findViewById(R.id.password);
-            User.setPassword(pword.getText().toString());
 
             User.setUsername(uname.getText().toString());
             User.setPassword(pword.getText().toString());
@@ -99,14 +98,14 @@ public class Login extends AppCompatActivity
             {
                 if (User.getCon() == null || User.getCon().isClosed())
                 {
-                    new Connect().execute();
+                    new Connect().execute(instance);
                 }
             }
             catch (Exception e)
             {
                 AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
                 alertDialog.setTitle("Alert");
-                alertDialog.setMessage("Alert message to be shown");
+                alertDialog.setMessage("Connection to application database failed");
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -128,9 +127,9 @@ public class Login extends AppCompatActivity
         startActivity(intent);
     }
 
-    public static void attemptLogin()
+    public void onConnection()
     {
-        new AttemptLogin().execute();
+        new AttemptLogin().execute(instance);
     }
 
     public static void launchSearch()
@@ -159,7 +158,7 @@ public class Login extends AppCompatActivity
 
     }
 
-    public static void errorController(Integer i)
+    public void errorController(Integer i)
     {
         instance.showErrorDialog(i);
     }

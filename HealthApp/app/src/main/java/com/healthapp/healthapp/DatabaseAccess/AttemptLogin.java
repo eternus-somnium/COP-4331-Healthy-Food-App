@@ -2,6 +2,7 @@ package com.healthapp.healthapp.DatabaseAccess;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
+import com.healthapp.healthapp.ConnectCall;
 import com.healthapp.healthapp.Login;
 
 import java.sql.ResultSet;
@@ -11,7 +12,7 @@ import java.sql.PreparedStatement;
 /**
  * Created by Chris on 11/17/2015.
  */
-public class AttemptLogin extends AsyncTask<Void,Void,Integer>
+public class AttemptLogin extends AsyncTask<ConnectCall,Void,Integer>
 {
     //User is logging in, get the User's ID, food database key, and barcode key
     //
@@ -27,9 +28,10 @@ public class AttemptLogin extends AsyncTask<Void,Void,Integer>
 //        progDailog.setCancelable(true);
 //        progDailog.show();
 //    }
-
-    protected Integer doInBackground(Void... params)
+    ConnectCall caller;
+    protected Integer doInBackground(ConnectCall... params)
     {
+        caller = params[0];
         //Instantiation
         Integer requestStatus=0;
         PreparedStatement stmt = null;
@@ -92,7 +94,7 @@ public class AttemptLogin extends AsyncTask<Void,Void,Integer>
         if(requestStatus == 1)
             Login.launchSearch();
         else
-            Login.errorController(requestStatus);
+            caller.errorController(requestStatus);
 
     }
 }
