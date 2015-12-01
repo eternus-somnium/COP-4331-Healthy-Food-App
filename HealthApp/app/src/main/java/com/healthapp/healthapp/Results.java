@@ -35,10 +35,11 @@ public class Results extends AppCompatActivity
     private static String[] items;
     Button showReviewButton;
     private static int x =0;
-    private static String newString;
     private ProgressBar bar;
     private RelativeLayout rl;
     public static String[][] results1;
+    public static String product;
+    private static String newString;
 
 
     @Override
@@ -106,12 +107,13 @@ public class Results extends AppCompatActivity
         public void onClick(View v)
         {
             vi = v;
-            goToCreateReview(v);
+            goToReview(v);
         }
     };
 
-    public void goToCreateReview(View v) {
-        Intent intent = new Intent(this,Demo_Reviews.class);
+    public void goToReview(View v) {
+        Intent intent = new Intent(this,ReviewsActivity.class);
+        intent.putExtra("Product", product);
         this.startActivity(intent);
     }
 
@@ -141,6 +143,7 @@ public class Results extends AppCompatActivity
 
 
         TextView productName = (TextView) instance.findViewById(R.id.textView2);
+        product = results1[0][0];
         productName.setText(results1[0][0]);
 
         TextView calories = (TextView) instance.findViewById(R.id.cal_amt);

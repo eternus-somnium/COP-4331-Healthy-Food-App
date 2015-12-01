@@ -3,6 +3,7 @@ package com.healthapp.healthapp;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,17 +11,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.healthapp.healthapp.DatabaseAccess.FoodReportURL;
 import com.healthapp.healthapp.DatabaseAccess.Rating;
 import com.healthapp.healthapp.DatabaseAccess.ViewItemRatings;
 
 public class ReviewsActivity extends AppCompatActivity {
 
-    private static Demo_Reviews instance = null;
+    private static ReviewsActivity instance = null;
     private static View vi;
-    private static LinearLayout itemsLayout;
+    private static LinearLayout reviewsLayout;
     Button createReviewButton;
+    private static String product;
 
 
     @Override
@@ -28,11 +33,28 @@ public class ReviewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews);
 
+        instance = this;
+
         // Initialize done button
         createReviewButton = (Button) findViewById(R.id.create_button);
 
         // Set Click Listener
         createReviewButton.setOnClickListener(createReviewListener);
+
+        reviewsLayout = (LinearLayout) findViewById(R.id.reviewsLayout);
+
+        // getExtras
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                product= null;
+            } else {
+                product= extras.getString("Product");
+            }
+        } else {
+            product= (String) savedInstanceState.getSerializable("Product");
+        }
+        //////
 
         new ViewItemRatings().execute();
     }
@@ -74,43 +96,58 @@ public class ReviewsActivity extends AppCompatActivity {
 
     public void goToCreateReview(View v) {
         Intent intent = new Intent(this,CreateReview.class);
+        intent.putExtra("Product", product);
         this.startActivity(intent);
     }
 
-    public static void populateList(Rating[] items) {
-//        if(items[0].equals("false")){
-//            // print error message
-////            AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
-////            alertDialog.setTitle("Alert");
-////            alertDialog.setMessage(items[0]);
-////            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-////                    new DialogInterface.OnClickListener() {
-////                        public void onClick(DialogInterface dialog, int which) {
-////                            dialog.dismiss();
-////                        }
-////                    });
-////            alertDialog.show();
-//        }
-//
-//        else {
-//
-//            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
-//                    RelativeLayout.LayoutParams.WRAP_CONTENT);
-//
-//            final String[] databaseKeys = new String[items.length];
-//
-//            for(int i=0; i < items.length; i++) {
-//                Button foodItem = new Button(instance);
-//                foodItem.setTransformationMethod(null);
-//                foodItem.setText(items[i]);
-//                databaseKeys[i] = items[i];
-//                foodItem.setId(i);
-//
-//
-//                itemsLayout.addView(foodItem, lp);
-//
-//            }
-//        }
+    public static void populateList(Rating[] reviews) {
+        if(reviews[0].equals("false")){
+            // print error message
+//            AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
+//            alertDialog.setTitle("Alert");
+//            alertDialog.setMessage(items[0]);
+//            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+//                    new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            dialog.dismiss();
+//                        }
+//                    });
+//            alertDialog.show();
+        }
+
+        else {
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+
+//            setContentView(instance.layout.activity_results);
+
+            for(int i=0; i < reviews.length; i++) {
+                // Initialize review data variables
+                TextView username = new TextView(instance);
+                TextView rating = new TextView(instance);
+                TextView comment = new TextView(instance);
+
+                // Get values for review data
+                username.setText(reviews[i].getUsername());
+                rating.setText(String.valueOf(reviews[i].getRating()));
+                comment.setText(reviews[i].getComment());
+
+                // Add review data to layout
+                reviewsLayout.addView(username, params);
+                reviewsLayout.addView(rating, params);
+                reviewsLayout.addView(comment, params);
+
+                // Add a line
+                View v = new View(instance);
+                v.setLayoutParams(new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        5
+                ));
+                v.setBackgroundColor(Color.parseColor("#B3B3B3"));
+                reviewsLayout.addView(v);
+            }
+        }
     }
 
 }

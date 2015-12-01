@@ -41,14 +41,21 @@ public class ViewItemRatings extends AsyncTask<Void,Void,Rating[]>{
 
         //Execute
         try {
+            //Gets reviews from database and sets up review array
             stmt = User.getCon().createStatement();
             rs = stmt.executeQuery(query);
             int i = 0;
+            rs.last();
+            reviews = new Rating[rs.getRow()];
+            rs.beforeFirst();
+
             while(rs.next())
             {
-                reviews[i].setUsername(rs.getString("U.username"));
-                reviews[i].setRating(rs.getFloat("R.rating"));
-                reviews[i].setComment(rs.getString("R.comment"));
+                Rating newRating = new Rating();
+                newRating.setUsername(rs.getString("U.username"));
+                newRating.setRating(rs.getFloat("R.rating"));
+                newRating.setComment(rs.getString("R.comment"));
+                reviews[i] = newRating;
                 i++;
             }
         }
@@ -72,8 +79,8 @@ public class ViewItemRatings extends AsyncTask<Void,Void,Rating[]>{
         return reviews;
     }
 
-    protected void onPostExecute(Rating[] results)
+    protected void onPostExecute(Rating[] reviews)
     {
-        ReviewsActivity.populateList(results); //Do something
+        ReviewsActivity.populateList(reviews); //Do something
     }
 }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.healthapp.healthapp.DatabaseAccess.InsertRating;
 import com.healthapp.healthapp.DatabaseAccess.Rating;
@@ -27,6 +28,9 @@ public class CreateReview extends AppCompatActivity {
     private EditText comment;
     Button submitButton;
 
+    private static String product;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,21 @@ public class CreateReview extends AppCompatActivity {
         submitButton = (Button) findViewById(R.id.submit_button);
         submitButton.setOnClickListener(submitListener);
 
+        // getExtras
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                product= null;
+            } else {
+                product= extras.getString("Product");
+            }
+        } else {
+            product= (String) savedInstanceState.getSerializable("Product");
+        }
+        //////
+
+        TextView productName = (TextView) findViewById(R.id.product_name);
+        productName.setText(product);
     }
 
     @Override
