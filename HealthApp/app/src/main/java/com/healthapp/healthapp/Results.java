@@ -215,7 +215,7 @@ public class Results extends AppCompatActivity
                 TextView review = new TextView(instance);
                 review.setText(String.valueOf(reviews[i].getRating()));
                 TextView user = new TextView(instance);
-                user.setText(String.valueOf(reviews[i].getUsername()));
+                user.setText(String.valueOf(reviews[i].getUserID()));
                 TextView comment = new TextView(instance);
                 comment.setText(String.valueOf(reviews[i].getComment()));
 

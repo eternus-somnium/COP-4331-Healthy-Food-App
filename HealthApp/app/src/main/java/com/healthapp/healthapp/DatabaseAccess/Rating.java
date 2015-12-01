@@ -8,6 +8,7 @@ public class Rating
     private String foodID;
 
     private int userID;
+    private String username;
     private float rating;
     private String comment;
 
@@ -41,5 +42,13 @@ public class Rating
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

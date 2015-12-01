@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:inputType="textNoSuggestions"
         android:ems="10"
-        android:id="@+id/userID"
+        android:id="@+id/username"
         android:layout_below="@+id/user_label"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:text="Password"
         android:id="@+id/password_label"
-        android:layout_below="@+id/userID"
+        android:layout_below="@+id/username"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

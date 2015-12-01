@@ -1,8 +1,6 @@
 package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
-import com.healthapp.healthapp.CreateReview;
-
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -29,14 +27,13 @@ public class InsertRating extends AsyncTask<Rating,Void,Integer>{
         //Execute
         try {
             stmt.execute(update);
-            status = 1;
         }
 
         //Exception
         catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
-            status = -1;
+            status = 1;
         }
 
         //Close
@@ -52,10 +49,5 @@ public class InsertRating extends AsyncTask<Rating,Void,Integer>{
             }
         }
         return status;
-    }
-
-    protected void onPostExecute(int status)
-    {
-        CreateReview.resultMessageHandler(status);
     }
 }

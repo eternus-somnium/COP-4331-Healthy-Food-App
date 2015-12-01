@@ -16,7 +16,7 @@ public class UpdateComment extends AsyncTask<Rating,Void,Integer>{
     {
         Integer status = 0;
         //Query
-        String update = "Update Rating SET rating='"+params[0].getRating()+"', comment='"+params[0].getComment()+"' WHERE foodID = '"+params[0].getFoodID()+"' AND Users_idUsers='"+params[0].getUsername()+"'";
+        String update = "Update Rating SET rating='"+params[0].getRating()+"', comment='"+params[0].getComment()+"' WHERE foodID = '"+params[0].getFoodID()+"' AND Users_idUsers='"+params[0].getUserID()+"'";
 
 
         //Execute
