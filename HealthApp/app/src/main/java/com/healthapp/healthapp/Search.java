@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.healthapp.healthapp.DatabaseAccess.FoodReportURL;
 import com.healthapp.healthapp.DatabaseAccess.SearchFoodURL;
+import com.healthapp.healthapp.DatabaseAccess.User;
 
 
 public class Search extends AppCompatActivity
@@ -234,6 +235,7 @@ public class Search extends AppCompatActivity
                     public void onClick(View v) {
                         Button clickedFood = (Button) v;
                         dbKey = databaseKeys[clickedFood.getId()];
+                        User.setFoodID(dbKey);
                         //dbKey = String.valueOf(dbNumber);
                         instance.gotoResults(vi);
                     }

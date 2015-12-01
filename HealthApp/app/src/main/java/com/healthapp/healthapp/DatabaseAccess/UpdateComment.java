@@ -21,6 +21,7 @@ public class UpdateComment extends AsyncTask<Rating,Void,Integer>{
 
         //Execute
         try {
+            stmt = User.getCon().createStatement();
             stmt.execute(update);
         }
 

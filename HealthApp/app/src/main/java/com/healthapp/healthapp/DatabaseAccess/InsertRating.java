@@ -1,6 +1,8 @@
 package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
+import com.healthapp.healthapp.CreateReview;
+
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -19,21 +21,23 @@ public class InsertRating extends AsyncTask<Rating,Void,Integer>{
         //Query
         String update = "INSERT INTO Rating (foodID, Users_idUsers, rating, comment) "
                     + "VALUES ('" + params[0].getFoodID()
-                    + "','" + params[0].getUsername()
+                    + "','" + params[0].getUserID()
                     + "','" + params[0].getRating()
                     + "','" + params[0].getComment()
                     + "')";
 
         //Execute
         try {
-            stmt.execute(update);
+            stmt = User.getCon().createStatement();
+            stmt.executeUpdate(update);
+            status = 1;
         }
 
         //Exception
         catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
-            status = 1;
+            status = -1;
         }
 
         //Close
@@ -49,5 +53,10 @@ public class InsertRating extends AsyncTask<Rating,Void,Integer>{
             }
         }
         return status;
+    }
+
+    protected void onPostExecute(Integer status)
+    {
+        CreateReview.resultMessageHandler(status);
     }
 }

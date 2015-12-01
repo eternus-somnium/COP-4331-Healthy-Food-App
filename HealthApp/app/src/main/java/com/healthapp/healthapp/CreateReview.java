@@ -14,6 +14,7 @@ import android.widget.RatingBar;
 
 import com.healthapp.healthapp.DatabaseAccess.InsertRating;
 import com.healthapp.healthapp.DatabaseAccess.Rating;
+import com.healthapp.healthapp.DatabaseAccess.ResultMessageHandler;
 import com.healthapp.healthapp.DatabaseAccess.User;
 
 import java.sql.SQLException;
@@ -113,7 +114,7 @@ public class CreateReview extends AppCompatActivity {
         this.startActivity(intent);
     }
 
-    void showResultDialog(Integer i)
+    public void showResultDialog(Integer i)
     {
         AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
 
@@ -135,6 +136,7 @@ public class CreateReview extends AppCompatActivity {
         alertDialog.show();
 
     }
+
 
     public static void resultMessageHandler(Integer i)
     {
