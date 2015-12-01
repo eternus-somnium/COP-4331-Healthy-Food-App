@@ -119,16 +119,7 @@ public class Login extends ConnectCall
             }
             catch (Exception e)
             {
-                AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
-                alertDialog.setTitle("Alert");
-                alertDialog.setMessage("Connection to application database failed");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
+                resultMessageHandler(-1);
             }
         }
     };
@@ -153,29 +144,9 @@ public class Login extends ConnectCall
         instance.gotoSearch(vi);
     }
 
-    void showResultDialog(Integer i)
-    {
-        AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
-
-        alertDialog.setTitle("Alert");
-        if(i == -1){
-            alertDialog.setMessage("Could not contact the application server");}
-        else if(i == -2){
-            alertDialog.setMessage("Login failed");}
-        else{
-            alertDialog.setMessage("Alert message to be shown");}
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
-
-    }
-
     public void resultMessageHandler(Integer i)
     {
-        instance.showResultDialog(i);
+        new ResultMessageHandler().showResultDialog(i, instance);
+        //instance.showResultDialog(i);
     }
 }

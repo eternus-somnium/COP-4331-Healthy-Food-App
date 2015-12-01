@@ -74,19 +74,27 @@ public class SignUpActivity extends ConnectCall {
         User.setFood_api_key(foodkey.getText().toString());
         User.setBarcode_api_key(barcodekey.getText().toString());
 
-        if(!User.getFood_api_key().equals(""))
+
+        //Validate entries
+        if(!usernameOK())
+            resultMessageHandler(2);
+        else if(!passwordOK())
+            resultMessageHandler(3);
+        else if(!foodKeyOK())
+            resultMessageHandler(4);
+        else
         {
-            // Validate username
-            try {
-                if (User.getCon() == null || User.getCon().isClosed()) {
+            try
+            {
+                if (User.getCon() == null || User.getCon().isClosed())
                     new Connect().execute(instance);
-                }
                 else onConnection();
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 resultMessageHandler(-1);
             }
         }
-        else resultMessageHandler(-3);
     }
 
     public void gotoLogin(View v) {
@@ -98,7 +106,6 @@ public class SignUpActivity extends ConnectCall {
         @Override
         public void onClick(View v) {
             vi = v;
-
             SignUp();
         }
     };
@@ -108,48 +115,45 @@ public class SignUpActivity extends ConnectCall {
         new ValidateUsername().execute(instance);
     }
 
-    public void checkPasswords(){
+    public boolean usernameOK()
+    {
+        EditText p1 = (EditText) findViewById(R.id.username);
+
+        if(p1.getText().toString().equals(""))
+            return false;
+        else return true;
+    }
+
+    public boolean passwordOK()
+    {
         EditText p1 = (EditText) findViewById(R.id.password);
         EditText p2 = (EditText) findViewById(R.id.confirmed_password);
 
-        if(!p1.getText().toString().equals(p2.getText().toString())){
-            resultMessageHandler(-4);
-        }
+        if(p1.getText().toString().equals("") ||
+            !p1.getText().toString().equals(p2.getText().toString()))
+            return false;
+        else return true;
     }
 
-    void showResultDialog(Integer i)
-    {
-        AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
+    public boolean foodKeyOK(){
+        EditText p1 = (EditText) findViewById(R.id.foodkey);
 
-        alertDialog.setTitle("Alert");
+        if(p1.getText().toString().equals(""))
+            return false;
+        else return true;
+    }
+
+    public void nextScreen(int i)
+    {
         if(i == 1)
         {
-            alertDialog.setMessage("User successfully created");
             gotoLogin(vi);
         }
-        else if(i == -1){
-            alertDialog.setMessage("Could not contact the application server");}
-        else if(i == -2){
-            alertDialog.setMessage("Username already exists");}
-        else if(i == -3){
-            alertDialog.setMessage("USDA API key is required");}
-        else if(i == -4){
-            alertDialog.setMessage("Passwords do not match");
-        }
-        else{
-            alertDialog.setMessage("Alert message to be shown");}
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
-
     }
 
     public void resultMessageHandler(Integer i)
     {
-        instance.showResultDialog(i);
+        //instance.showResultDialog(i);
+        new ResultMessageHandler().showResultDialog(i, instance);
     }
 }

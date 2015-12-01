@@ -62,7 +62,7 @@ public class AttemptLogin extends AsyncTask<ConnectCall,Void,Integer>
             }
             else
             {
-                requestStatus = -2; //Failure
+                requestStatus = -3; //Failure
                 User.setValidUser(false);
             }
         }

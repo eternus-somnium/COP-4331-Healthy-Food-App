@@ -14,7 +14,6 @@ import android.widget.RatingBar;
 
 import com.healthapp.healthapp.DatabaseAccess.InsertRating;
 import com.healthapp.healthapp.DatabaseAccess.Rating;
-import com.healthapp.healthapp.DatabaseAccess.ResultMessageHandler;
 import com.healthapp.healthapp.DatabaseAccess.User;
 
 import java.sql.SQLException;
