@@ -108,8 +108,12 @@ public class Search extends AppCompatActivity
     private View.OnClickListener searchDatabase = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            bar.setVisibility(View.VISIBLE);
+            rl.setVisibility(View.VISIBLE);
             vi = v;
             new SearchFoodURL().execute(sField);
+            bar.setVisibility(View.GONE);
+            rl.setVisibility(View.GONE);
         }
     };
 
@@ -117,7 +121,11 @@ public class Search extends AppCompatActivity
         @Override
         public void onClick(View v)
         {
+            bar.setVisibility(View.VISIBLE);
+            rl.setVisibility(View.VISIBLE);
             BarcodeScanner(v);
+            bar.setVisibility(View.GONE);
+            rl.setVisibility(View.GONE);
         }
     };
 
@@ -216,6 +224,8 @@ public class Search extends AppCompatActivity
 
             for(int i=0; i < items.length; i++) {
                 Button foodItem = new Button(instance);
+                foodItem.setBackgroundResource(R.drawable.healthbuttons);
+                foodItem.setTransformationMethod(null);
                 foodItem.setText(items[i][0]);
                 databaseKeys[i] = items[i][1];
                 foodItem.setId(i);

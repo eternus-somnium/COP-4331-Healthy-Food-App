@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.healthapp.healthapp.DatabaseAccess.Connect;
 import com.healthapp.healthapp.DatabaseAccess.User;
@@ -20,6 +22,8 @@ public class SignUpActivity extends ConnectCall {
     private static SignUpActivity instance;
     private static View vi;
     Button doneButton;
+    private ProgressBar bar;
+    private RelativeLayout rl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,6 +38,11 @@ public class SignUpActivity extends ConnectCall {
 
         // Set Click Listener
         doneButton.setOnClickListener(doneListener);
+
+        rl = (RelativeLayout) findViewById(R.id.loadingPanel);
+        rl.setVisibility(View.GONE);
+        bar = (ProgressBar) this.findViewById(R.id.progressBar);
+        bar.setVisibility(View.GONE);
 
     }
 
@@ -95,7 +104,11 @@ public class SignUpActivity extends ConnectCall {
         @Override
         public void onClick(View v) {
             vi = v;
+            bar.setVisibility(View.VISIBLE);
+            rl.setVisibility(View.VISIBLE);
             SignUp();
+            bar.setVisibility(View.GONE);
+            rl.setVisibility(View.GONE);
         }
     };
 
