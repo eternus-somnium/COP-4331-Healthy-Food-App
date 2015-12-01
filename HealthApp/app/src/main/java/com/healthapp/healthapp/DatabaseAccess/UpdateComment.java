@@ -9,9 +9,9 @@ import java.sql.Statement;
 public class UpdateComment extends AsyncTask<Rating,Void,Integer>{
 
     Statement stmt = null;
-    //User has rated a food item, insert comment into database
+    //User wants to edit rating on food that already exists
     //
-    //INPUT: ID of food, ID of User, the User's rating, the comment the User may have written, and the connection to the database
+    //INPUT: New Rating, New Comment, The Food ID, and the User ID
     protected Integer doInBackground(Rating... params)
     {
         Integer status = 0;
