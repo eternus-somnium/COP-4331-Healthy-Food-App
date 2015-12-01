@@ -30,7 +30,6 @@ import com.healthapp.healthapp.DatabaseAccess.User;
 
 public class Search extends AppCompatActivity
 {
-
     private EditText searchField;
     public String sField;
     ImageButton sButton;

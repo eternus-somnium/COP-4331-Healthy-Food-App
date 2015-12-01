@@ -22,4 +22,5 @@
         Fill out the form. Under "Your Menu", click "API Key". Copy and paste your key below</string>
     <string name="title_activity_demo__reviews">Demo_Reviews</string>
     <string name="title_activity_create_review">CreateReview</string>
+    <string name="title_activity_reviews">ReviewsActivity</string>
 </resources>

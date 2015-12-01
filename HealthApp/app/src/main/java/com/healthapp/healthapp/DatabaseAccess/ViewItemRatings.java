@@ -1,6 +1,8 @@
 package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
+import com.healthapp.healthapp.ReviewsActivity;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -45,7 +47,7 @@ public class ViewItemRatings extends AsyncTask<Void,Void,Rating[]>{
             while(rs.next())
             {
                 reviews[i].setUsername(rs.getString("U.username"));
-                reviews[i].setRating(rs.getInt("R.rating"));
+                reviews[i].setRating(rs.getFloat("R.rating"));
                 reviews[i].setComment(rs.getString("R.comment"));
                 i++;
             }
@@ -72,6 +74,6 @@ public class ViewItemRatings extends AsyncTask<Void,Void,Rating[]>{
 
     protected void onPostExecute(Rating[] results)
     {
-        //populateList(results); //Do something
+        ReviewsActivity.populateList(results); //Do something
     }
 }

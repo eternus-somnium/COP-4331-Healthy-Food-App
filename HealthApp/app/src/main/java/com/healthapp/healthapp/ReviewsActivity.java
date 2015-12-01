@@ -13,20 +13,21 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.healthapp.healthapp.DatabaseAccess.Rating;
-import com.healthapp.healthapp.DatabaseAccess.User;
 import com.healthapp.healthapp.DatabaseAccess.ViewItemRatings;
 
-public class Demo_Reviews extends AppCompatActivity {
+public class ReviewsActivity extends AppCompatActivity {
 
     private static Demo_Reviews instance = null;
     private static View vi;
     private static LinearLayout itemsLayout;
-
     Button createReviewButton;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_demo__reviews);
+        setContentView(R.layout.activity_reviews);
+
         // Initialize done button
         createReviewButton = (Button) findViewById(R.id.create_button);
 
@@ -39,7 +40,7 @@ public class Demo_Reviews extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_demo__reviews, menu);
+        getMenuInflater().inflate(R.menu.menu_reviews, menu);
         return true;
     }
 
@@ -57,6 +58,10 @@ public class Demo_Reviews extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
     private View.OnClickListener createReviewListener = new View.OnClickListener()
     {
         @Override
@@ -75,16 +80,16 @@ public class Demo_Reviews extends AppCompatActivity {
     public static void populateList(Rating[] items) {
 //        if(items[0].equals("false")){
 //            // print error message
-//            AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
-//            alertDialog.setTitle("Alert");
-//            alertDialog.setMessage(items[0]);
-//            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-//                    new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            dialog.dismiss();
-//                        }
-//                    });
-//            alertDialog.show();
+////            AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
+////            alertDialog.setTitle("Alert");
+////            alertDialog.setMessage(items[0]);
+////            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+////                    new DialogInterface.OnClickListener() {
+////                        public void onClick(DialogInterface dialog, int which) {
+////                            dialog.dismiss();
+////                        }
+////                    });
+////            alertDialog.show();
 //        }
 //
 //        else {
@@ -97,8 +102,8 @@ public class Demo_Reviews extends AppCompatActivity {
 //            for(int i=0; i < items.length; i++) {
 //                Button foodItem = new Button(instance);
 //                foodItem.setTransformationMethod(null);
-//                foodItem.setText(items[i][0]);
-//                databaseKeys[i] = items[i][1];
+//                foodItem.setText(items[i]);
+//                databaseKeys[i] = items[i];
 //                foodItem.setId(i);
 //
 //
@@ -107,4 +112,5 @@ public class Demo_Reviews extends AppCompatActivity {
 //            }
 //        }
     }
+
 }
