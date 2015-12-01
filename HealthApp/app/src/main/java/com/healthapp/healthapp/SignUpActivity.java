@@ -108,6 +108,15 @@ public class SignUpActivity extends ConnectCall {
         new ValidateUsername().execute(instance);
     }
 
+    public void checkPasswords(){
+        EditText p1 = (EditText) findViewById(R.id.password);
+        EditText p2 = (EditText) findViewById(R.id.confirmed_password);
+
+        if(!p1.getText().toString().equals(p2.getText().toString())){
+            resultMessageHandler(-4);
+        }
+    }
+
     void showResultDialog(Integer i)
     {
         AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
@@ -124,6 +133,9 @@ public class SignUpActivity extends ConnectCall {
             alertDialog.setMessage("Username already exists");}
         else if(i == -3){
             alertDialog.setMessage("USDA API key is required");}
+        else if(i == -4){
+            alertDialog.setMessage("Passwords do not match");
+        }
         else{
             alertDialog.setMessage("Alert message to be shown");}
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
