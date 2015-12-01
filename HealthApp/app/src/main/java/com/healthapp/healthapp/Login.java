@@ -58,9 +58,10 @@ public class Login extends ConnectCall
 
         //We have shared preferences to use
         if (restoreUser != null && restorePass != null) {
-            User.setUsername(restoreUser);
-            User.setPassword(restorePass);
-            new Connect().execute(instance);
+            final EditText username = (EditText) findViewById(R.id.username);
+            final EditText password = (EditText) findViewById(R.id.password);
+            username.setText(restoreUser);
+            password.setText(restorePass);
         }
     }
 
@@ -104,6 +105,7 @@ public class Login extends ConnectCall
             SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
             editor.putString("username", uname.getText().toString());
             editor.putString("password", pword.getText().toString());
+            editor.commit();
 
             bar.setVisibility(View.VISIBLE);
             rl.setVisibility(View.VISIBLE);
