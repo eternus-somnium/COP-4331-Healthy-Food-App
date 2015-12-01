@@ -3,6 +3,7 @@ package com.healthapp.healthapp;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +29,7 @@ public class Login extends ConnectCall
     private ProgressBar bar;
     private RelativeLayout rl;
 
-
+    private static final String PREFS_NAME = "HealthApp_PREFS";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,17 @@ public class Login extends ConnectCall
         ImageView scales = (ImageView) findViewById(R.id.scales);
         scales.setImageAlpha(18);
 
+        //Pull shared preferences
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String restoreUser = prefs.getString("username", null);
+        String restorePass = prefs.getString("password", null);
 
+        //We have shared preferences to use
+        if (restoreUser != null && restorePass != null) {
+            User.setUsername(restoreUser);
+            User.setPassword(restorePass);
+            new Connect().execute(instance);
+        }
     }
 
 
@@ -89,6 +100,10 @@ public class Login extends ConnectCall
             User.setUsername(uname.getText().toString());
             User.setPassword(pword.getText().toString());
 
+            //Store preferences
+            SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+            editor.putString("username", uname.getText().toString());
+            editor.putString("password", pword.getText().toString());
 
             bar.setVisibility(View.VISIBLE);
             rl.setVisibility(View.VISIBLE);
