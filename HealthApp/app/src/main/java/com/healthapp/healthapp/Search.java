@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -12,6 +13,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -226,7 +228,6 @@ public class Search extends AppCompatActivity
 
             for(int i=0; i < items.length; i++) {
                 Button foodItem = new Button(instance);
-                foodItem.setBackgroundResource(R.drawable.healthbuttons);
                 foodItem.setTransformationMethod(null);
                 foodItem.setText(items[i][0]);
                 databaseKeys[i] = items[i][1];

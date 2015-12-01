@@ -54,10 +54,10 @@ public class Results extends AppCompatActivity
         // Set Click Listener
         showReviewButton.setOnClickListener(createReviewListener);
 
-//        rl = (RelativeLayout) findViewById(R.id.loadingPanel);
-//        rl.setVisibility(View.VISIBLE);
-//        bar = (ProgressBar) this.findViewById(R.id.progressBar);
-//        bar.setVisibility(View.VISIBLE);
+        rl = (RelativeLayout) findViewById(R.id.loadingPanel);
+        rl.setVisibility(View.VISIBLE);
+        bar = (ProgressBar) this.findViewById(R.id.progressBar);
+        bar.setVisibility(View.VISIBLE);
 
         // getExtras from Search
         if (savedInstanceState == null) {
@@ -67,10 +67,10 @@ public class Results extends AppCompatActivity
             } else {
                 newString= extras.getString("Food ID");
                 new FoodReportURL().execute(newString);
-//                rl = (RelativeLayout) findViewById(R.id.loadingPanel);
-//                rl.setVisibility(View.GONE);
-//                bar = (ProgressBar) this.findViewById(R.id.progressBar);
-//                bar.setVisibility(View.GONE);
+                rl = (RelativeLayout) findViewById(R.id.loadingPanel);
+                rl.setVisibility(View.GONE);
+                bar = (ProgressBar) this.findViewById(R.id.progressBar);
+                bar.setVisibility(View.GONE);
             }
         } else {
             newString= (String) savedInstanceState.getSerializable("Food ID");
