@@ -26,7 +26,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="match_parent"
             android:layout_weight="1.07"
             android:layout_below="@+id/textView2"
             android:layout_alignParentLeft="true"
@@ -43,13 +43,24 @@
                     android:id="@+id/nutri_facts"
                     android:layout_column="0" />
 
-
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Serving Size"
                     android:id="@+id/serving"
                     android:layout_column="0" />
+
+                <Spinner
+                    android:id="@+id/spinner1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown" />
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -141,23 +152,28 @@
                     android:id="@+id/fat_g"
                     android:singleLine="true" />
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:id="@+id/fat_percent"
                     android:gravity="right"
-                    android:singleLine="true"
-                    android:layout_marginLeft="232dp" />
+                    android:singleLine="true" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="%"
                     android:id="@+id/sign1"
                     android:gravity="right"
                     android:layout_gravity="right"
                     android:singleLine="true" />
+                </LinearLayout>
             </LinearLayout>
 
 
@@ -190,20 +206,24 @@
                     android:layout_height="wrap_content"
                     android:text="g"
                     android:id="@+id/sat_g" />
-
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:id="@+id/sat_percent"
-                    android:layout_marginLeft="189dp" />
+                    android:id="@+id/sat_percent" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="%"
                     android:id="@+id/sign2"
                     android:gravity="right" />
+                    </LinearLayout>
             </LinearLayout>
 
             <View
@@ -234,20 +254,24 @@
                     android:layout_height="wrap_content"
                     android:text="g"
                     android:id="@+id/trans_g" />
-
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:id="@+id/trans_percent"
-                    android:layout_marginLeft="214dp" />
+                    android:id="@+id/trans_percent" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="%"
                     android:id="@+id/sign3"
                     android:gravity="right" />
+                    </LinearLayout>
             </LinearLayout>
 
             <View
@@ -278,20 +302,24 @@
                     android:layout_height="wrap_content"
                     android:text="mg"
                     android:id="@+id/chol_mg" />
-
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:id="@+id/chol_percent"
-                    android:layout_marginLeft="203dp" />
+                    android:id="@+id/chol_percent" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="%"
                     android:id="@+id/sign4"
                     android:gravity="right" />
+                    </LinearLayout>
 
             </LinearLayout>
 
@@ -323,20 +351,24 @@
                     android:layout_height="wrap_content"
                     android:text="mg"
                     android:id="@+id/sodium_mg" />
-
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:id="@+id/sodium_percent"
-                    android:layout_marginLeft="227dp" />
+                    android:id="@+id/sodium_percent" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="%"
                     android:id="@+id/sign5"
                     android:gravity="right" />
+                    </LinearLayout>
 
             </LinearLayout>
 
@@ -368,20 +400,24 @@
                     android:layout_height="wrap_content"
                     android:text="g"
                     android:id="@+id/carb_g" />
-
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:id="@+id/carb_percent"
-                    android:layout_marginLeft="167dp" />
+                    android:id="@+id/carb_percent" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="%"
                     android:id="@+id/sign6"
                     android:gravity="right" />
+                    </LinearLayout>
             </LinearLayout>
 
             <View
@@ -413,19 +449,24 @@
                     android:text="g"
                     android:id="@+id/fiber_g" />
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:id="@+id/fiber_percent"
-                    android:layout_marginLeft="195dp" />
+                    android:id="@+id/fiber_percent" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="%"
                     android:id="@+id/sign7"
                     android:gravity="right" />
+                    </LinearLayout>
             </LinearLayout>
 
             <View
@@ -457,19 +498,7 @@
                     android:text="g"
                     android:id="@+id/sugar_g" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:id="@+id/sugar_percent"
-                    android:layout_marginLeft="236dp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="%"
-                    android:id="@+id/sign8"
-                    android:gravity="right" />
             </LinearLayout>
 
             <View
@@ -500,19 +529,7 @@
                     android:text="g"
                     android:id="@+id/protein_g" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:id="@+id/protein_percent"
-                    android:layout_marginLeft="241dp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="%"
-                    android:id="@+id/sign9"
-                    android:gravity="right" />
             </LinearLayout>
 
             <View
@@ -530,19 +547,24 @@
                     android:text="Vitamin A"
                     android:id="@+id/vitA" />
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:id="@+id/vitA_percent"
-                    android:layout_marginLeft="247dp" />
+                    android:id="@+id/vitA_percent" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="%"
                     android:id="@+id/sign10"
                     android:gravity="right" />
+                    </LinearLayout>
 
             </LinearLayout>
 
@@ -561,19 +583,24 @@
                     android:text="Vitamin C"
                     android:id="@+id/vitC" />
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:id="@+id/vitC_percent"
-                    android:layout_marginLeft="247dp" />
+                    android:id="@+id/vitC_percent" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="%"
                     android:id="@+id/sign11"
                     android:gravity="right" />
+                    </LinearLayout>
 
             </LinearLayout>
 
@@ -592,19 +619,25 @@
                     android:text="Calcium"
                     android:id="@+id/calcium" />
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2"
-                    android:id="@+id/calcium_percent"
-                    android:layout_marginLeft="257dp" />
+                    android:id="@+id/calcium_percent" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="%"
                     android:id="@+id/sign12"
                     android:gravity="right" />
+                    </LinearLayout>
             </LinearLayout>
 
             <View
@@ -622,19 +655,24 @@
                     android:text="Iron"
                     android:id="@+id/iron" />
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:id="@+id/iron_percent"
-                    android:layout_marginLeft="284dp" />
+                    android:id="@+id/iron_percent" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="%"
                     android:id="@+id/sign13"
-                    android:gravity="right" />
+                     />
+                    </LinearLayout>
             </LinearLayout>
 
             <View
@@ -675,4 +713,5 @@
     </RelativeLayout>
 
     </LinearLayout>
+
 </ScrollView>

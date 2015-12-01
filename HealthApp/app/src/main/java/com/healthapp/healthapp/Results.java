@@ -3,18 +3,27 @@ package com.healthapp.healthapp;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.healthapp.healthapp.DatabaseAccess.FoodReportURL;
 import com.healthapp.healthapp.DatabaseAccess.Rating;
+
+import java.util.Arrays;
 
 
 public class Results extends AppCompatActivity
@@ -22,8 +31,14 @@ public class Results extends AppCompatActivity
     private static Results instance = null;
     private static View vi;
     private static LinearLayout reviewsLayout;
-
+    Spinner dropdown;
+    private static String[] items;
     Button showReviewButton;
+    private static int x =0;
+    private static String newString;
+    private ProgressBar bar;
+    private RelativeLayout rl;
+    public static String[][] results1;
 
 
     @Override
@@ -39,8 +54,12 @@ public class Results extends AppCompatActivity
         // Set Click Listener
         showReviewButton.setOnClickListener(createReviewListener);
 
+//        rl = (RelativeLayout) findViewById(R.id.loadingPanel);
+//        rl.setVisibility(View.VISIBLE);
+//        bar = (ProgressBar) this.findViewById(R.id.progressBar);
+//        bar.setVisibility(View.VISIBLE);
+
         // getExtras from Search
-        String newString;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
@@ -48,12 +67,14 @@ public class Results extends AppCompatActivity
             } else {
                 newString= extras.getString("Food ID");
                 new FoodReportURL().execute(newString);
+//                rl = (RelativeLayout) findViewById(R.id.loadingPanel);
+//                rl.setVisibility(View.GONE);
+//                bar = (ProgressBar) this.findViewById(R.id.progressBar);
+//                bar.setVisibility(View.GONE);
             }
         } else {
             newString= (String) savedInstanceState.getSerializable("Food ID");
         }
-
-
     }
 
     @Override
@@ -94,99 +115,127 @@ public class Results extends AppCompatActivity
         this.startActivity(intent);
     }
 
-    public static void fillFoodReport(String [][] results){
+    private static AdapterView.OnItemSelectedListener spinnerListener = new AdapterView.OnItemSelectedListener() {
+        public void onItemSelected(AdapterView<?> arg0, View v, int position, long id) {
+            populateFoodReport(position);
+        }
+
+        public void onNothingSelected(AdapterView<?> arg0) {
+
+
+        }
+    };
+
+    public static void populateFoodReport(int measurement)
+    {
+        items = results1[15];
+
+        // Spinner
+        final Spinner dropdown = (Spinner)instance.findViewById(R.id.spinner1);
+        ArrayAdapter<String> adapter = new ArrayAdapter(instance, android.R.layout.simple_spinner_dropdown_item, items);
+        dropdown.setAdapter(adapter);
+        dropdown.setSelection(measurement);
+        dropdown.setOnItemSelectedListener(spinnerListener);
+
+
+
 
         TextView productName = (TextView) instance.findViewById(R.id.textView2);
-        productName.setText(results[0][0]);
+        productName.setText(results1[0][0]);
 
         TextView calories = (TextView) instance.findViewById(R.id.cal_amt);
-        calories.setText(results[1][0]);
-//
-//        TextView totalFat = (TextView) findViewById(R.id.fat_amt);
-//        totalFat.setText();
-//
-//        TextView satFat = (TextView) findViewById(R.id.sat_amt);
-//        satFat.setText();
-//
-//        TextView transFat = (TextView) findViewById(R.id.trans_amt);
-//        transFat.setText();
-//
-//        TextView cholesterol = (TextView) findViewById(R.id.chol_amt);
-//        cholesterol.setText();
-//
-//        TextView sodium = (TextView) findViewById(R.id.sodium_amt);
-//        sodium.setText();
-//
-//        TextView carbs = (TextView) findViewById(R.id.carb_amt);
-//        carbs.setText();
-//
-//        TextView fiber = (TextView) findViewById(R.id.fiber_amt);
-//        fiber.setText();
-//
-//        TextView sugar = (TextView) findViewById(R.id.sugar_amt);
-//        sugar.setText();
-//
-//        TextView protein = (TextView) findViewById(R.id.protein_amt);
-//        protein.setText();
-//
-//        TextView vitA = (TextView) findViewById(R.id.vitA_percent);
-//        int vitADV = Integer.parseInt(vitA.toString());
-//        vitADV = (/*result*/ / 5000) * 100;
-//        vitA.setText();
-//
-//        TextView vitC = (TextView) findViewById(R.id.vitC_percent);
-//        int vitCDV = Integer.parseInt(vitC.toString());
-//        vitCDV = (/*result*/ / 60) * 100;
-//        vitC.setText();
-//
-//        TextView calcium = (TextView) findViewById(R.id.calcium_percent);
-//        int calDV = Integer.parseInt(calcium.toString());
-//        calDV = (/*result*/ / 1100) * 100;
-//        calcium.setText();
-//
-//        TextView iron = (TextView) findViewById(R.id.iron_percent);
-//        int ironDV = Integer.parseInt(iron.toString());
-//        ironDV = (/*result*/ / 14) * 100;
-//        iron.setText();
-//
+        calories.setText(String.valueOf(Math.round(Float.parseFloat(results1[1][measurement]))));
+
+        TextView protein = (TextView) instance.findViewById(R.id.protein_amt);
+        protein.setText(String.valueOf(Math.round(Float.parseFloat(results1[2][measurement]))));
+
+        TextView totalFat = (TextView) instance.findViewById(R.id.fat_amt);
+        totalFat.setText(String.valueOf(Math.round(Float.parseFloat(results1[3][measurement]))));
+
+        TextView carbs = (TextView) instance.findViewById(R.id.carb_amt);
+        carbs.setText(String.valueOf(Math.round(Float.parseFloat(results1[4][measurement]))));
+
+        TextView fiber = (TextView) instance.findViewById(R.id.fiber_amt);
+        fiber.setText(String.valueOf(Math.round(Float.parseFloat(results1[5][measurement]))));
+
+        TextView sugar = (TextView) instance.findViewById(R.id.sugar_amt);
+        sugar.setText(String.valueOf(Math.round(Float.parseFloat(results1[6][measurement]))));
+
+        TextView cholesterol = (TextView) instance.findViewById(R.id.chol_amt);
+        cholesterol.setText(String.valueOf(Math.round(Float.parseFloat(results1[7][measurement]))));
+
+        TextView calcium = (TextView) instance.findViewById(R.id.calcium_percent);
+        float calDV = Float.parseFloat(results1[8][measurement]);
+        calDV = (calDV / 1100) * 100;
+        calcium.setText(String.valueOf(Math.round(calDV)));
+
+        TextView sodium = (TextView) instance.findViewById(R.id.sodium_amt);
+        sodium.setText(String.valueOf(Math.round(Float.parseFloat(results1[9][measurement]))));
+
+        TextView iron = (TextView) instance.findViewById(R.id.iron_percent);
+        float ironDV = Float.parseFloat(results1[10][measurement]);
+        ironDV = (ironDV / 14) * 100;
+        iron.setText(String.valueOf(Math.round(ironDV)));
+
+        TextView satFat = (TextView) instance.findViewById(R.id.sat_amt);
+        satFat.setText(String.valueOf(Math.round(Float.parseFloat(results1[11][measurement]))));
+
+        TextView transFat = (TextView) instance.findViewById(R.id.trans_amt);
+        transFat.setText(String.valueOf(Math.round(Float.parseFloat(results1[12][measurement]))));
+
+        TextView vitC = (TextView) instance.findViewById(R.id.vitC_percent);
+        float vitCDV = Float.parseFloat(results1[13][measurement]);
+        vitCDV = (vitCDV / 60) * 100;
+        vitC.setText(String.valueOf(Math.round(vitCDV)));
+
+        TextView vitA = (TextView) instance.findViewById(R.id.vitA_percent);
+        float vitADV = Float.parseFloat(results1[14][measurement]);
+        vitADV = (vitADV / 5000) * 100;
+        vitA.setText(String.valueOf(Math.round(vitADV)));
 
 
         // Calculating Percentages
-//        TextView fatPercent = (TextView) findViewById(R.id.fat_percent);
-//        int fatDV = Integer.parseInt(fatPercent.toString());
-//        fatDV = (/*result*/ / 65) * 100;
-//        fatPercent.setText(fatDV);
-//
-//        TextView satPercent = (TextView) findViewById(R.id.sat_percent);
-//        int satDV = Integer.parseInt(fatPercent.toString());
-//        satDV = (/*result*/ / 20) * 100;
-//        satPercent.setText(satDV);
-//
-//        TextView transPercent = (TextView) findViewById(R.id.trans_percent);
-//        int transDV = Integer.parseInt(fatPercent.toString());
-//        transDV = (/*result*/ / 20) * 100;
-//        transPercent.setText(transDV);
-//
-//        TextView cholPercent = (TextView) findViewById(R.id.chol_percent);
-//        int cholDV = Integer.parseInt(fatPercent.toString());
-//        cholDV = (/*result*/ / 300) * 100;
-//        cholPercent.setText(cholDV);
-//
-//        TextView sodiumPercent = (TextView) findViewById(R.id.sodium_percent);
-//        int sodDV = Integer.parseInt(fatPercent.toString());
-//        sodDV = (/*result*/ / 2400) * 100;
-//        sodiumPercent.setText(sodDV);
-//
-//        TextView carbPercent = (TextView) findViewById(R.id.carb_percent);
-//        int carbDV = Integer.parseInt(fatPercent.toString());
-//        carbDV = (/*result*/ / 300) * 100;
-//        carbPercent.setText(carbDV);
-//
-//        TextView fiberPercent = (TextView) findViewById(R.id.fiber_percent);
-//        int fibDV = Integer.parseInt(fatPercent.toString());
-//        fatDV = (/*result*/ / 25) * 100;
-//        fiberPercent.setText();
+        TextView fatPercent = (TextView) instance.findViewById(R.id.fat_percent);
+        float fatDV = Float.parseFloat(results1[3][measurement]);
+        fatDV = (fatDV / 65) * 100;
+        fatPercent.setText(String.valueOf(Math.round(fatDV)));//String.format("%.2f", fatDV));
 
+        TextView carbPercent = (TextView) instance.findViewById(R.id.carb_percent);
+        float carbDV = Float.parseFloat(results1[4][measurement]);
+        carbDV = (carbDV / 300) * 100;
+        carbPercent.setText(String.valueOf(Math.round(carbDV)));
+
+        TextView fiberPercent = (TextView) instance.findViewById(R.id.fiber_percent);
+        float fibDV = Float.parseFloat(results1[5][measurement]);
+        fibDV = (fibDV / 25) * 100;
+        fiberPercent.setText(String.valueOf(Math.round(fibDV)));
+
+        TextView cholPercent = (TextView) instance.findViewById(R.id.chol_percent);
+        float cholDV = Float.parseFloat(results1[7][measurement]);
+        cholDV = (cholDV / 300) * 100;
+        cholPercent.setText(String.valueOf(Math.round(cholDV)));
+
+        TextView sodiumPercent = (TextView) instance.findViewById(R.id.sodium_percent);
+        float sodDV = Float.parseFloat(results1[9][measurement]);
+        sodDV = (sodDV / 2400) * 100;
+        sodiumPercent.setText(String.valueOf(Math.round(sodDV)));
+
+        TextView satPercent = (TextView) instance.findViewById(R.id.sat_percent);
+        float satDV = Float.parseFloat(results1[11][measurement]);
+        satDV = (satDV / 20) * 100;
+        satPercent.setText(String.valueOf(Math.round(satDV)));
+
+        TextView transPercent = (TextView) instance.findViewById(R.id.trans_percent);
+        float transDV = Float.parseFloat(results1[12][measurement]);
+        transDV = (transDV / 20) * 100;
+        transPercent.setText(String.valueOf(Math.round(transDV)));
+
+    }
+
+    public static void fillFoodReport(String [][] results){
+
+        results1 = results;
+        populateFoodReport(0);
     }
 
     public static void populateList(Rating[] reviews)

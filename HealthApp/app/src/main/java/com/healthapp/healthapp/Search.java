@@ -102,6 +102,7 @@ public class Search extends AppCompatActivity
             sField = searchField.getText().toString();
 
             searchField.setText("");
+            itemsLayout.removeAllViews();
         }
     };
 
