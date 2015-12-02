@@ -28,7 +28,7 @@ import com.healthapp.healthapp.DatabaseAccess.SearchFoodURL;
 import com.healthapp.healthapp.DatabaseAccess.User;
 
 
-public class Search extends AppCompatActivity
+public class Search extends VisiblePage
 {
     private EditText searchField;
     public String sField;

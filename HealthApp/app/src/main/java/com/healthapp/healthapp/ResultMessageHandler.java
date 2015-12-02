@@ -24,6 +24,13 @@ public class ResultMessageHandler
             alertDialog.setMessage("Passwords are required and must match");}
         else if (i == 4) {
             alertDialog.setMessage("Nutritional database key is required");}
+        else if (i == 5)
+        {
+            alertDialog.setMessage("Review added successfully");
+            nextScreen = 6;
+        }
+        else if (i == 6) {
+            alertDialog.setMessage("Add a star rating to leave a review");}
         else if(i == -1){
             alertDialog.setMessage("Could not contact the application server");}
         else if(i == -2){
@@ -35,7 +42,7 @@ public class ResultMessageHandler
 
         else
         {
-            alertDialog.setMessage("Alert message to be shown");
+            alertDialog.setMessage("An unknown error occurred");
         }
 
         final int finalNextScreen = nextScreen;

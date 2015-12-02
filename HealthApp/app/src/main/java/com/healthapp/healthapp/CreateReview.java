@@ -19,7 +19,7 @@ import com.healthapp.healthapp.DatabaseAccess.User;
 
 import java.sql.SQLException;
 
-public class CreateReview extends AppCompatActivity {
+public class CreateReview extends VisiblePage {
 
     private View vi;
     private static CreateReview instance;
@@ -132,33 +132,10 @@ public class CreateReview extends AppCompatActivity {
         this.startActivity(intent);
     }
 
-    public void showResultDialog(Integer i)
+    public void resultMessageHandler(Integer i)
     {
-        AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
-
-        alertDialog.setTitle("Alert");
-        if(i == 1){
-            alertDialog.setMessage("Review successfully added");}
-        else if(i == 2){
-            alertDialog.setMessage("Add a star rating to leave a review");}
-        else if(i == -1){
-            alertDialog.setMessage("An error occurred when contacting the database");}
-        else{
-            alertDialog.setMessage("An unknown error occurred");}
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
-
-    }
-
-
-    public static void resultMessageHandler(Integer i)
-    {
-        instance.showResultDialog(i);
+        new ResultMessageHandler().showResultDialog(i, instance);
+        //instance.showResultDialog(i);
     }
 
 
