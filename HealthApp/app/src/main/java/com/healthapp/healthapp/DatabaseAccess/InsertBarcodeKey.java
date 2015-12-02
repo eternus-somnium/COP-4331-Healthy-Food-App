@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Created by Chris on 11/17/2015.
+ * Authors: Chris Guido
  */
 public class InsertBarcodeKey extends AsyncTask<ConnectCall,Void,Integer>{
 
@@ -23,12 +23,16 @@ public class InsertBarcodeKey extends AsyncTask<ConnectCall,Void,Integer>{
         try {
             stmt = User.getCon().createStatement();
         } catch (SQLException e) {
-            e.printStackTrace();
             insertStatus = -1;
         }
 
         //Query
-        String update = "UPDATE Users SET barcode_key = '"+User.getBarcode_api_key()+"' WHERE username = '"+User.getUsername()+"' AND password = '"+User.getPassword()+"'";
+        String update = "UPDATE Users " +
+                        "SET barcode_key = '"+User.getBarcode_api_key()+ "' " +
+                        "WHERE " +
+                            "username = '"+User.getUsername()+"' " +
+                            "AND " +
+                            "password = '"+User.getPassword()+"'";
 
         //Execute
         try {
@@ -38,7 +42,6 @@ public class InsertBarcodeKey extends AsyncTask<ConnectCall,Void,Integer>{
 
         //Exception
         catch (Exception e) {
-            e.printStackTrace();
             insertStatus = -1;
         }
 
@@ -49,8 +52,6 @@ public class InsertBarcodeKey extends AsyncTask<ConnectCall,Void,Integer>{
                     stmt.close();
                 }
                 catch (SQLException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
                 }
             }
         }

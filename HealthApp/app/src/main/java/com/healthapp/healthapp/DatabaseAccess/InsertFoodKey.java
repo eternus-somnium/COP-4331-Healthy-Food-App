@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Created by Chris on 11/17/2015.
+ * Authors: Chris Guido, Clive Hoayun
  */
 public class InsertFoodKey extends AsyncTask<ConnectCall,Void,Integer>
 {
@@ -28,7 +28,12 @@ public class InsertFoodKey extends AsyncTask<ConnectCall,Void,Integer>
         }
 
         //Query
-        String update = "UPDATE Users SET api_key = '"+User.getFood_api_key()+"' WHERE username = '"+User.getUsername()+"' AND password = '"+User.getPassword()+"'";
+        String update = "UPDATE Users " +
+                        "SET api_key = '"+User.getFood_api_key()+"' " +
+                        "WHERE " +
+                            "username = '"+User.getUsername()+"' " +
+                            "AND " +
+                            "password = '"+User.getPassword()+"'";
 
         //Execute
         try {
@@ -38,7 +43,6 @@ public class InsertFoodKey extends AsyncTask<ConnectCall,Void,Integer>
 
         //Exception
         catch (Exception e) {
-            e.printStackTrace();
             insertStatus = -1;
         }
 
@@ -49,8 +53,6 @@ public class InsertFoodKey extends AsyncTask<ConnectCall,Void,Integer>
                     stmt.close();
                 }
                 catch (SQLException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
                 }
             }
         }

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Created by Chris on 11/17/2015.
+ * Authors: Chris Guido, Clive Hoayun
  */
 public class ValidateUsername extends AsyncTask<ConnectCall,Void,Integer>{
     ConnectCall caller;
@@ -29,8 +29,8 @@ public class ValidateUsername extends AsyncTask<ConnectCall,Void,Integer>{
 
         //Query
         String query = "SELECT COUNT(*) as A "
-                + "FROM Users "
-                + "WHERE username = '" + User.getUsername() + "'";
+                     + "FROM Users "
+                     + "WHERE username = '" + User.getUsername() + "'";
 
         //Execute query
         try {
@@ -48,7 +48,6 @@ public class ValidateUsername extends AsyncTask<ConnectCall,Void,Integer>{
         //Exception
         catch (Exception e )
         {
-            e.printStackTrace();
             result = -1;
         }
 
@@ -58,7 +57,6 @@ public class ValidateUsername extends AsyncTask<ConnectCall,Void,Integer>{
                 try {
                     stmt.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
                 }
             }
         }

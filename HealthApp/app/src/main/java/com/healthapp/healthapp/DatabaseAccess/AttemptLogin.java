@@ -9,40 +9,28 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 
 /**
- * Created by Chris on 11/17/2015.
+ * Authors: Chris Guido, Clive Hoayun
  */
 public class AttemptLogin extends AsyncTask<ConnectCall,Void,Integer>
 {
     //User is logging in, get the User's ID, food database key, and barcode key
-    //
 
-//    ProgressDialog progDailog;
-//
-//    protected void onPreExecute() {
-//        super.onPreExecute();
-//        progDailog = new ProgressDialog(Login.ctx);
-//        progDailog.setMessage("Loading...");
-//        progDailog.setIndeterminate(false);
-//        progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-//        progDailog.setCancelable(true);
-//        progDailog.show();
-//    }
     ConnectCall caller;
     protected Integer doInBackground(ConnectCall... params)
     {
-        caller = params[0];
         //Instantiation
+        caller = params[0];
         Integer requestStatus=0;
         PreparedStatement stmt = null;
         ResultSet rs;
 
         //Query
         String query = "SELECT idUsers, api_key, barcode_key "
-                + "FROM cop4331_33.Users "
-                + "WHERE "
-                + 		"username = '" + User.getUsername()
-                + 		"' AND "
-                + 		"password = '" + User.getPassword() + "'";
+                     + "FROM cop4331_33.Users "
+                     + "WHERE "
+                     + 		"username = '" + User.getUsername()
+                     + 		"' AND "
+                     + 		"password = '" + User.getPassword() + "'";
 
         //Execute Query
         try
@@ -51,6 +39,7 @@ public class AttemptLogin extends AsyncTask<ConnectCall,Void,Integer>
             stmt.setQueryTimeout(3600);
             rs = stmt.executeQuery();
 
+            //Non-null result set
             if(rs.isBeforeFirst())
             {
                 rs.next();
@@ -60,6 +49,7 @@ public class AttemptLogin extends AsyncTask<ConnectCall,Void,Integer>
                 User.setFood_api_key(rs.getString("api_key"));
                 User.setBarcode_api_key(rs.getString("barcode_key"));
             }
+            //Null Result Set, error in login credentials
             else
             {
                 requestStatus = -3; //Failure
@@ -67,12 +57,13 @@ public class AttemptLogin extends AsyncTask<ConnectCall,Void,Integer>
             }
         }
 
+        //Error in connecting to database
         catch(SQLException e)
         {
             requestStatus = -1; //Database access problem
-            e.printStackTrace();
         }
 
+        //close statement
         finally {
             if (stmt != null) {
                 try {
@@ -88,10 +79,11 @@ public class AttemptLogin extends AsyncTask<ConnectCall,Void,Integer>
 
     protected void onPostExecute(Integer requestStatus)
     {
-//        progDailog.dismiss();
-        System.out.println(requestStatus);
+        //Successful login
         if(requestStatus == 1)
             Login.launchSearch();
+
+        //Error in logging in
         else
             caller.resultMessageHandler(requestStatus);
 

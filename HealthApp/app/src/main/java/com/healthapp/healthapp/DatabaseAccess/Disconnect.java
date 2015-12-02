@@ -1,7 +1,7 @@
 package com.healthapp.healthapp.DatabaseAccess;
 
 /**
- * Created by Clive on 11/19/2015.
+ * Authors: Chris Guido
  */
 public class Disconnect
 {

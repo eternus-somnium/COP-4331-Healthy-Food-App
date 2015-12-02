@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Created by Chris on 11/17/2015.
+ * Authors: Chris Guido
  */
 public class ViewItemRatings extends AsyncTask<Void,Void,Rating[]>{
 
@@ -70,7 +70,6 @@ public class ViewItemRatings extends AsyncTask<Void,Void,Rating[]>{
                 try {
                     stmt.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
                 }
             }
         }

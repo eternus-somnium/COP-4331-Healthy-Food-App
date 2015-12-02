@@ -10,7 +10,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 /**
- * Created by Clive on 11/19/2015.
+ * Authors: Clive Hoayun
  */
 public class XMLParsing
 {

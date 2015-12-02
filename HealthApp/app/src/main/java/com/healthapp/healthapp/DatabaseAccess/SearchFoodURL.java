@@ -9,7 +9,7 @@ import org.w3c.dom.NodeList;
 import java.net.URL;
 
 /**
- * Created by Chris on 11/17/2015.
+ * Authors: Clive Hoayun, Bryen Buie
  */
 public class SearchFoodURL extends AsyncTask<String,Void,String[][]>
 {
@@ -21,7 +21,7 @@ public class SearchFoodURL extends AsyncTask<String,Void,String[][]>
         Document doc;
         NodeList entries;
 
-        //HERE FOR TESTING
+        //HERE FOR TESTING, NEED TO FIX
         User.setFood_api_key("H2iC01vvlHsRKfiHSkZD49jCfs5jRILlTn13A5TC");
 
 

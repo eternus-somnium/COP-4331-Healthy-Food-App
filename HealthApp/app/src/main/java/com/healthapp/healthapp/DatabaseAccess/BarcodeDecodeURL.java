@@ -9,7 +9,7 @@ import org.w3c.dom.Document;
 import java.net.URL;
 
 /**
- * Created by Clive on 11/18/2015.
+ * Authors: Clive Hoayun
  */
 public class BarcodeDecodeURL extends AsyncTask<String,Void,String>
 {
@@ -20,7 +20,7 @@ public class BarcodeDecodeURL extends AsyncTask<String,Void,String>
         URL url;
         Document doc;
 
-        //HERE FOR TESTING
+        //HERE FOR TESTING, NEED TO FIX
         User.setBarcode_api_key("a8129a36ed4a346183589f028a91f6e6");
 
 

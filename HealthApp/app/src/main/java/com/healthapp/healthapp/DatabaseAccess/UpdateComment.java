@@ -4,8 +4,10 @@ import android.os.AsyncTask;
 import java.sql.SQLException;
 import java.sql.Statement;
 /**
- * Created by Chris on 11/30/2015.
+ * Authors: Chris Guido
  */
+
+//NEEDS TO BE IMPLEMENTED
 public class UpdateComment extends AsyncTask<Rating,Void,Integer>{
 
     Statement stmt = null;
@@ -16,7 +18,14 @@ public class UpdateComment extends AsyncTask<Rating,Void,Integer>{
     {
         Integer status = 0;
         //Query
-        String update = "Update Rating SET rating='"+params[0].getRating()+"', comment='"+params[0].getComment()+"' WHERE foodID = '"+params[0].getFoodID()+"' AND Users_idUsers='"+params[0].getUserID()+"'";
+        String update = "Update Rating " +
+                        "SET " +
+                            "rating ='" + params[0].getRating() + "', " +
+                            "comment ='" + params[0].getComment()+"' " +
+                        "WHERE " +
+                            "foodID = '"+params[0].getFoodID()+"' " +
+                            "AND " +
+                            "Users_idUsers='"+params[0].getUserID()+"'";
 
 
         //Execute
@@ -27,8 +36,6 @@ public class UpdateComment extends AsyncTask<Rating,Void,Integer>{
 
         //Exception
         catch (Exception e) {
-            System.err.println("Got an exception! ");
-            System.err.println(e.getMessage());
             status = 1;
         }
 
@@ -39,8 +46,6 @@ public class UpdateComment extends AsyncTask<Rating,Void,Integer>{
                     stmt.close();
                 }
                 catch (SQLException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
                 }
             }
         }

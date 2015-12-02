@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Created by Chris on 11/17/2015.
+ * Authors: Chris Guido
  */
 public class InsertRating extends AsyncTask<Rating,Void,Integer>{
 
@@ -20,11 +20,11 @@ public class InsertRating extends AsyncTask<Rating,Void,Integer>{
         Integer status = 0;
         //Query
         String update = "INSERT INTO Rating (foodID, Users_idUsers, rating, comment) "
-                    + "VALUES ('" + params[0].getFoodID()
-                    + "','" + params[0].getUserID()
-                    + "','" + params[0].getRating()
-                    + "','" + params[0].getComment()
-                    + "')";
+                      + "VALUES ('" + params[0].getFoodID()
+                      + "','" + params[0].getUserID()
+                      + "','" + params[0].getRating()
+                      + "','" + params[0].getComment()
+                      + "')";
 
         //Execute
         try {
@@ -35,8 +35,6 @@ public class InsertRating extends AsyncTask<Rating,Void,Integer>{
 
         //Exception
         catch (Exception e) {
-            System.err.println("Got an exception! ");
-            System.err.println(e.getMessage());
             status = -1;
         }
 
@@ -47,8 +45,6 @@ public class InsertRating extends AsyncTask<Rating,Void,Integer>{
                     stmt.close();
                 }
                 catch (SQLException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
                 }
             }
         }

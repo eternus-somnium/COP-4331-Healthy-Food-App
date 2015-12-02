@@ -2,7 +2,7 @@ package com.healthapp.healthapp.DatabaseAccess;
 import java.sql.Connection;
 
 /**
- * Created by Chris on 11/18/2015.
+ * Authors: Clive Hoayun
  */
 
 //Because of the use of a single parameter in the AsyncTask types for doInBackground

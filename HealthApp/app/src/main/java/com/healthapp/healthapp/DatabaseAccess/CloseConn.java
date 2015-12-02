@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import java.sql.Connection;
 
 /**
- * Created by Chris on 11/17/2015.
+ * Authors: Chris Guido
  */
 public class CloseConn extends AsyncTask<Connection,Void,Integer>
 {
@@ -29,7 +29,7 @@ public class CloseConn extends AsyncTask<Connection,Void,Integer>
     }
     protected void onPostExecution(Integer requestStatus)
     {
-         //requestStatus;
+
     }
 
 }

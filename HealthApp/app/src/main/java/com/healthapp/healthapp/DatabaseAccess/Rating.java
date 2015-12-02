@@ -1,7 +1,7 @@
 package com.healthapp.healthapp.DatabaseAccess;
 
 /**
- * Created by Clive on 11/18/2015.
+ * Authors: Clive Hoayun
  */
 public class Rating
 {

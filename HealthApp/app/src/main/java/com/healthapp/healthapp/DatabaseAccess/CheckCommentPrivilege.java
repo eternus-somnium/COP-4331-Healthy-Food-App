@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Created by Chris on 11/17/2015.
+ * Authors: Chris Guido
  */
 public class CheckCommentPrivilege extends AsyncTask<Void,Void,Integer>{
 
@@ -28,11 +28,11 @@ public class CheckCommentPrivilege extends AsyncTask<Void,Void,Integer>{
 
         //Query
         String query = "SELECT COUNT(*) as flag "
-                + "FROM Rating "
-                + "WHERE "
-                + 		"foodID = '" + User.getFoodID()
-                + 		"' AND "
-                + 		"Users_idUsers = '" + User.getUserID() + "'";
+                     + "FROM Rating "
+                     + "WHERE "
+                     + 		"foodID = '" + User.getFoodID()
+                     + 		"' AND "
+                     + 		"Users_idUsers = '" + User.getUserID() + "'";
 
         //Execute
         try {
@@ -55,7 +55,6 @@ public class CheckCommentPrivilege extends AsyncTask<Void,Void,Integer>{
                 try {
                     stmt.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
                 }
             }
         }

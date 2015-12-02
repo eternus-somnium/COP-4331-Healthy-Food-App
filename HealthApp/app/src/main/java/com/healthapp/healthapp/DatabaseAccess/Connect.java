@@ -8,16 +8,18 @@ import java.sql.DriverManager;
 
 
 /**
- * Created by Chris on 11/17/2015.
+ * Authors: Clive Hoayun, Chris Guido
  */
 public class Connect extends AsyncTask<ConnectCall,Void,Integer>
 {
-    ConnectCall caller;
     //Connects to database, returns connection
+    ConnectCall caller;
     protected Integer doInBackground(ConnectCall... params)
     {
+        //Instantiation
         Integer requestStatus;
         caller = params[0];
+
         //Connect to database
         try
         {
@@ -41,10 +43,12 @@ public class Connect extends AsyncTask<ConnectCall,Void,Integer>
 
     @Override
     protected void onPostExecute(Integer requestStatus) {
-        System.out.println(requestStatus);
+        //Successful Connection
         if (requestStatus == 1) {
             caller.onConnection();
-        } else
+        }
+        //error in connecting
+        else
             caller.resultMessageHandler(requestStatus);
     }
 }
