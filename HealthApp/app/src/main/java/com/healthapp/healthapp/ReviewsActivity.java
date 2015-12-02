@@ -101,7 +101,7 @@ public class ReviewsActivity extends AppCompatActivity {
     }
 
     public static void populateList(Rating[] reviews) {
-        if(reviews[0].equals("false")){
+        if(reviews.equals(null)){
             // print error message
 //            AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
 //            alertDialog.setTitle("Alert");
