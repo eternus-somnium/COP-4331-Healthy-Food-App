@@ -21,9 +21,6 @@ public class SearchFoodURL extends AsyncTask<String,Void,String[][]>
         Document doc;
         NodeList entries;
 
-        //HERE FOR TESTING, NEED TO FIX
-        User.setFood_api_key("H2iC01vvlHsRKfiHSkZD49jCfs5jRILlTn13A5TC");
-
 
         try
         {

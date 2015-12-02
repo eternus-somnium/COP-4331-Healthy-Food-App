@@ -20,9 +20,6 @@ public class BarcodeDecodeURL extends AsyncTask<String,Void,String>
         URL url;
         Document doc;
 
-        //HERE FOR TESTING, NEED TO FIX
-        User.setBarcode_api_key("a8129a36ed4a346183589f028a91f6e6");
-
 
         try
         {
