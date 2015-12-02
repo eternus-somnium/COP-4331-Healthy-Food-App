@@ -49,7 +49,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Serving Size 1"
+                    android:text="Serving Size "
                     android:id="@+id/serving"
                     android:layout_column="0" />
 

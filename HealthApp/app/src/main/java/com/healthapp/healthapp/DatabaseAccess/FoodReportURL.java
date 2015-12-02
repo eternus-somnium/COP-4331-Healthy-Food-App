@@ -46,7 +46,7 @@ public class FoodReportURL extends AsyncTask<String,Void,String[][]>
             for(int i=0;i<count;i++){
                 int place = i/2;
                 if(i%2 != 0) {
-                    results[15][place] = measurements.item(1).getChildNodes().item(i).getAttributes().item(0).getNodeValue();
+                    results[15][place] = measurements.item(1).getChildNodes().item(i).getAttributes().item(2).getNodeValue() + " " + measurements.item(1).getChildNodes().item(i).getAttributes().item(0).getNodeValue();
                 }
             }
 
@@ -238,6 +238,14 @@ public class FoodReportURL extends AsyncTask<String,Void,String[][]>
         catch (Exception e)
         {
             e.printStackTrace();
+        }
+
+        for(int i=0;i<16;i++){
+            for(int j=0;j<size;j++){
+                if(results[i][j] == null){
+                    results[i][j] = "0";
+                }
+            }
         }
 
         return results;
