@@ -37,15 +37,16 @@ public class ReviewsActivity extends VisiblePage {
 
         instance = this;
 
-        // Initialize done button
+        // Initialize "Create Review" button
         createReviewButton = (Button) findViewById(R.id.create_button);
 
-        // Set Click Listener
+        // Set Click Listener on "Create Review" button
         createReviewButton.setOnClickListener(createReviewListener);
 
+        // Initialize layout the user reviews will appear on
         reviewsLayout = (LinearLayout) findViewById(R.id.reviewsLayout);
 
-        // getExtras
+        // Get product name sent from Result.java
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
@@ -56,8 +57,8 @@ public class ReviewsActivity extends VisiblePage {
         } else {
             product= (String) savedInstanceState.getSerializable("Product");
         }
-        //////
 
+        //
         new ViewItemRatings().execute();
     }
 
@@ -85,7 +86,7 @@ public class ReviewsActivity extends VisiblePage {
 
 
 
-
+    // ClickListener for the "Create Review" button
     private View.OnClickListener createReviewListener = new View.OnClickListener()
     {
         @Override
@@ -96,49 +97,21 @@ public class ReviewsActivity extends VisiblePage {
         }
     };
 
-//    private View.OnClickListener editReviewListener = new View.OnClickListener()
-//    {
-//        @Override
-//        public void onClick(View v)
-//        {
-//            Intent intent = new Intent(instance,CreateReview.class);
-//            intent.putExtra("Product", product);
-//            intent.putExtra("Old Review", oldComment);
-//            instance.startActivity(intent);
-//            //vi = v;
-//           // gotoEditReview(v, product, oldComment);
-//        }
-//    };
-
-//    public void gotoEditReview(View v, String product, String oldComment) {
-//        Intent intent = new Intent(this,CreateReview.class);
-//        intent.putExtra("Product", product);
-//        intent.putExtra("Old Review", oldComment);
-//        this.startActivity(intent);
-//    }
-
+    //Populates the list of user-created reviews
     public static void populateList(Rating[] reviews) {
+
         if(reviews.equals(null)){
             // print error message
-//            AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
-//            alertDialog.setTitle("Alert");
-//            alertDialog.setMessage(items[0]);
-//            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-//                    new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            dialog.dismiss();
-//                        }
-//                    });
-//            alertDialog.show();
+            instance.resultMessageHandler(-1);
         }
-
         else {
-
+            // set the parameters for the review layout
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
             oldRating = 0f;
             oldComment = "";
 
+            //loop through the reviews
             for(int i=0; i < reviews.length; i++) {
                 // Check if active user has left a review already
                 if(User.getUsername().equals(reviews[i].getUsername()))
