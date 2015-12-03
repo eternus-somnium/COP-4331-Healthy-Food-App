@@ -107,8 +107,7 @@ public class Search extends VisiblePage
             rl.setVisibility(View.VISIBLE);
             vi = v;
             new SearchFoodURL().execute(sField);
-            bar.setVisibility(View.GONE);
-            rl.setVisibility(View.GONE);
+
         }
     };
 
@@ -180,6 +179,10 @@ public class Search extends VisiblePage
     //Populates the list of products matching the search term
     public static void populateList(String[][] items)
     {
+        //Remove the loading circle
+        bar.setVisibility(View.GONE);
+        rl.setVisibility(View.GONE);
+
         //Handles the case where there were no matching products
         if(items[0][1].equals("false")){
             // print error message
