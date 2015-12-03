@@ -49,7 +49,7 @@
             android:layout_toRightOf="@+id/frameLayout"
             android:layout_toEndOf="@+id/frameLayout"
             android:nestedScrollingEnabled="false"
-            android:onClick="BarcodeScanner" />
+            android:onClick="gotoBarcodeScanner" />
 
         <LinearLayout
             android:orientation="vertical"

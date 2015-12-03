@@ -1,8 +1,5 @@
 package com.healthapp.healthapp;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,12 +14,9 @@ import com.healthapp.healthapp.DatabaseAccess.User;
 import com.healthapp.healthapp.DatabaseAccess.ValidateUsername;
 
 
-public class SignUpActivity extends ConnectCall {
+public class SignUpActivity extends VisiblePage {
 
-    private static SignUpActivity instance;
-    private static View vi;
     Button doneButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -62,6 +56,7 @@ public class SignUpActivity extends ConnectCall {
         return super.onOptionsItemSelected(item);
     }
 
+    //Verifies the input fields and attempts to sign up
     public void SignUp()
     {
         EditText uname = (EditText) findViewById(R.id.username);
@@ -97,11 +92,6 @@ public class SignUpActivity extends ConnectCall {
         }
     }
 
-    public void gotoLogin(View v) {
-        Intent intent = new Intent(this,Login.class);
-        startActivity(intent);
-    }
-
     private View.OnClickListener doneListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -110,11 +100,13 @@ public class SignUpActivity extends ConnectCall {
         }
     };
 
+    //Called if a valid connection is found or established
     public void onConnection()
     {
         new ValidateUsername().execute(instance);
     }
 
+    //Checks if the username is valid
     public boolean usernameOK()
     {
         EditText p1 = (EditText) findViewById(R.id.username);
@@ -124,6 +116,7 @@ public class SignUpActivity extends ConnectCall {
         else return true;
     }
 
+    //checks if the password is valid and that both password fields match
     public boolean passwordOK()
     {
         EditText p1 = (EditText) findViewById(R.id.password);
@@ -143,14 +136,9 @@ public class SignUpActivity extends ConnectCall {
         else return true;
     }
 
-    public void nextScreen(int i)
-    {
-        if(i == 1)
-        {
-            gotoLogin(vi);
-        }
-    }
 
+
+    //Calls the message handler
     public void resultMessageHandler(Integer i)
     {
         //instance.showResultDialog(i);

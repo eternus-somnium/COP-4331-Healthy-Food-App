@@ -2,7 +2,7 @@ package com.healthapp.healthapp.DatabaseAccess;
 
 import android.os.AsyncTask;
 
-import com.healthapp.healthapp.ConnectCall;
+import com.healthapp.healthapp.VisiblePage;
 
 import java.sql.DriverManager;
 
@@ -10,11 +10,11 @@ import java.sql.DriverManager;
 /**
  * Authors: Clive Hoayun, Chris Guido
  */
-public class Connect extends AsyncTask<ConnectCall,Void,Integer>
+public class Connect extends AsyncTask<VisiblePage,Void,Integer>
 {
     //Connects to database, returns connection
-    ConnectCall caller;
-    protected Integer doInBackground(ConnectCall... params)
+    VisiblePage caller;
+    protected Integer doInBackground(VisiblePage... params)
     {
         //Instantiation
         Integer requestStatus;

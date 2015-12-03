@@ -113,23 +113,17 @@ public class CreateReview extends VisiblePage {
         {
             if (User.getCon() == null || User.getCon().isClosed())
             {
-                goToLogin(vi);
+                gotoLogin(vi);
             }
             else
             {
-                new InsertRating().execute(newRating);
+                new InsertRating().execute(instance, newRating);
             }
         }
         catch (SQLException e)
         {
             e.printStackTrace();
         }
-    }
-
-    public void goToLogin(View v)
-    {
-        Intent intent = new Intent(this,Login.class);
-        this.startActivity(intent);
     }
 
     public void resultMessageHandler(Integer i)

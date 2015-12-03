@@ -1,8 +1,8 @@
 package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
-import com.healthapp.healthapp.ConnectCall;
 import com.healthapp.healthapp.Login;
+import com.healthapp.healthapp.VisiblePage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,12 +11,12 @@ import java.sql.PreparedStatement;
 /**
  * Authors: Chris Guido, Clive Hoayun
  */
-public class AttemptLogin extends AsyncTask<ConnectCall,Void,Integer>
+public class AttemptLogin extends AsyncTask<VisiblePage,Void,Integer>
 {
     //User is logging in, get the User's ID, food database key, and barcode key
 
-    ConnectCall caller;
-    protected Integer doInBackground(ConnectCall... params)
+    VisiblePage caller;
+    protected Integer doInBackground(VisiblePage... params)
     {
         //Instantiation
         caller = params[0];

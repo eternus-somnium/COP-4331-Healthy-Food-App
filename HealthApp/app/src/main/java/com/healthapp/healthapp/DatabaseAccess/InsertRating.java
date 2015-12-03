@@ -9,21 +9,24 @@ import java.sql.Statement;
 /**
  * Authors: Chris Guido
  */
-public class InsertRating extends AsyncTask<Rating,Void,Integer>{
+public class InsertRating extends AsyncTask<Object,Void,Integer>{
 
     Statement stmt = null;
+    CreateReview caller;
     //User has rated a food item, insert comment into database
     //
     //INPUT: ID of food, ID of User, the User's rating, the comment the User may have written, and the connection to the database
-    protected Integer doInBackground(Rating... params)
+    protected Integer doInBackground(Object... params)
     {
         Integer status = 0;
+        caller = (CreateReview) params[0];
+        Rating r = (Rating) params[1];
         //Query
         String update = "INSERT INTO Rating (foodID, Users_idUsers, rating, comment) "
-                      + "VALUES ('" + params[0].getFoodID()
-                      + "','" + params[0].getUserID()
-                      + "','" + params[0].getRating()
-                      + "','" + params[0].getComment()
+                      + "VALUES ('" + r.getFoodID()
+                      + "','" + r.getUserID()
+                      + "','" + r.getRating()
+                      + "','" + r.getComment()
                       + "')";
 
         //Execute
@@ -53,6 +56,6 @@ public class InsertRating extends AsyncTask<Rating,Void,Integer>{
 
     protected void onPostExecute(Integer status)
     {
-        CreateReview.resultMessageHandler(status);
+        caller.resultMessageHandler(status);
     }
 }

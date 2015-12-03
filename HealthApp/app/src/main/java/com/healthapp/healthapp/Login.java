@@ -20,11 +20,10 @@ import com.healthapp.healthapp.DatabaseAccess.Connect;
 import com.healthapp.healthapp.DatabaseAccess.User;
 
 
-public class Login extends ConnectCall
+public class Login extends VisiblePage
 {
     Button loginButton;
-    private static Login instance = null;
-    private static View vi;
+
 
     private ProgressBar bar;
     private RelativeLayout rl;
@@ -88,7 +87,7 @@ public class Login extends ConnectCall
         return super.onOptionsItemSelected(item);
     }
 
-
+    //Login button listener
     private View.OnClickListener loginListener = new View.OnClickListener()
     {
         @Override
@@ -101,11 +100,7 @@ public class Login extends ConnectCall
             User.setUsername(uname.getText().toString());
             User.setPassword(pword.getText().toString());
 
-            //Store preferences
-            SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
-            editor.putString("username", uname.getText().toString());
-            editor.putString("password", pword.getText().toString());
-            editor.commit();
+
 
             bar.setVisibility(View.VISIBLE);
             rl.setVisibility(View.VISIBLE);
@@ -124,29 +119,32 @@ public class Login extends ConnectCall
         }
     };
 
-    public void gotoSearch(View v) {
-        Intent intent = new Intent(this,Search.class);
-        this.startActivity(intent);
-    }
 
-    public void gotoSignUp(View v) {
-        Intent intent = new Intent(this,SignUpActivity.class);
-        startActivity(intent);
-    }
-
+    //Called if a connection to the database is successfully established
     public void onConnection()
     {
         new AttemptLogin().execute(instance);
     }
 
+    //Called if the user logs in successfully
     public static void launchSearch()
     {
+        instance.storePreferences();
         instance.gotoSearch(vi);
     }
 
+    //Stores the username and password for later use
+    public void storePreferences()
+    {
+        SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putString("username", User.getUsername());
+        editor.putString("password", User.getPassword());
+        editor.commit();
+    }
+
+    //calls the result message handler
     public void resultMessageHandler(Integer i)
     {
         new ResultMessageHandler().showResultDialog(i, instance);
-        //instance.showResultDialog(i);
     }
 }

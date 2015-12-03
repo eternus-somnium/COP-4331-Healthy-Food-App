@@ -1,7 +1,7 @@
 package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
-import com.healthapp.healthapp.ConnectCall;
+import com.healthapp.healthapp.VisiblePage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,8 +10,8 @@ import java.sql.Statement;
 /**
  * Authors: Chris Guido, Clive Hoayun
  */
-public class ValidateUsername extends AsyncTask<ConnectCall,Void,Integer>{
-    ConnectCall caller;
+public class ValidateUsername extends AsyncTask<VisiblePage,Void,Integer>{
+    VisiblePage caller;
     //User attempts to create a new account
     //
     //INPUT: username User wants and the connection established to database
@@ -19,7 +19,7 @@ public class ValidateUsername extends AsyncTask<ConnectCall,Void,Integer>{
     //OUTPUT: Counts the number of instances a username occurs in the database
     //		  If the count is 0, the username has not yet been taken
     //		  If the count is 1, the username has been taken
-    protected Integer doInBackground(ConnectCall... params)
+    protected Integer doInBackground(VisiblePage... params)
     {
         caller = params[0];
         //Initialize variables

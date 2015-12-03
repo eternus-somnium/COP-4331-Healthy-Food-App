@@ -2,28 +2,22 @@ package com.healthapp.healthapp;
 
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 
-import com.healthapp.healthapp.DatabaseAccess.FoodReportURL;
 import com.healthapp.healthapp.DatabaseAccess.SearchFoodURL;
 import com.healthapp.healthapp.DatabaseAccess.User;
 
@@ -34,11 +28,8 @@ public class Search extends VisiblePage
     public String sField;
     ImageButton sButton;
     ImageButton cButton;
-    static final int BARCODE_SCAN_REQUEST = 1;
-    public static String dbKey;
 
-    private static Search instance = null;
-    private static View vi;
+    public static String dbKey;
 
     private static LinearLayout itemsLayout;
     private static ProgressBar bar;
@@ -126,7 +117,7 @@ public class Search extends VisiblePage
         {
             bar.setVisibility(View.VISIBLE);
             rl.setVisibility(View.VISIBLE);
-            BarcodeScanner(v);
+            gotoBarcodeScanner(v);
             bar.setVisibility(View.GONE);
             rl.setVisibility(View.GONE);
         }
@@ -173,18 +164,6 @@ public class Search extends VisiblePage
             }
         }
     };
-
-    public void BarcodeScanner(View v) {
-        Intent intent = new Intent(this, BarcodeScan.class);
-        startActivityForResult(intent, BARCODE_SCAN_REQUEST);
-    }
-
-    public void gotoResults(View v) {
-
-        Intent intent = new Intent(this, Results.class);
-        intent.putExtra("Food ID", dbKey);
-        startActivity(intent);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
@@ -237,7 +216,7 @@ public class Search extends VisiblePage
                         dbKey = databaseKeys[clickedFood.getId()];
                         User.setFoodID(dbKey);
                         //dbKey = String.valueOf(dbNumber);
-                        instance.gotoResults(vi);
+                        instance.gotoResults(vi, dbKey);
                     }
                 });
 

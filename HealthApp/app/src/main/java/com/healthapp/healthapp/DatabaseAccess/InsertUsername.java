@@ -1,7 +1,7 @@
 package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
-import com.healthapp.healthapp.ConnectCall;
+import com.healthapp.healthapp.VisiblePage;
 
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,13 +9,13 @@ import java.sql.Statement;
 /**
  * Authors: Chris Guido, Clive Hoayun
  */
-public class InsertUsername extends AsyncTask<ConnectCall,Void,Integer>{
+public class InsertUsername extends AsyncTask<VisiblePage,Void,Integer>{
 
-    ConnectCall caller;
+    VisiblePage caller;
     //User creates new account, inserting username and password
     //
     //INPUT: username and password that the User wants, as well as the connection
-    public Integer doInBackground(ConnectCall... params)
+    public Integer doInBackground(VisiblePage... params)
     {
         caller = params[0];
         Integer insertStatus = 0;
