@@ -19,7 +19,7 @@ import com.healthapp.healthapp.DatabaseAccess.FoodReportURL;
 import com.healthapp.healthapp.DatabaseAccess.Rating;
 import com.healthapp.healthapp.DatabaseAccess.ViewItemRatings;
 
-public class ReviewsActivity extends AppCompatActivity {
+public class ReviewsActivity extends VisiblePage {
 
     private static ReviewsActivity instance = null;
     private static View vi;
@@ -90,15 +90,9 @@ public class ReviewsActivity extends AppCompatActivity {
         public void onClick(View v)
         {
             //vi = v;
-            goToCreateReview(v);
+            gotoCreateReview(v, product);
         }
     };
-
-    public void goToCreateReview(View v) {
-        Intent intent = new Intent(this,CreateReview.class);
-        intent.putExtra("Product", product);
-        this.startActivity(intent);
-    }
 
     public static void populateList(Rating[] reviews) {
         if(reviews.equals(null)){

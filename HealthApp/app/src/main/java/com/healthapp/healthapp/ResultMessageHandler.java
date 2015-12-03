@@ -53,6 +53,8 @@ public class ResultMessageHandler
                         dialog.dismiss();
                         if(finalNextScreen == 1)
                             instance.nextScreen(1);
+                        else if(finalNextScreen == 6)
+                            instance.nextScreen(6);
                     }
                 });
         alertDialog.show();

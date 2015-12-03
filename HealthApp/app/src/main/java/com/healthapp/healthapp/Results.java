@@ -26,7 +26,7 @@ import com.healthapp.healthapp.DatabaseAccess.Rating;
 import java.util.Arrays;
 
 
-public class Results extends AppCompatActivity
+public class Results extends VisiblePage
 {
     private static Results instance = null;
     private static View vi;
@@ -107,15 +107,11 @@ public class Results extends AppCompatActivity
         public void onClick(View v)
         {
             vi = v;
-            goToReview(v);
+            gotoReview(v, product);
         }
     };
 
-    public void goToReview(View v) {
-        Intent intent = new Intent(this,ReviewsActivity.class);
-        intent.putExtra("Product", product);
-        this.startActivity(intent);
-    }
+
 
     private static AdapterView.OnItemSelectedListener spinnerListener = new AdapterView.OnItemSelectedListener() {
         public void onItemSelected(AdapterView<?> arg0, View v, int position, long id) {
