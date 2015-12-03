@@ -28,9 +28,9 @@ public class AttemptLogin extends AsyncTask<VisiblePage,Void,Integer>
         String query = "SELECT idUsers, api_key, barcode_key "
                      + "FROM cop4331_33.Users "
                      + "WHERE "
-                     + 		"username = '" + User.getUsername()
+                     + 		"username LIKE'" + User.getUsername()
                      + 		"' AND "
-                     + 		"password = '" + User.getPassword() + "'";
+                     + 		"password LIKE '" + User.getPassword() + "'";
 
         //Execute Query
         try

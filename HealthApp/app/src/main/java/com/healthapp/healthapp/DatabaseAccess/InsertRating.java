@@ -33,7 +33,7 @@ public class InsertRating extends AsyncTask<Object,Void,Integer>{
         try {
             stmt = User.getCon().createStatement();
             stmt.executeUpdate(update);
-            status = 1;
+            status = 5;
         }
 
         //Exception

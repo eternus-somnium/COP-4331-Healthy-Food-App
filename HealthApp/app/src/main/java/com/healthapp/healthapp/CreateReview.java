@@ -29,6 +29,8 @@ public class CreateReview extends VisiblePage {
     Button submitButton;
 
     private static String product;
+    private static String oldComment;
+    private static Float oldRating;
 
 
     @Override
@@ -48,17 +50,25 @@ public class CreateReview extends VisiblePage {
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
-                product= null;
+                product = null;
             } else {
                 product= extras.getString("Product");
+                oldComment = extras.getString("Old Comment");
+                oldRating = extras.getFloat("Old Rating");
             }
         } else {
-            product= (String) savedInstanceState.getSerializable("Product");
+            product = (String) savedInstanceState.getSerializable("Product");
         }
         //////
 
         TextView productName = (TextView) findViewById(R.id.product_name);
         productName.setText(product);
+
+        EditText commentField = (EditText) findViewById(R.id.editText);
+        if(oldComment != null)
+        {
+            commentField.setText(oldComment);
+        }
     }
 
     @Override
@@ -104,7 +114,7 @@ public class CreateReview extends VisiblePage {
         if(newRating.getRating() != 0)
             addReview();
         else
-            resultMessageHandler(2);
+            resultMessageHandler(6);
     }
 
     void addReview()
@@ -125,12 +135,4 @@ public class CreateReview extends VisiblePage {
             e.printStackTrace();
         }
     }
-
-    public void resultMessageHandler(Integer i)
-    {
-        new ResultMessageHandler().showResultDialog(i, instance);
-        //instance.showResultDialog(i);
-    }
-
-
 }

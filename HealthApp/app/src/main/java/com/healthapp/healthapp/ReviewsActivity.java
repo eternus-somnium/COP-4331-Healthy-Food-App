@@ -17,15 +17,16 @@ import android.widget.TextView;
 
 import com.healthapp.healthapp.DatabaseAccess.FoodReportURL;
 import com.healthapp.healthapp.DatabaseAccess.Rating;
+import com.healthapp.healthapp.DatabaseAccess.User;
 import com.healthapp.healthapp.DatabaseAccess.ViewItemRatings;
 
 public class ReviewsActivity extends VisiblePage {
 
-    private static ReviewsActivity instance = null;
-    private static View vi;
     private static LinearLayout reviewsLayout;
-    Button createReviewButton;
+    static Button createReviewButton;
     private static String product;
+    private static String oldComment;
+    private static Float oldRating;
 
 
     @Override
@@ -94,6 +95,27 @@ public class ReviewsActivity extends VisiblePage {
         }
     };
 
+//    private View.OnClickListener editReviewListener = new View.OnClickListener()
+//    {
+//        @Override
+//        public void onClick(View v)
+//        {
+//            Intent intent = new Intent(instance,CreateReview.class);
+//            intent.putExtra("Product", product);
+//            intent.putExtra("Old Review", oldComment);
+//            instance.startActivity(intent);
+//            //vi = v;
+//           // gotoEditReview(v, product, oldComment);
+//        }
+//    };
+
+//    public void gotoEditReview(View v, String product, String oldComment) {
+//        Intent intent = new Intent(this,CreateReview.class);
+//        intent.putExtra("Product", product);
+//        intent.putExtra("Old Review", oldComment);
+//        this.startActivity(intent);
+//    }
+
     public static void populateList(Rating[] reviews) {
         if(reviews.equals(null)){
             // print error message
@@ -114,9 +136,31 @@ public class ReviewsActivity extends VisiblePage {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
 
-//            setContentView(instance.layout.activity_results);
-
             for(int i=0; i < reviews.length; i++) {
+                // Check if active user has left a review already
+                if(User.getUsername().equals(reviews[i].getUsername()))
+                {
+                    oldComment = reviews[i].getComment();
+                    oldRating = reviews[i].getRating();
+
+                    createReviewButton.setText("Update Review");
+                    createReviewButton.setOnClickListener(new View.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(View v)
+                        {
+                            Intent intent = new Intent(instance,CreateReview.class);
+                            intent.putExtra("Product", product);
+                            intent.putExtra("Old Comment", oldComment);
+                            intent.putExtra("Old Rating", oldRating);
+                            instance.startActivity(intent);
+                            //vi = v;
+                            // gotoEditReview(v, product, oldComment);
+                        }
+
+                        //flag = true;
+                    });
+                }
                 // Initialize review data variables
                 TextView username = new TextView(instance);
                 TextView rating = new TextView(instance);
@@ -143,5 +187,6 @@ public class ReviewsActivity extends VisiblePage {
             }
         }
     }
+
 
 }

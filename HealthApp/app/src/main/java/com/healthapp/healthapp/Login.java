@@ -61,8 +61,8 @@ public class Login extends VisiblePage
         if (restoreUser != null && restorePass != null) {
             final EditText username = (EditText) findViewById(R.id.username);
             final EditText password = (EditText) findViewById(R.id.password);
-            username.setText(restoreUser);
-            password.setText(restorePass);
+            username.setText(restoreUser.trim());
+            password.setText(restorePass.trim());
         }
     }
 
@@ -100,8 +100,8 @@ public class Login extends VisiblePage
             EditText uname  = (EditText)findViewById(R.id.username);
             EditText pword = (EditText)findViewById(R.id.password);
 
-            User.setUsername(uname.getText().toString());
-            User.setPassword(pword.getText().toString());
+            User.setUsername(uname.getText().toString().trim());
+            User.setPassword(pword.getText().toString().trim());
 
             // Make loading circle visible
             bar.setVisibility(View.VISIBLE);

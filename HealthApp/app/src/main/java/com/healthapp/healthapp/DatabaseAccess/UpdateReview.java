@@ -8,7 +8,7 @@ import java.sql.Statement;
  */
 
 //NEEDS TO BE IMPLEMENTED
-public class UpdateComment extends AsyncTask<Rating,Void,Integer>{
+public class UpdateReview extends AsyncTask<Rating,Void,Integer>{
 
     Statement stmt = null;
     //User wants to edit rating on food that already exists
