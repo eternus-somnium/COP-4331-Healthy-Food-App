@@ -103,12 +103,6 @@ public class Login extends VisiblePage
             User.setUsername(uname.getText().toString());
             User.setPassword(pword.getText().toString());
 
-            //Store preferences
-            SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
-            editor.putString("username", uname.getText().toString());
-            editor.putString("password", pword.getText().toString());
-            editor.commit();
-
             // Make loading circle visible
             bar.setVisibility(View.VISIBLE);
             rl.setVisibility(View.VISIBLE);
@@ -134,7 +128,17 @@ public class Login extends VisiblePage
 
     public static void launchSearch()
     {
+        instance.storePreferences();
         instance.gotoSearch(vi);
+    }
+
+    public void storePreferences()
+    {
+        //Store preferences
+        SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putString("username", User.getUsername());
+        editor.putString("password", User.getPassword());
+        editor.commit();
     }
 
     public void resultMessageHandler(Integer i)
