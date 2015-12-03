@@ -1,32 +1,26 @@
 package com.healthapp.healthapp;
 
-
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
-
 import com.healthapp.healthapp.DatabaseAccess.SearchFoodURL;
 import com.healthapp.healthapp.DatabaseAccess.User;
 
-
+/**
+ * Authors: Bryen Buie, Clive Hoayun
+ */
 public class Search extends VisiblePage
 {
     // Variables
@@ -131,19 +125,14 @@ public class Search extends VisiblePage
         }
     };
 
+    //Changes button based on whether or not there is text in the search box
     private final TextWatcher myWatcher = new TextWatcher()
     {
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after)
-        {
-
-        }
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
         @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count)
-        {
-
-        }
+        public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
         @Override
         public void afterTextChanged(Editable s) {
@@ -172,6 +161,7 @@ public class Search extends VisiblePage
         }
     };
 
+    //Receives product name from the barcode reader class
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -187,8 +177,10 @@ public class Search extends VisiblePage
         }
     }
 
+    //Populates the list of products matching the search term
     public static void populateList(String[][] items)
     {
+        //Handles the case where there were no matching products
         if(items[0][1].equals("false")){
             // print error message
             AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
@@ -211,6 +203,7 @@ public class Search extends VisiblePage
 
             final String[] databaseKeys = new String[items.length];
 
+            //Creates a button for each matching product
             for(int i=0; i < items.length; i++) {
                 Button foodItem = new Button(instance);
                 foodItem.setTransformationMethod(null);
@@ -222,13 +215,11 @@ public class Search extends VisiblePage
                         Button clickedFood = (Button) v;
                         dbKey = databaseKeys[clickedFood.getId()];
                         User.setFoodID(dbKey);
-                        //dbKey = String.valueOf(dbNumber);
                         instance.gotoResults(vi, dbKey);
                     }
                 });
 
                 itemsLayout.addView(foodItem, lp);
-
             }
         }
     }

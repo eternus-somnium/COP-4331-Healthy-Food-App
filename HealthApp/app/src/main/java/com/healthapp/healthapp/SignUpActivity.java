@@ -6,9 +6,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-
 import com.healthapp.healthapp.DatabaseAccess.Connect;
 import com.healthapp.healthapp.DatabaseAccess.User;
 import com.healthapp.healthapp.DatabaseAccess.ValidateUsername;
@@ -57,6 +54,7 @@ public class SignUpActivity extends VisiblePage {
         return super.onOptionsItemSelected(item);
     }
 
+    //Validates the user's information and then attempts to create a user in the database
     public void SignUp()
     {
         EditText uname = (EditText) findViewById(R.id.username);
@@ -77,6 +75,8 @@ public class SignUpActivity extends VisiblePage {
             resultMessageHandler(3);
         else if(!foodKeyOK())
             resultMessageHandler(4);
+        else if(!barcodeKeyOK())
+            resultMessageHandler(5);
         else
         {
             try
@@ -92,7 +92,6 @@ public class SignUpActivity extends VisiblePage {
         }
     }
 
-
     private View.OnClickListener doneListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -101,11 +100,13 @@ public class SignUpActivity extends VisiblePage {
         }
     };
 
+    //Called if a connection to the application database is found or successfully established
     public void onConnection()
     {
         new ValidateUsername().execute(instance);
     }
 
+    //validates the username
     public boolean usernameOK()
     {
         EditText p1 = (EditText) findViewById(R.id.username);
@@ -115,6 +116,7 @@ public class SignUpActivity extends VisiblePage {
         else return true;
     }
 
+    //validates the password
     public boolean passwordOK()
     {
         EditText p1 = (EditText) findViewById(R.id.password);
@@ -126,7 +128,9 @@ public class SignUpActivity extends VisiblePage {
         else return true;
     }
 
-    public boolean foodKeyOK(){
+    //validates the food database key
+    public boolean foodKeyOK()
+    {
         EditText p1 = (EditText) findViewById(R.id.foodkey);
 
         if(p1.getText().toString().equals(""))
@@ -134,9 +138,13 @@ public class SignUpActivity extends VisiblePage {
         else return true;
     }
 
-    public void resultMessageHandler(Integer i)
+    //validates the barcode database key
+    public boolean barcodeKeyOK()
     {
-        //instance.showResultDialog(i);
-        new ResultMessageHandler().showResultDialog(i, instance);
+        EditText p1 = (EditText) findViewById(R.id.barcodekey);
+
+        if(p1.getText().toString().equals(""))
+            return false;
+        else return true;
     }
 }

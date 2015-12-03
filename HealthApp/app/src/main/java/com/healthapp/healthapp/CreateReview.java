@@ -59,7 +59,6 @@ public class CreateReview extends VisiblePage {
         } else {
             product = (String) savedInstanceState.getSerializable("Product");
         }
-        //////
 
         TextView productName = (TextView) findViewById(R.id.product_name);
         productName.setText(product);
@@ -114,7 +113,9 @@ public class CreateReview extends VisiblePage {
         if(newRating.getRating() != 0)
             addReview();
         else
-            resultMessageHandler(6);
+
+            resultMessageHandler(7);
+
     }
 
     void addReview()

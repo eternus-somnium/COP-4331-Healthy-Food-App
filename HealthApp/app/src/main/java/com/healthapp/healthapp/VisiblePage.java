@@ -17,7 +17,11 @@ public class VisiblePage extends AppCompatActivity
     static VisiblePage instance = null;
     static View vi;
 
-    public void resultMessageHandler(Integer i){}
+    //Calls the result message handler class
+    public void resultMessageHandler(Integer i)
+    {
+        new ResultMessageHandler().showResultDialog(i, instance);
+    }
 
     public void onConnection(){}
     public void storePreferences(){}
@@ -53,6 +57,7 @@ public class VisiblePage extends AppCompatActivity
             gotoCreateReview(vi, Results.product);
         }
     }
+
     public void gotoLogin(View v) {
         Intent intent = new Intent(this,Login.class);
         startActivity(intent);
@@ -85,5 +90,4 @@ public class VisiblePage extends AppCompatActivity
         intent.putExtra("Product", product);
         this.startActivity(intent);
     }
-
 }
