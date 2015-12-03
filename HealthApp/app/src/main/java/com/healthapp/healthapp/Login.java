@@ -22,12 +22,10 @@ import com.healthapp.healthapp.DatabaseAccess.User;
 /**
  * Authors: Bryen Buie, Clive Hoayun, Chris Guido
  */
-public class Login extends ConnectCall
+public class Login extends VisiblePage
 {
     // Variables
     Button loginButton;
-    private static Login instance = null;
-    private static View vi;
     private ProgressBar bar;
     private RelativeLayout rl;
     private static final String PREFS_NAME = "HealthApp_PREFS";
@@ -128,16 +126,6 @@ public class Login extends ConnectCall
             }
         }
     };
-
-    public void gotoSearch(View v) {
-        Intent intent = new Intent(this,Search.class);
-        this.startActivity(intent);
-    }
-
-    public void gotoSignUp(View v) {
-        Intent intent = new Intent(this,SignUpActivity.class);
-        startActivity(intent);
-    }
 
     public void onConnection()
     {

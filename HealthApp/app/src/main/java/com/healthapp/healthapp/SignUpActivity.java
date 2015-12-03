@@ -19,12 +19,8 @@ import com.healthapp.healthapp.DatabaseAccess.ValidateUsername;
 /**
  * Authors: Bryen Buie, Clive Hoayun
  */
-public class SignUpActivity extends ConnectCall {
-
-    private static SignUpActivity instance;
-    private static View vi;
+public class SignUpActivity extends VisiblePage {
     Button doneButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -99,10 +95,6 @@ public class SignUpActivity extends ConnectCall {
         }
     }
 
-    public void gotoLogin(View v) {
-        Intent intent = new Intent(this,Login.class);
-        startActivity(intent);
-    }
 
     private View.OnClickListener doneListener = new View.OnClickListener() {
         @Override
@@ -143,14 +135,6 @@ public class SignUpActivity extends ConnectCall {
         if(p1.getText().toString().equals(""))
             return false;
         else return true;
-    }
-
-    public void nextScreen(int i)
-    {
-        if(i == 1)
-        {
-            gotoLogin(vi);
-        }
     }
 
     public void resultMessageHandler(Integer i)
