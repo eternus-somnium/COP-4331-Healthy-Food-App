@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Authors: Clive Hoayun
  */
-public class Rating
+public class Review
 {
     private String foodID;
 

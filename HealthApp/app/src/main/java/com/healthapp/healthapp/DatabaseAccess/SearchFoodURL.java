@@ -15,7 +15,7 @@ public class SearchFoodURL extends AsyncTask<String,Void,String[][]>
 {
     protected String[][] doInBackground(String... params)
     {
-        String results[][] = null;
+        String results[][];
 
         URL url;
         Document doc;
@@ -57,6 +57,6 @@ public class SearchFoodURL extends AsyncTask<String,Void,String[][]>
 
     protected void onPostExecute(String[][] results)
     {
-        Search.populateList(results); //Do something
+        Search.populateList(results);
     }
 }

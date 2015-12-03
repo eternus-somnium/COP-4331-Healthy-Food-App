@@ -1,22 +1,15 @@
 package com.healthapp.healthapp;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.healthapp.healthapp.DatabaseAccess.FoodReportURL;
-import com.healthapp.healthapp.DatabaseAccess.Rating;
+import com.healthapp.healthapp.DatabaseAccess.Review;
 import com.healthapp.healthapp.DatabaseAccess.User;
 import com.healthapp.healthapp.DatabaseAccess.ViewItemRatings;
 
@@ -116,7 +109,7 @@ public class ReviewsActivity extends VisiblePage {
 //        this.startActivity(intent);
 //    }
 
-    public static void populateList(Rating[] reviews) {
+    public static void populateList(Review[] reviews) {
         if(reviews.equals(null)){
             // print error message
 //            AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
@@ -156,7 +149,7 @@ public class ReviewsActivity extends VisiblePage {
 //                            Intent intent = new Intent(instance,CreateReview.class);
 //                            intent.putExtra("Product", product);
 //                            intent.putExtra("Old Comment", oldComment);
-//                            intent.putExtra("Old Rating", oldRating);
+//                            intent.putExtra("Old Review", oldRating);
 //                            instance.startActivity(intent);
 //                            //vi = v;
 //                            // gotoEditReview(v, product, oldComment);

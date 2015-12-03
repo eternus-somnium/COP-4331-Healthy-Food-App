@@ -1,7 +1,5 @@
 package com.healthapp.healthapp;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,10 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
-import com.healthapp.healthapp.DatabaseAccess.Rating;
-import com.healthapp.healthapp.DatabaseAccess.User;
+import com.healthapp.healthapp.DatabaseAccess.Review;
 import com.healthapp.healthapp.DatabaseAccess.ViewItemRatings;
 
 public class Demo_Reviews extends AppCompatActivity {
@@ -72,7 +68,7 @@ public class Demo_Reviews extends AppCompatActivity {
         this.startActivity(intent);
     }
 
-    public static void populateList(Rating[] items) {
+    public static void populateList(Review[] items) {
 //        if(items[0].equals("false")){
 //            // print error message
 //            AlertDialog alertDialog = new AlertDialog.Builder(instance).create();

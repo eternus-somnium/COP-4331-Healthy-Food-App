@@ -1,8 +1,6 @@
 package com.healthapp.healthapp;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -11,7 +9,7 @@ import android.widget.RelativeLayout;
 /**
  * Authors: Bryen Buie
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends VisiblePage {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +50,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void gotoLogin(View v) {
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
     }
 }
