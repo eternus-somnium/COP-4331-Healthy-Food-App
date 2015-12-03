@@ -20,9 +20,9 @@ public class InsertRating extends AsyncTask<Object,Void,Integer>{
     {
         Integer status = 0;
         caller = (CreateReview) params[0];
-        Rating r = (Rating) params[1];
+        Review r = (Review) params[1];
         //Query
-        String update = "INSERT INTO Rating (foodID, Users_idUsers, rating, comment) "
+        String update = "INSERT INTO Review (foodID, Users_idUsers, rating, comment) "
                       + "VALUES ('" + r.getFoodID()
                       + "','" + r.getUserID()
                       + "','" + r.getRating()
@@ -33,7 +33,6 @@ public class InsertRating extends AsyncTask<Object,Void,Integer>{
         try {
             stmt = User.getCon().createStatement();
             stmt.executeUpdate(update);
-
             status = 6;
         }
 

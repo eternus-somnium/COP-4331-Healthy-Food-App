@@ -89,7 +89,7 @@ public class VisiblePage extends AppCompatActivity
         Intent intent = new Intent(this,CreateReview.class);
         intent.putExtra("Product", product);
         intent.putExtra("Old Comment", comment);
-        intent.putExtra("Old Rating", rating);
+        intent.putExtra("Old Review", rating);
         this.startActivity(intent);
     }
 }

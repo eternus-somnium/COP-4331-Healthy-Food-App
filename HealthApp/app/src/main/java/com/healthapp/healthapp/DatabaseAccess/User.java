@@ -5,9 +5,7 @@ import java.sql.Connection;
  * Authors: Clive Hoayun
  */
 
-//Because of the use of a single parameter in the AsyncTask types for doInBackground
-//I created a class that can be passed to every function
-//To use it, just instantiate the class, fill in the variables necessary, and pass the object to the function
+//Contains all information regarding the current user and their activity
 public class User
 {
     private static boolean validUser = false;

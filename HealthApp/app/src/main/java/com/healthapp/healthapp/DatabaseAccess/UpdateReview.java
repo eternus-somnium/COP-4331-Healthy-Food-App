@@ -16,14 +16,14 @@ public class UpdateReview extends AsyncTask<Object,Void,Integer>{
     Statement stmt = null;
     //User wants to edit rating on food that already exists
     //
-    //INPUT: New Rating, New Comment, The Food ID, and the User ID
+    //INPUT: New Review, New Comment, The Food ID, and the User ID
     protected Integer doInBackground(Object... params)
     {
         Integer status = 0;
         caller = (CreateReview) params[0];
-        Rating r = (Rating) params[1];
+        Review r = (Review) params[1];
         //Query
-        String update = "Update Rating " +
+        String update = "Update Review " +
                         "SET " +
                             "rating ='" + r.getRating() + "', " +
                             "comment ='" + r.getComment()+"' " +

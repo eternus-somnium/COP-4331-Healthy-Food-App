@@ -2,18 +2,13 @@ package com.healthapp.healthapp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -21,9 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.healthapp.healthapp.DatabaseAccess.FoodReportURL;
-import com.healthapp.healthapp.DatabaseAccess.Rating;
-
-import java.util.Arrays;
+import com.healthapp.healthapp.DatabaseAccess.Review;
 
 
 public class Results extends VisiblePage
@@ -236,7 +229,7 @@ public class Results extends VisiblePage
         populateFoodReport(0);
     }
 
-    public static void populateList(Rating[] reviews)
+    public static void populateList(Review[] reviews)
     {
         if(reviews[0].getFoodID() == "false"){
             // print error message

@@ -1,9 +1,5 @@
 package com.healthapp.healthapp;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.healthapp.healthapp.DatabaseAccess.InsertRating;
-import com.healthapp.healthapp.DatabaseAccess.Rating;
+import com.healthapp.healthapp.DatabaseAccess.Review;
 import com.healthapp.healthapp.DatabaseAccess.UpdateReview;
 import com.healthapp.healthapp.DatabaseAccess.User;
 
@@ -23,7 +19,7 @@ import java.sql.SQLException;
 public class CreateReview extends VisiblePage {
 
 
-    Rating newRating = new Rating();
+    Review newReview = new Review();
     private RatingBar ratingBar;
     private EditText comment;
     Button submitButton;
@@ -54,7 +50,7 @@ public class CreateReview extends VisiblePage {
             } else {
                 product= extras.getString("Product");
                 oldComment = extras.getString("Old Comment");
-                oldRating = extras.getFloat("Old Rating");
+                oldRating = extras.getFloat("Old Review");
             }
         } else {
             product = (String) savedInstanceState.getSerializable("Product");
@@ -103,13 +99,13 @@ public class CreateReview extends VisiblePage {
 
     void validateReview()
     {
-        newRating.setFoodID(User.getFoodID());
-        newRating.setUserID(User.getUserID());
-        newRating.setRating(ratingBar.getRating());
-        newRating.setComment(comment.getText().toString());
+        newReview.setFoodID(User.getFoodID());
+        newReview.setUserID(User.getUserID());
+        newReview.setRating(ratingBar.getRating());
+        newReview.setComment(comment.getText().toString());
 
 
-        if(newRating.getRating() != 0)
+        if(newReview.getRating() != 0)
             addReview();
         else
 
@@ -128,9 +124,9 @@ public class CreateReview extends VisiblePage {
             else
             {
                 if(oldRating == 0f)
-                    new InsertRating().execute(instance, newRating);
+                    new InsertRating().execute(instance, newReview);
                 else
-                    new UpdateReview().execute(instance, newRating);
+                    new UpdateReview().execute(instance, newReview);
             }
         }
         catch (SQLException e)
