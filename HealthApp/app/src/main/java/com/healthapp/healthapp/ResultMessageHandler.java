@@ -13,6 +13,8 @@ public class ResultMessageHandler
         AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
         int nextScreen = 0;
         alertDialog.setTitle("Alert");
+
+        //Login and signup messages
         if(i == 1)
         {
             alertDialog.setMessage("User successfully created");
@@ -24,13 +26,19 @@ public class ResultMessageHandler
             alertDialog.setMessage("Passwords are required and must match");}
         else if (i == 4) {
             alertDialog.setMessage("Nutritional database key is required");}
-        else if (i == 5)
+        else if (i == 5) {
+            alertDialog.setMessage("Barcode database key is required");}
+
+        //Review messages
+        else if (i == 6)
         {
             alertDialog.setMessage("Review added successfully");
             nextScreen = 6;
         }
-        else if (i == 6) {
+        else if (i == 7) {
             alertDialog.setMessage("Add a star rating to leave a review");}
+
+        //Database messages
         else if(i == -1){
             alertDialog.setMessage("Could not contact the application server");}
         else if(i == -2){

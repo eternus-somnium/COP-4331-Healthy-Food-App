@@ -32,9 +32,9 @@ public class BarcodeScan extends AppCompatActivity implements ZBarScannerView.Re
         public void onCreate(Bundle savedInstanceState)
         {
                 super.onCreate(savedInstanceState);
-
                 this.instance = this;
 
+                //The list of acceptable barcode formats
                 //formats.add(BarcodeFormat.PARTIAL);
                 formats.add(BarcodeFormat.EAN8);
                 formats.add(BarcodeFormat.UPCE);
@@ -75,17 +75,15 @@ public class BarcodeScan extends AppCompatActivity implements ZBarScannerView.Re
         @Override
         public void handleResult(Result rawResult)
         {
-                Toast.makeText(this, "Contents = " + rawResult.getContents() +
-                ", Format = " + rawResult.getBarcodeFormat().getName(), Toast.LENGTH_SHORT).show();
                 barcode = rawResult.getContents();
-
-
-                //Test barcode
-                //new BarcodeDecodeURL().execute("0029784234562");
-
                 new BarcodeDecodeURL().execute(barcode);
+        }
 
-
+        //Launches result dialog with product name
+        public static void launchDialog(String i)
+        {
+                productName = i;
+                instance.showDialog();
         }
 
         void showDialog()
@@ -97,23 +95,13 @@ public class BarcodeScan extends AppCompatActivity implements ZBarScannerView.Re
 
         public void doPositiveClick()
         {
-                // Do stuff here.
                 Intent result = new Intent(productName);
                 setResult(Activity.RESULT_OK, result);
                 finish();
-                //Log.i("FragmentAlertDialog", "Positive click!");
         }
 
-        public void doNegativeClick() {
-                // Do stuff here.
-                mScannerView.startCamera();
-                //Log.i("FragmentAlertDialog", "Negative click!");
-        }
-
-        public static void launchDialog(String i)
+        public void doNegativeClick()
         {
-                productName = i;
-                instance.showDialog();
-
+                mScannerView.startCamera();
         }
 }

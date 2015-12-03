@@ -9,6 +9,8 @@ import android.os.Bundle;
 /**
  * Created by Clive on 11/12/2015.
  */
+
+//Manages the barcode confirmation dialog
 public class BarcodeConfirmationDialog extends DialogFragment
 {
 

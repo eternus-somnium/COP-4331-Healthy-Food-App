@@ -1,8 +1,5 @@
 package com.healthapp.healthapp;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
@@ -103,35 +100,41 @@ public class Login extends VisiblePage
             User.setUsername(uname.getText().toString());
             User.setPassword(pword.getText().toString());
 
-            // Make loading circle visible
-            bar.setVisibility(View.VISIBLE);
-            rl.setVisibility(View.VISIBLE);
-            loginButton.setVisibility(View.GONE);
-            try
-            {
-                if (User.getCon() == null || User.getCon().isClosed())
-                {
-                    new Connect().execute(instance);
+            //Validate entries
+            if(!usernameOK())
+                resultMessageHandler(2);
+            else if(!passwordOK())
+                resultMessageHandler(3);
+            else {
+                // Make loading circle visible
+                bar.setVisibility(View.VISIBLE);
+                rl.setVisibility(View.VISIBLE);
+                loginButton.setVisibility(View.GONE);
+                try {
+                    if (User.getCon() == null || User.getCon().isClosed()) {
+                        new Connect().execute(instance);
+                    }
+                } catch (Exception e) {
+                    resultMessageHandler(-1);
                 }
-            }
-            catch (Exception e)
-            {
-                resultMessageHandler(-1);
             }
         }
     };
 
+    //Called if a connection to the application database is found or successfully established
     public void onConnection()
     {
         new AttemptLogin().execute(instance);
     }
 
+    //Called if the user successfully logs in
     public static void launchSearch()
     {
         instance.storePreferences();
         instance.gotoSearch(vi);
     }
 
+    //Stores the user's username and password for future login attempts
     public void storePreferences()
     {
         //Store preferences
@@ -141,8 +144,34 @@ public class Login extends VisiblePage
         editor.commit();
     }
 
+    //validates the username
+    public boolean usernameOK()
+    {
+        EditText p1 = (EditText) findViewById(R.id.username);
+
+        if(p1.getText().toString().equals(""))
+            return false;
+        else return true;
+    }
+
+    //validates the password
+    public boolean passwordOK()
+    {
+        EditText p1 = (EditText) findViewById(R.id.password);
+
+        if(p1.getText().toString().equals(""))
+            return false;
+        else return true;
+    }
+
+    //Overrides VisiblePage result message handler to stop loading circle
     public void resultMessageHandler(Integer i)
     {
+        // Make loading circle invisible
+        bar.setVisibility(View.GONE);
+        rl.setVisibility(View.GONE);
+        loginButton.setVisibility(View.VISIBLE);
+
         new ResultMessageHandler().showResultDialog(i, instance);
     }
 }
