@@ -58,7 +58,7 @@ public class ReviewsActivity extends VisiblePage {
             product= (String) savedInstanceState.getSerializable("Product");
         }
 
-        //
+        // Call to database
         new ViewItemRatings().execute();
     }
 
@@ -108,37 +108,25 @@ public class ReviewsActivity extends VisiblePage {
             // set the parameters for the review layout
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            // set the comment and rating to be blank
             oldRating = 0f;
             oldComment = "";
 
-            //loop through the reviews
+            //loop through the reviews of the selected product
             for(int i=0; i < reviews.length; i++) {
+
                 // Check if active user has left a review already
                 if(User.getUsername().equals(reviews[i].getUsername()))
                 {
-
+                    // set the comment and rating to the values of the pre-existing review
                     oldComment = reviews[i].getComment();
                     oldRating = reviews[i].getRating();
 
+                    // change the "Create Review" button to "Update Review"
                     createReviewButton.setText("Update Review");
-
-//                    createReviewButton.setOnClickListener(new View.OnClickListener()
-//                    {
-//                        @Override
-//                        public void onClick(View v)
-//                        {
-//                            Intent intent = new Intent(instance,CreateReview.class);
-//                            intent.putExtra("Product", product);
-//                            intent.putExtra("Old Comment", oldComment);
-//                            intent.putExtra("Old Rating", oldRating);
-//                            instance.startActivity(intent);
-//                            //vi = v;
-//                            // gotoEditReview(v, product, oldComment);
-//                        }
-//
-//                        //flag = true;
-//                    });
                 }
+
                 // Initialize review data variables
                 TextView username = new TextView(instance);
                 TextView rating = new TextView(instance);
