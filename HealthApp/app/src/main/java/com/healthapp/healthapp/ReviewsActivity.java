@@ -16,7 +16,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.healthapp.healthapp.DatabaseAccess.FoodReportURL;
-import com.healthapp.healthapp.DatabaseAccess.Rating;
+import com.healthapp.healthapp.DatabaseAccess.Review;
+import com.healthapp.healthapp.DatabaseAccess.Review;
 import com.healthapp.healthapp.DatabaseAccess.User;
 import com.healthapp.healthapp.DatabaseAccess.ViewItemRatings;
 
@@ -98,7 +99,7 @@ public class ReviewsActivity extends VisiblePage {
     };
 
     //Populates the list of user-created reviews
-    public static void populateList(Rating[] reviews) {
+    public static void populateList(Review[] reviews) {
 
         if(reviews.equals(null)){
             // print error message
