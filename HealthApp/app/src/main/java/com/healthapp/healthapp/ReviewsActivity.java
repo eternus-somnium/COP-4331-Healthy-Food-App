@@ -22,6 +22,7 @@ import com.healthapp.healthapp.DatabaseAccess.ViewItemRatings;
 
 public class ReviewsActivity extends VisiblePage {
 
+    // Variables
     private static LinearLayout reviewsLayout;
     static Button createReviewButton;
     private static String product;
