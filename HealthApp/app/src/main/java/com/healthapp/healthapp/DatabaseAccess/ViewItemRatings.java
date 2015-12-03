@@ -2,6 +2,7 @@ package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
 import com.healthapp.healthapp.ReviewsActivity;
+import com.healthapp.healthapp.DatabaseAccess.Review;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +33,7 @@ public class ViewItemRatings extends AsyncTask<Void,Void,Review[]>{
         //Query
         String query = "SELECT U.username, R.rating, R.comment "
                 + "FROM "
-                + 		"Review as R "
+                + 		"Rating as R "
                 + 		"inner join "
                 + 		"Users as U "
                 + 		"on "

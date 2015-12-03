@@ -41,7 +41,7 @@ public class Results extends VisiblePage
         reviewsLayout = (LinearLayout) findViewById(R.id.items_layout);
         setContentView(R.layout.activity_results);
 
-        // Initialize done button
+        // Initialize "Show Reviews" button
         showReviewButton = (Button) findViewById(R.id.review_button);
 
         // Set Click Listener
@@ -99,7 +99,7 @@ public class Results extends VisiblePage
         public void onClick(View v)
         {
             vi = v;
-            gotoReview(v, product);
+            gotoReview(vi, product);
         }
     };
 

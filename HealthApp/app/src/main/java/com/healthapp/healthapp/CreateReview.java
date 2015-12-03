@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.healthapp.healthapp.DatabaseAccess.InsertRating;
+import com.healthapp.healthapp.DatabaseAccess.InsertReview;
 import com.healthapp.healthapp.DatabaseAccess.Review;
 import com.healthapp.healthapp.DatabaseAccess.UpdateReview;
 import com.healthapp.healthapp.DatabaseAccess.User;
@@ -124,7 +124,7 @@ public class CreateReview extends VisiblePage {
             else
             {
                 if(oldRating == 0f)
-                    new InsertRating().execute(instance, newReview);
+                    new InsertReview().execute(instance, newReview);
                 else
                     new UpdateReview().execute(instance, newReview);
             }

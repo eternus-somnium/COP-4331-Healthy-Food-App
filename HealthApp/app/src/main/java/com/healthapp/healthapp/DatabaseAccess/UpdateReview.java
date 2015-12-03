@@ -23,7 +23,7 @@ public class UpdateReview extends AsyncTask<Object,Void,Integer>{
         caller = (CreateReview) params[0];
         Review r = (Review) params[1];
         //Query
-        String update = "Update Review " +
+        String update = "Update Rating " +
                         "SET " +
                             "rating ='" + r.getRating() + "', " +
                             "comment ='" + r.getComment()+"' " +

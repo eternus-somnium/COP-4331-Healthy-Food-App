@@ -1,7 +1,5 @@
 package com.healthapp.healthapp.DatabaseAccess;
 
-import java.io.Serializable;
-
 /**
  * Authors: Clive Hoayun
  */
