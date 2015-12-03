@@ -28,7 +28,7 @@ public class CheckCommentPrivilege extends AsyncTask<Void,Void,Integer>{
 
         //Query
         String query = "SELECT COUNT(*) as flag "
-                     + "FROM Rating "
+                     + "FROM Review "
                      + "WHERE "
                      + 		"foodID = '" + User.getFoodID()
                      + 		"' AND "
