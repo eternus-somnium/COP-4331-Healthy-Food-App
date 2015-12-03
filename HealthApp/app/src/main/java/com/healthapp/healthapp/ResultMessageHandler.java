@@ -39,7 +39,6 @@ public class ResultMessageHandler
         else if(i == -3){
             alertDialog.setMessage("Login failed");
         }
-
         else
         {
             alertDialog.setMessage("An unknown error occurred");
