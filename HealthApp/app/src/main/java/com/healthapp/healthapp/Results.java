@@ -21,6 +21,7 @@ import com.healthapp.healthapp.DatabaseAccess.Review;
 
 public class Results extends VisiblePage
 {
+    // Variables
     private static Results instance = null;
     private static View vi;
     private static LinearLayout reviewsLayout;
@@ -52,7 +53,7 @@ public class Results extends VisiblePage
         bar = (ProgressBar) this.findViewById(R.id.progressBar);
         bar.setVisibility(View.VISIBLE);
 
-        // getExtras from Search
+        // Get product name sent from Search.java
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
@@ -93,6 +94,7 @@ public class Results extends VisiblePage
         return super.onOptionsItemSelected(item);
     }
 
+    // ClickListener for "Show Review" button
     private View.OnClickListener createReviewListener = new View.OnClickListener()
     {
         @Override
@@ -104,7 +106,7 @@ public class Results extends VisiblePage
     };
 
 
-
+    // Item Selected Listener for spinner dropdown menu
     private static AdapterView.OnItemSelectedListener spinnerListener = new AdapterView.OnItemSelectedListener() {
         public void onItemSelected(AdapterView<?> arg0, View v, int position, long id) {
             populateFoodReport(position);
@@ -116,6 +118,7 @@ public class Results extends VisiblePage
         }
     };
 
+    //Populates food report with the appropriate values
     public static void populateFoodReport(int measurement)
     {
         items = results1[15];
@@ -129,7 +132,7 @@ public class Results extends VisiblePage
 
 
 
-
+        // Place the correct value
         TextView productName = (TextView) instance.findViewById(R.id.textView2);
         product = results1[0][0];
         productName.setText(results1[0][0]);

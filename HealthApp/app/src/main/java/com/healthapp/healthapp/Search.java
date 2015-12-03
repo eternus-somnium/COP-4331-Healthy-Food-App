@@ -140,12 +140,16 @@ public class Search extends VisiblePage
 
             // Initialize image button
             sButton = (ImageButton) findViewById(R.id.imageButton);
+            // Text field is empty, scanner button is visible,
+            // clear button and search button are invisible
             if(sField.matches("")){
                 sButton.setImageResource(R.drawable.scanner);
                 cButton = (ImageButton) findViewById(R.id.clear_button);
                 cButton.setVisibility(View.INVISIBLE);
                 sButton.setOnClickListener(parseBarcode);
             }
+            // Text field has text, scanner button is invisible,
+            // clear button and search button are visible
             else {
                 sButton.setImageResource(R.drawable.search);
                 searchField = (EditText) findViewById(R.id.search_field);
@@ -200,10 +204,11 @@ public class Search extends VisiblePage
 
 
         else {
-
+            // Set parameters of layout that the search results will appear on
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
 
+            // string array for the products ID number
             final String[] databaseKeys = new String[items.length];
 
             //Creates a button for each matching product
