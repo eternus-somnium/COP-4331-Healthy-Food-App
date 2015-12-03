@@ -1,7 +1,7 @@
 package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
-import com.healthapp.healthapp.ConnectCall;
+import com.healthapp.healthapp.VisiblePage;
 
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,13 +9,13 @@ import java.sql.Statement;
 /**
  * Authors: Chris Guido
  */
-public class InsertBarcodeKey extends AsyncTask<ConnectCall,Void,Integer>{
+public class InsertBarcodeKey extends AsyncTask<VisiblePage,Void,Integer>{
 
-    ConnectCall caller;
+    VisiblePage caller;
     //Insert barcode database key to User
     //
     //INPUT: User's username and password, the barcode scanner key they obtained, and the connection to the database
-    protected Integer doInBackground(ConnectCall... params)
+    protected Integer doInBackground(VisiblePage... params)
     {
         caller = params[0];
         Integer insertStatus;
