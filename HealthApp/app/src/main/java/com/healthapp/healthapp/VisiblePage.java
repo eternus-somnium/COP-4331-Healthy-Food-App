@@ -54,7 +54,7 @@ public class VisiblePage extends AppCompatActivity
         }
         else if(i == 7)
         {
-            gotoCreateReview(vi, Results.product);
+            gotoCreateReview(vi, Results.product, ReviewsActivity.oldComment, ReviewsActivity.oldRating);
         }
     }
 
@@ -85,9 +85,11 @@ public class VisiblePage extends AppCompatActivity
         intent.putExtra("Product", product);
         this.startActivity(intent);
     }
-    public void gotoCreateReview(View v, String product) {
+    public void gotoCreateReview(View v, String product, String comment, float rating) {
         Intent intent = new Intent(this,CreateReview.class);
         intent.putExtra("Product", product);
+        intent.putExtra("Old Comment", comment);
+        intent.putExtra("Old Rating", rating);
         this.startActivity(intent);
     }
 }

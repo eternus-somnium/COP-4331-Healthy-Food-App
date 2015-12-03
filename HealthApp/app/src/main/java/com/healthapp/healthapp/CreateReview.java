@@ -15,14 +15,14 @@ import android.widget.TextView;
 
 import com.healthapp.healthapp.DatabaseAccess.InsertRating;
 import com.healthapp.healthapp.DatabaseAccess.Rating;
+import com.healthapp.healthapp.DatabaseAccess.UpdateReview;
 import com.healthapp.healthapp.DatabaseAccess.User;
 
 import java.sql.SQLException;
 
 public class CreateReview extends VisiblePage {
 
-    private View vi;
-    private static CreateReview instance;
+
     Rating newRating = new Rating();
     private RatingBar ratingBar;
     private EditText comment;
@@ -63,11 +63,9 @@ public class CreateReview extends VisiblePage {
         TextView productName = (TextView) findViewById(R.id.product_name);
         productName.setText(product);
 
-        EditText commentField = (EditText) findViewById(R.id.editText);
-        if(oldComment != null)
-        {
-            commentField.setText(oldComment);
-        }
+        comment.setText(oldComment);
+
+        ratingBar.setRating(oldRating);
     }
 
     @Override
@@ -98,6 +96,7 @@ public class CreateReview extends VisiblePage {
         public void onClick(View v)
         {
             vi = v;
+            //gotoReview(v, product);
             validateReview();
         }
     };
@@ -128,7 +127,10 @@ public class CreateReview extends VisiblePage {
             }
             else
             {
-                new InsertRating().execute(instance, newRating);
+                if(oldRating == 0f)
+                    new InsertRating().execute(instance, newRating);
+                else
+                    new UpdateReview().execute(instance, newRating);
             }
         }
         catch (SQLException e)

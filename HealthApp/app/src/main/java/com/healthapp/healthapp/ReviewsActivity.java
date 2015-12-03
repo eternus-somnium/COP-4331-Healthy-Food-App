@@ -25,8 +25,8 @@ public class ReviewsActivity extends VisiblePage {
     private static LinearLayout reviewsLayout;
     static Button createReviewButton;
     private static String product;
-    private static String oldComment;
-    private static Float oldRating;
+    public static String oldComment;
+    public static Float oldRating;
 
 
     @Override
@@ -90,8 +90,8 @@ public class ReviewsActivity extends VisiblePage {
         @Override
         public void onClick(View v)
         {
-            //vi = v;
-            gotoCreateReview(v, product);
+            vi = v;
+            gotoCreateReview(v, product, oldComment, oldRating);
         }
     };
 
@@ -135,31 +135,35 @@ public class ReviewsActivity extends VisiblePage {
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
+            oldRating = 0f;
+            oldComment = "";
 
             for(int i=0; i < reviews.length; i++) {
                 // Check if active user has left a review already
                 if(User.getUsername().equals(reviews[i].getUsername()))
                 {
+
                     oldComment = reviews[i].getComment();
                     oldRating = reviews[i].getRating();
 
                     createReviewButton.setText("Update Review");
-                    createReviewButton.setOnClickListener(new View.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(View v)
-                        {
-                            Intent intent = new Intent(instance,CreateReview.class);
-                            intent.putExtra("Product", product);
-                            intent.putExtra("Old Comment", oldComment);
-                            intent.putExtra("Old Rating", oldRating);
-                            instance.startActivity(intent);
-                            //vi = v;
-                            // gotoEditReview(v, product, oldComment);
-                        }
 
-                        //flag = true;
-                    });
+//                    createReviewButton.setOnClickListener(new View.OnClickListener()
+//                    {
+//                        @Override
+//                        public void onClick(View v)
+//                        {
+//                            Intent intent = new Intent(instance,CreateReview.class);
+//                            intent.putExtra("Product", product);
+//                            intent.putExtra("Old Comment", oldComment);
+//                            intent.putExtra("Old Rating", oldRating);
+//                            instance.startActivity(intent);
+//                            //vi = v;
+//                            // gotoEditReview(v, product, oldComment);
+//                        }
+//
+//                        //flag = true;
+//                    });
                 }
                 // Initialize review data variables
                 TextView username = new TextView(instance);

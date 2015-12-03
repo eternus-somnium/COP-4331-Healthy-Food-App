@@ -1,6 +1,9 @@
 package com.healthapp.healthapp.DatabaseAccess;
 import android.os.AsyncTask;
 
+import com.healthapp.healthapp.CreateReview;
+import com.healthapp.healthapp.VisiblePage;
+
 import java.sql.SQLException;
 import java.sql.Statement;
 /**
@@ -8,35 +11,39 @@ import java.sql.Statement;
  */
 
 //NEEDS TO BE IMPLEMENTED
-public class UpdateReview extends AsyncTask<Rating,Void,Integer>{
+public class UpdateReview extends AsyncTask<Object,Void,Integer>{
 
+    VisiblePage caller;
     Statement stmt = null;
     //User wants to edit rating on food that already exists
     //
     //INPUT: New Rating, New Comment, The Food ID, and the User ID
-    protected Integer doInBackground(Rating... params)
+    protected Integer doInBackground(Object... params)
     {
         Integer status = 0;
+        caller = (CreateReview) params[0];
+        Rating r = (Rating) params[1];
         //Query
         String update = "Update Rating " +
                         "SET " +
-                            "rating ='" + params[0].getRating() + "', " +
-                            "comment ='" + params[0].getComment()+"' " +
+                            "rating ='" + r.getRating() + "', " +
+                            "comment ='" + r.getComment()+"' " +
                         "WHERE " +
-                            "foodID = '"+params[0].getFoodID()+"' " +
+                            "foodID = '"+ r.getFoodID()+"' " +
                             "AND " +
-                            "Users_idUsers='"+params[0].getUserID()+"'";
+                            "Users_idUsers='"+ r.getUserID()+"'";
 
 
         //Execute
         try {
             stmt = User.getCon().createStatement();
             stmt.executeUpdate(update);
+            status = 6;
         }
 
         //Exception
         catch (Exception e) {
-            status = 1;
+            status = -1;
         }
 
         //Close
@@ -50,5 +57,10 @@ public class UpdateReview extends AsyncTask<Rating,Void,Integer>{
             }
         }
         return status;
+    }
+
+    protected void onPostExecute(Integer status)
+    {
+        caller.resultMessageHandler(status);
     }
 }
