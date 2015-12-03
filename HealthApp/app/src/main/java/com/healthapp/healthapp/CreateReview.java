@@ -39,7 +39,7 @@ public class CreateReview extends VisiblePage {
         // Initialize comment text field
         comment = (EditText) findViewById(R.id.editText);
 
-        // Initialize submit button
+        // Initialize "Submit" button
         submitButton = (Button) findViewById(R.id.submit_button);
         submitButton.setOnClickListener(submitListener);
 
@@ -62,9 +62,11 @@ public class CreateReview extends VisiblePage {
         productName.setText(product);
 
         // Place comment, if creating new review it will be blank,
-        // if upd
+        // if updating a review, the old comment will appear for editing
         comment.setText(oldComment);
 
+        // Place rating, if creating new review it will be blank,
+        // if updating a review, the old rating will appear for editing
         ratingBar.setRating(oldRating);
     }
 
@@ -90,17 +92,18 @@ public class CreateReview extends VisiblePage {
         return super.onOptionsItemSelected(item);
     }
 
+    // ClickListener for "Submit" button
     private View.OnClickListener submitListener = new View.OnClickListener()
     {
         @Override
         public void onClick(View v)
         {
             vi = v;
-            //gotoReview(v, product);
             validateReview();
         }
     };
 
+    // Checks if the user has already created a review
     void validateReview()
     {
         newReview.setFoodID(User.getFoodID());
@@ -108,15 +111,14 @@ public class CreateReview extends VisiblePage {
         newReview.setRating(ratingBar.getRating());
         newReview.setComment(comment.getText().toString());
 
-
         if(newReview.getRating() != 0)
             addReview();
+
         else
-
             resultMessageHandler(7);
-
     }
 
+    // Adds the user's review
     void addReview()
     {
         try
