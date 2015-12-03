@@ -10,7 +10,6 @@ import java.sql.Statement;
  * Authors: Chris Guido
  */
 
-//NEEDS TO BE IMPLEMENTED
 public class UpdateReview extends AsyncTask<Object,Void,Integer>{
 
     VisiblePage caller;

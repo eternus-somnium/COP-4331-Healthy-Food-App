@@ -24,7 +24,6 @@ public class Results extends VisiblePage
     private static Results instance = null;
     private static View vi;
     private static LinearLayout reviewsLayout;
-    Spinner dropdown;
     private static String[] items;
     Button showReviewButton;
     private static int x =0;
