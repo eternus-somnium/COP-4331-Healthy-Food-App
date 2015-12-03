@@ -18,16 +18,14 @@ import java.sql.SQLException;
 
 public class CreateReview extends VisiblePage {
 
-
+    // Variables
     Review newReview = new Review();
     private RatingBar ratingBar;
     private EditText comment;
     Button submitButton;
-
     private static String product;
     private static String oldComment;
     private static Float oldRating;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +33,17 @@ public class CreateReview extends VisiblePage {
         setContentView(R.layout.activity_create_review);
         this.instance = this;
 
+        //Initialize rating bar
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+
+        // Initialize comment text field
         comment = (EditText) findViewById(R.id.editText);
 
         // Initialize submit button
         submitButton = (Button) findViewById(R.id.submit_button);
         submitButton.setOnClickListener(submitListener);
 
-        // getExtras
+        // Get review information sent from ReviewsActivity.java
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
@@ -56,9 +57,12 @@ public class CreateReview extends VisiblePage {
             product = (String) savedInstanceState.getSerializable("Product");
         }
 
+        // Set the product name on screen
         TextView productName = (TextView) findViewById(R.id.product_name);
         productName.setText(product);
 
+        // Place comment, if creating new review it will be blank,
+        // if upd
         comment.setText(oldComment);
 
         ratingBar.setRating(oldRating);
