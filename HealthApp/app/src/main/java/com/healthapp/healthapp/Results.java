@@ -132,7 +132,7 @@ public class Results extends VisiblePage
 
 
 
-        // Place the correct value
+        // Place the values in the correct TextViews
         TextView productName = (TextView) instance.findViewById(R.id.textView2);
         product = results1[0][0];
         productName.setText(results1[0][0]);
@@ -188,7 +188,7 @@ public class Results extends VisiblePage
         vitA.setText(String.valueOf(Math.round(vitADV)));
 
 
-        // Calculating Percentages
+        // Calculating Percentages, and place the values in the correct TextViews
         TextView fatPercent = (TextView) instance.findViewById(R.id.fat_percent);
         float fatDV = Float.parseFloat(results1[3][measurement]);
         fatDV = (fatDV / 65) * 100;
@@ -232,41 +232,4 @@ public class Results extends VisiblePage
         populateFoodReport(0);
     }
 
-    public static void populateList(Review[] reviews)
-    {
-        if(reviews[0].getFoodID() == "false"){
-            // print error message
-            AlertDialog alertDialog = new AlertDialog.Builder(instance).create();
-            alertDialog.setTitle("Alert");
-            alertDialog.setMessage("There are currently no reviews for this object");
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
-        }
-
-
-        else {
-
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT);
-
-            for(int i=0; i < reviews.length; i++) {
-                TextView review = new TextView(instance);
-                review.setText(String.valueOf(reviews[i].getRating()));
-                TextView user = new TextView(instance);
-                user.setText(String.valueOf(reviews[i].getUserID()));
-                TextView comment = new TextView(instance);
-                comment.setText(String.valueOf(reviews[i].getComment()));
-
-                reviewsLayout.addView(review, lp);
-                reviewsLayout.addView(user, lp);
-                reviewsLayout.addView(comment, lp);
-
-            }
-        }
-    }
 }
