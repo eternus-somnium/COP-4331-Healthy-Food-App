@@ -8,16 +8,14 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
-
+/**
+ * Authors: Bryen Buie
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
-       // getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
-        //getActionBar().hide();
-       // requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.home_layout);

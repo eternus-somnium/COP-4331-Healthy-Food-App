@@ -16,7 +16,9 @@ import com.healthapp.healthapp.DatabaseAccess.Connect;
 import com.healthapp.healthapp.DatabaseAccess.User;
 import com.healthapp.healthapp.DatabaseAccess.ValidateUsername;
 
-
+/**
+ * Authors: Bryen Buie, Clive Hoayun
+ */
 public class SignUpActivity extends ConnectCall {
 
     private static SignUpActivity instance;

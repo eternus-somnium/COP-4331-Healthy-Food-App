@@ -30,16 +30,15 @@ import com.healthapp.healthapp.DatabaseAccess.User;
 
 public class Search extends VisiblePage
 {
+    // Variables
     private EditText searchField;
     public String sField;
     ImageButton sButton;
     ImageButton cButton;
     static final int BARCODE_SCAN_REQUEST = 1;
     public static String dbKey;
-
     private static Search instance = null;
     private static View vi;
-
     private static LinearLayout itemsLayout;
     private static ProgressBar bar;
     private static RelativeLayout rl;
@@ -50,20 +49,20 @@ public class Search extends VisiblePage
         setContentView(R.layout.activity_search);
         instance = this;
 
+        // Initializing layout for search result buttons
         itemsLayout = (LinearLayout) findViewById(R.id.items_layout);
 
         // Initializing text field
         searchField = (EditText) findViewById(R.id.search_field);
         sField = searchField.getText().toString();
 
-        // Initialize image button
+        // Initialize image buttons
         sButton = (ImageButton) findViewById(R.id.imageButton);
-
         cButton = (ImageButton) findViewById(R.id.clear_button);
-
 
         // Set Text Watcher
         searchField.addTextChangedListener(myWatcher);
+
         // Set Click Listener
         cButton.setOnClickListener(clearListener);
 
@@ -96,7 +95,7 @@ public class Search extends VisiblePage
         return super.onOptionsItemSelected(item);
     }
 
-
+    // Click Listener for clear button
     private View.OnClickListener clearListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -108,6 +107,7 @@ public class Search extends VisiblePage
         }
     };
 
+    // Click Listener for search button
     private View.OnClickListener searchDatabase = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -120,6 +120,7 @@ public class Search extends VisiblePage
         }
     };
 
+    // Click Listener for barcode scanner button
     private View.OnClickListener parseBarcode = new View.OnClickListener() {
         @Override
         public void onClick(View v)
@@ -164,9 +165,8 @@ public class Search extends VisiblePage
                 searchField = (EditText) findViewById(R.id.search_field);
                 sField = searchField.getText().toString();
 
-                // Initialize image button
+                // Initialize image buttons
                 sButton = (ImageButton) findViewById(R.id.imageButton);
-
                 cButton = (ImageButton) findViewById(R.id.clear_button);
                 cButton.setVisibility(View.VISIBLE);
                 sButton.setOnClickListener(searchDatabase);

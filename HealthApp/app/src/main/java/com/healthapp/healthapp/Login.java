@@ -19,16 +19,17 @@ import com.healthapp.healthapp.DatabaseAccess.AttemptLogin;
 import com.healthapp.healthapp.DatabaseAccess.Connect;
 import com.healthapp.healthapp.DatabaseAccess.User;
 
-
+/**
+ * Authors: Bryen Buie, Clive Hoayun, Chris Guido
+ */
 public class Login extends ConnectCall
 {
+    // Variables
     Button loginButton;
     private static Login instance = null;
     private static View vi;
-
     private ProgressBar bar;
     private RelativeLayout rl;
-
     private static final String PREFS_NAME = "HealthApp_PREFS";
 
     @Override
@@ -37,12 +38,14 @@ public class Login extends ConnectCall
         setContentView(R.layout.activity_login);
 
         this.instance = this;
-        // Initialize done button
+
+        // Initialize login button
         loginButton = (Button) findViewById(R.id.login_button);
 
         // Set Click Listener
         loginButton.setOnClickListener(loginListener);
 
+        // Initialize loading circle
         rl = (RelativeLayout) findViewById(R.id.loadingPanel);
         rl.setVisibility(View.GONE);
         bar = (ProgressBar) this.findViewById(R.id.progressBar);
@@ -94,6 +97,7 @@ public class Login extends ConnectCall
         @Override
         public void onClick(View v) {
             vi = v;
+
             //Do Login
             EditText uname  = (EditText)findViewById(R.id.username);
             EditText pword = (EditText)findViewById(R.id.password);
@@ -107,6 +111,7 @@ public class Login extends ConnectCall
             editor.putString("password", pword.getText().toString());
             editor.commit();
 
+            // Make loading circle visible
             bar.setVisibility(View.VISIBLE);
             rl.setVisibility(View.VISIBLE);
             loginButton.setVisibility(View.GONE);
@@ -147,6 +152,5 @@ public class Login extends ConnectCall
     public void resultMessageHandler(Integer i)
     {
         new ResultMessageHandler().showResultDialog(i, instance);
-        //instance.showResultDialog(i);
     }
 }
